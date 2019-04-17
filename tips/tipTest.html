@@ -1,0 +1,41 @@
+<html>
+
+<head>
+  <!--
+  <style type="text/css" src="./waifu.css"></style> 
+  -->
+  <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome/css/font-awesome.min.css" />
+  <link rel="stylesheet" type="text/css" href="./tips.css">
+  <script async src="./tips.js"></script>
+  <script>
+    $(function () {
+      $(".drag").draggable({
+        containment: document.body
+      });
+    });
+  </script>
+  <style>
+    .drag {
+      width: 280px;
+      height: 250px;
+      position: fixed;
+      bottom: 0px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="drag" id="drag_1">
+    <div class="tips" id="tip_1"></div>
+    <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+  </div>
+
+  <div class="drag" id="drag_2">
+    <div class="tips" id="tip_2"></div>
+    <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+  </div>
+</body>
+
+</html>
