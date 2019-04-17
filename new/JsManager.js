@@ -9,9 +9,12 @@ document.write("<script src=\"" + "new/src/" + "/LAppModel.js\"></script>");
 document.write("<script src=\"" + "new/src/" + "/LAppLive2DManager.js\"></script>");
 document.write("<script src=\"" + "new/src/" + "/SampleApp.js\"></script>");
 
-var minTips = 2;
-var maxTips = 7;
+var minTips = 0;
+var maxTips = 5;
 var thisMy = new Array();
+var canvas_width = new Array(200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200);
+var canvas_height = new Array(300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300);
+var loadInterval = 300;
 
 function sampleManager()
 {
@@ -23,22 +26,22 @@ function sampleManager()
         tempDrag.className = "drag";
         var tempTip = document.createElement("div");
         tempTip.id = "tip_" + i;
-        tempTip.className = "tips";
+        tempTip.className = "tips";tempDrag.widt
         tempDrag.appendChild(tempTip);
         var tempCanvas = document.createElement("canvas");
         tempCanvas.id = "glcanvas_" + i;
         tempCanvas.className = "glcanvas";
-        tempCanvas.width = 200;
-        tempCanvas.height = 300;
+        tempCanvas.width = canvas_width[i];
+        tempCanvas.height = canvas_height[i];
         tempDrag.appendChild(tempCanvas);
         var tempButton = document.createElement("button");
         tempButton.id = "btnChange_" + i;
         tempButton.className = "active btnChange";
         tempDrag.appendChild(tempButton);
         document.body.appendChild(tempDrag);
-        setTimeout("new sampleApp(" + i + ")", (i - 2) * 300);
+        setTimeout("new sampleApp(" + i + ")", (i - minTips) * loadInterval);
     }
-    setTimeout("myDrag()", maxTips * 300);
+    setTimeout("myDrag()", (maxTips - minTips + 1) * loadInterval);
 }
 
 function myDrag()

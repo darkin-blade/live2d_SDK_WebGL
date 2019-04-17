@@ -1,5 +1,21 @@
 var LAppDefine = new Array();
-LAppDefine[2] = LAppDefine[3] = LAppDefine[4] = LAppDefine[5] = LAppDefine[6] = LAppDefine[7] = {
+LAppDefine[0] =
+LAppDefine[1] =
+LAppDefine[2] =
+LAppDefine[3] =
+LAppDefine[4] =
+LAppDefine[5] =
+LAppDefine[6] =
+LAppDefine[7] =
+LAppDefine[8] =
+LAppDefine[9] =
+LAppDefine[10] =
+LAppDefine[11] =
+LAppDefine[12] =
+LAppDefine[13] =
+LAppDefine[14] =
+LAppDefine[15] =
+{
     /*
     DEBUG_LOG : true,
     DEBUG_MOUSE_LOG : false, 
