@@ -11,11 +11,14 @@
 
     <script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="tips/tips.css">
-    <script async src="tips/tips.js"></script>
+    <link rel="stylesheet" type="text/css" href="new/tips/tips.css">
+    <script async src="new/tips/tips.js"></script>
+    <script src="new/JsManager.js"></script>
     <script>
-        $(function () {
-            $(".drag").draggable({
+        $(function()
+        {
+            $(".drag").draggable(
+            {
                 containment: document.body
             });
         });
@@ -62,6 +65,7 @@
         #drag_7 {
             right: 500px;
         }
+
         .glcanvas {
             /*
                 position: absolute;
@@ -162,7 +166,7 @@
         <button id="btnChange_3" class="active btnChange">准备开打</button>
     </div>
 
-     <div id="drag_4" class="drag">
+    <div id="drag_4" class="drag">
         <div class="tips" id="tip_4"></div>
         <canvas id="glcanvas_4" class="glcanvas" width=200 height=300 style="border:dashed 1px #CCC" draggable="true">
         </canvas>
@@ -191,7 +195,6 @@
     </div>
     <div id="myconsole" style="color:#000">---- Log ----</div> --> -->
 
-    <script src="new/JsManager.js"></script>
 
 </body>
 

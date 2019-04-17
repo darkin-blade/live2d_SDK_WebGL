@@ -35,7 +35,7 @@ $(document).on('copy', function () {
 });
 
 (function () {
-  $.getJSON("tips/tips.json", function (result) {
+  $.getJSON("new/tips/tips.json", function (result) {
     $.each(result.mouseover, function (index, tips) {
       $(document).on("mouseover", tips.selector, function () {
         var temp_num = Number(tips.selector[tips.selector.length - 1]);
@@ -108,7 +108,7 @@ window.setInterval(showHitokoto, 500);
 
 function showHitokoto() {
   // $.getJSON('https://api.imjad.cn/hitokoto/?cat=&charset=utf-8&length=28&encode=json'
-  $.getJSON("tips/fuck.json", function (result) {
+  $.getJSON("new/tips/fuck.json", function (result) {
     var randf = Math.random() * 1000;
     var randi = Math.floor(randf * 1000);
     var shit_len = result.fuck[0].shit.length;
