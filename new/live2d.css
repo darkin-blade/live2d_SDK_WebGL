@@ -44,9 +44,10 @@ body {
     --orange: rgba(236, 217, 188, 1);
     --green: rgba(115, 210, 22, 1);
     --deepskyblue: rgba(0, 191, 255,1);
-    --deeppink: rgba(255, 20, 147 1);
+    --hotpink: rgba(255, 105, 180, 1);
     --cyan: rgba(0, 255, 255, 1);
     --mediumspringgreen: rgba(0, 251, 127, 1);
+    --violet: rgba(238, 130, 238, 1);
 }
 
 button {
@@ -70,6 +71,16 @@ button {
     left: 0px;
     border-color: var(--green);
     background-color: var(--green);
+}
+
+.btnChanging {
+    border-color: var(--hotpink);
+    background-color: var(--hotpink);
+}
+
+.btnChanging:hover {
+    border-color: var(--violet);
+    background-color: var(--violet);
 }
 
 .btnChange:hover {

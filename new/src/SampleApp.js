@@ -136,6 +136,20 @@ sampleApp.prototype.init = function()
   thisMy[this.num].startDraw();
 }
 
+sampleApp.prototype.getWebGLContext = function ()
+{
+  var NAMES = [ "webgl" , "experimental-webgl" , "webkit-3d" , "moz-webgl"];
+
+  for( var i = 0; i < NAMES.length; i++ ){
+      try{
+          var ctx = thisMy[this.num].canvas.getContext(NAMES[i], {premultipliedAlpha : true});
+          if(ctx) return ctx;
+      }
+      catch(e){}
+  }
+  return null;
+};
+
 
 sampleApp.prototype.startDraw = function () {
   if (!thisMy[this.num].isDrawStart) {
@@ -190,7 +204,7 @@ sampleApp.prototype.draw = function ()
               var btnChange = document.getElementById("btnChange_" + this.num);
               btnChange.textContent = "change";
               btnChange.removeAttribute("disabled");
-              btnChange.setAttribute("class", "btnChange active"); // 切换class
+              btnChange.setAttribute("class", "btnChange"); // 切换class
           }
       }
   }
@@ -203,7 +217,7 @@ sampleApp.prototype.changeModel = function ()
 {
   var btnChange = document.getElementById("btnChange_" + this.num);
   btnChange.setAttribute("disabled", "disabled");
-  btnChange.setAttribute("class", "btnChange inactive"); // 切换class
+  btnChange.setAttribute("class", "btnChanging"); // 切换class
   btnChange.textContent = "loading";
   thisMy[this.num].isModelShown = false;
   
@@ -407,30 +421,6 @@ sampleApp.prototype.transformScreenY = function (deviceY)
 }
 
 
-
-sampleApp.prototype.getWebGLContext = function ()
-{
-/*
-  if (thisMy[this.num].lastw != thisMy[this.num].canvas.width || thisMy[this.num].lasth != thisMy[this.num].canvas.height)
-  {
-      thisMy[this.num].projMatrix.multScale(1, thisMy[this.num].lastr);
-      thisMy[this.num].projMatrix.multScale(1, (thisMy[this.num].canvas.width / thisMy[this.num].canvas.height));
-      thisMy[this.num].lastw = thisMy[this.num].canvas.width;
-      thisMy[this.num].lasth = thisMy[this.num].canvas.height;
-      thisMy[this.num].lastr = thisMy[this.num].lasth / thisMy[this.num].lastw;
-  }
-  */
-  var NAMES = [ "webgl" , "experimental-webgl" , "webkit-3d" , "moz-webgl"];
-
-  for( var i = 0; i < NAMES.length; i++ ){
-      try{
-          var ctx = thisMy[this.num].canvas.getContext(NAMES[i], {premultipliedAlpha : true});
-          if(ctx) return ctx;
-      }
-      catch(e){}
-  }
-  return null;
-};
 
 
 

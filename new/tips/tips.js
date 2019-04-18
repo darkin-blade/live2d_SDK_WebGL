@@ -111,8 +111,8 @@ function showHitokoto() {
   $.getJSON("new/tips/fuck.json", function (result) {
     var randf = Math.random() * 1000;
     var randi = Math.floor(randf * 1000);
-    var shit_len = result.fuck[0].shit.length;
-    showMessage(result.fuck[0].shit[randi % shit_len], 5000, randi % (maxNum + 1) + minNum); // 没有仔细算
+    var shit_len = result.fuck[0].wrong.length;
+    showMessage(result.fuck[0].wrong[randi % shit_len], 5000, randi % (maxNum + 1) + minNum); // 没有仔细算
   });
 }
 

@@ -27,7 +27,7 @@ LAppLive2DManager.prototype.createModel = function()
 
 LAppLive2DManager.prototype.changeModel = function(gl)
 {
-    console.log("--> LAppLive2DManager.update(gl)// (changeModel)");
+    // console.log("--> LAppLive2DManager.update(gl)// (changeModel)");
     var tempNum = this.num;
     
     if (this.reloadFlg)
