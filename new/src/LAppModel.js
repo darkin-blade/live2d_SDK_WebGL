@@ -6,7 +6,7 @@
 function LAppModel(num)
 {
     // alert(arguments[0]);
-    L2DBaseModel.apply(this, arguments);
+    L2DBaseModel.apply(this, arguments); // 没看懂
     this.num = num;
     //L2DBaseModel.prototype.constructor.call(this);
     
@@ -172,7 +172,6 @@ LAppModel.prototype.load = function(gl, modelSettingPath, callback)
 LAppModel.prototype.release = function(gl)
 {
     // this.live2DModel.deleteTextures();
-    // console.log("LAppModel.release()");
     var pm = Live2DFramework.getPlatformManager(this.num); // 感觉没什么用
 
     gl.deleteTexture(pm.texture);

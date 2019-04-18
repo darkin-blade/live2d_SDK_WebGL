@@ -9,8 +9,8 @@ document.write("<script src=\"" + "new/src/" + "/LAppModel.js\"></script>");
 document.write("<script src=\"" + "new/src/" + "/LAppLive2DManager.js\"></script>");
 document.write("<script src=\"" + "new/src/" + "/SampleApp.js\"></script>");
 
-var minTips = 0;
-var maxTips = 2;
+var minTips = 2;
+var maxTips = 4;
 var thisMy = new Array();
 var loadInterval = 300;
 

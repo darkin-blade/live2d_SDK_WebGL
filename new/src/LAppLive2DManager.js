@@ -34,55 +34,39 @@ LAppLive2DManager.prototype.changeModel = function(gl)
     {
         
         this.reloadFlg = false;
-        var no = parseInt(this.count % 6);
+        var last_no = parseInt((this.count + LAppDefine[tempNum].MODELS.length - 1) % LAppDefine[tempNum].MODELS.length);
+        var cur_no = parseInt(this.count % LAppDefine[tempNum].MODELS.length);
 
-        var thisRef = this;
-        switch (no)
+        if (Array.isArray(LAppDefine[tempNum].MODELS[last_no]))
         {
-            case 0: 
-                this.releaseModel(3, gl);
-                this.releaseModel(2, gl);
-                this.releaseModel(1, gl);
-                this.releaseModel(0, gl);
-                
-                this.createModel();
-                this.models[0].load(gl, LAppDefine[tempNum].MODEL_HARU);
-                break;
-            case 1: 
-                this.releaseModel(0, gl);
-                this.createModel();
-                this.models[0].load(gl, LAppDefine[tempNum].MODEL_SHIZUKU);
-                break;
-            case 2: 
-                this.releaseModel(0, gl);
-                this.createModel();
-                this.models[0].load(gl, LAppDefine[tempNum].MODEL_WANKO);
-                break;
-            case 3: 
-                this.releaseModel(0, gl);
-                this.createModel();
-                this.models[0].load(gl, LAppDefine[tempNum].MODEL_EPSILON);
-                break;
-            case 4: 
-                this.releaseModel(0, gl);
-                this.createModel();
-                this.models[0].load(gl, LAppDefine[tempNum].MODEL_HARU_A, function() {
+            for (var i = LAppDefine[tempNum].MODELS[last_no].length - 1; i >= 0; i --)
+            {
+                this.releaseModel(i, gl);
+            }
+        }
+        else
+        {
+            this.releaseModel(0, gl);
+        }
+        if (Array.isArray(LAppDefine[tempNum].MODELS[cur_no]))
+        {
+            thisRef = this;
+            this.createModel();
+            this.models[0].load(gl, LAppDefine[tempNum].MODELS[cur_no][0], function () {
+                for (var i = 1; i < LAppDefine[tempNum].MODELS[cur_no].length; i ++)
+                {
                     thisRef.createModel();
-                    thisRef.models[1].load(gl, LAppDefine[tempNum].MODEL_HARU_B);
-                });
-                break;
-            case 5: 
-                this.releaseModel(1, gl);
-                this.releaseModel(0, gl);
-                this.createModel();
-                this.models[0].load(gl, LAppDefine[tempNum].MODEL_HIYORI);
-                break;
-            default:
-                break;
+                    thisRef.models[i].load(gl, LAppDefine[tempNum].MODELS[cur_no][i]);
+                }
+            })
+        }
+        else
+        {
+            this.createModel();
+            this.models[0].load(gl, LAppDefine[tempNum].MODELS[cur_no]);
         }
     }
-};
-
+}
 
 LAppLive2DManager.prototype.getModel = function(no)
 {
