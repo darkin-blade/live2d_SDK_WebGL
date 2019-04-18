@@ -16,7 +16,7 @@ LAppDefine[13] =
 LAppDefine[14] =
 LAppDefine[15] =
 {
-    DEBUG_LOG : true,
+    DEBUG_LOG : false,
     /*
     DEBUG_MOUSE_LOG : false, 
     DEBUG_DRAW_HIT_AREA : false, 

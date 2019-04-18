@@ -50,7 +50,7 @@ sampleApp.prototype.initL2dCanvas = function ()
   var tempNum = this.num;
   var tempMy = thisMy[tempNum];
   
-  if(thisMy[this.num].canvas.addEventListener) 
+  if (thisMy[this.num].canvas.addEventListener) 
   {
       thisMy[this.num].canvas.addEventListener("mousewheel", function () { tempMy.mouseEvent() }, false);
       thisMy[this.num].canvas.addEventListener("click", function () { tempMy.mouseEvent() }, false);
@@ -188,9 +188,9 @@ sampleApp.prototype.draw = function ()
           if (!thisMy[this.num].isModelShown && i == thisMy[this.num].live2DMgr.numModels()-1) {
               thisMy[this.num].isModelShown = !thisMy[this.num].isModelShown;
               var btnChange = document.getElementById("btnChange_" + this.num);
-              btnChange.textContent = "打不过,换人!";
+              btnChange.textContent = "change";
               btnChange.removeAttribute("disabled");
-              btnChange.setAttribute("class", "active");
+              btnChange.setAttribute("class", "btnChange active"); // 切换class
           }
       }
   }
@@ -202,9 +202,9 @@ sampleApp.prototype.draw = function ()
 sampleApp.prototype.changeModel = function ()
 {
   var btnChange = document.getElementById("btnChange_" + this.num);
-  btnChange.setAttribute("disabled","disabled");
-  btnChange.setAttribute("class", "inactive");
-  btnChange.textContent = "正在叫人...";
+  btnChange.setAttribute("disabled", "disabled");
+  btnChange.setAttribute("class", "btnChange inactive"); // 切换class
+  btnChange.textContent = "loading";
   thisMy[this.num].isModelShown = false;
   
   thisMy[this.num].live2DMgr.reloadFlg = true;
@@ -268,6 +268,10 @@ sampleApp.prototype.modelTurnHead = function (event)
 
 sampleApp.prototype.followPointer = function (event)
 {    
+  if (thisMy[this.num] == null)
+  {
+    return;
+  }
   // var rect = event.target.getBoundingClientRect();
   var the_div = document.getElementById("drag_" + this.num);
 

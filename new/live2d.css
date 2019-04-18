@@ -47,14 +47,51 @@ body {
     position: relative;
 }
 
-.btnChange {
-    z-index: 2;
-    left: 30px;
-    bottom: 0px;
-    position: relative;
+:root {
+    --purple: rgba(172, 133, 253, 1);
+    --orange: rgba(236, 217, 188, 1);
+    --green: rgba(115, 210, 22, 1);
+    --deepskyblue: rgba(0, 191, 255,1);
+    --deeppink: rgba(255, 20, 147 1);
 }
 
 button {
+    color: white;
+    text-align: center;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+    font-weight: 990;
+    font-family: DejaVu Sans Mono for Powerline;
+    height: 30px;
+    border-radius: 3px;
+    border-style: solid;
+    padding: 0px;
+    margin: 0px;
+
+    z-index: 2;
+    position: absolute;
+    bottom: auto;
+}
+
+.btnChange {
+    left: 0px;
+    border-color: var(--green);
+    background-color: var(--green);
+}
+
+.btnClose {
+    right: 0px;
+    border-color: var(--deepskyblue);
+    background-color: var(--deepskyblue);
+}
+
+.btnLock {
+    z-index: 2;
+    position: relative;
+    border-color: var(--deeppink);
+    background-color: var(--deeppink);
+}
+
+/* button {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     color: #ffffff;
@@ -100,4 +137,4 @@ button.inactive {
         from(#e74c3c),
         to(#c0392b));
     border: 1px solid #c0392b;
-}
+} */
