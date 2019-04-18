@@ -6,19 +6,18 @@
 
 ![](info/demo1.gif)
 
-## 使用(只介绍`new/`下面的使用方式)
+## 使用(只介绍最新版的使用方式)
 
-你需要加载的canvas个数=`JSManager.js`中`MaxTips - MinTips + 1`,每一个模块的格式:
+> 需要`php`环境
 
-```html
-    <div id="drag_2" class="drag">
-        <div class="tips" id="tip_2"></div>
-        <canvas id="glcanvas_2" class="glcanvas" width=200 height=300 style="border:dashed 1px #CCC" draggable="true">
-        </canvas>
-        <button id="btnChange_2" class="active btnChange">加载模型...</button>
-    </div>
-```
+- 一键加载(sample.html)
 
-`MinTips`(含)到`MaxTips`(含)对应`drag_{num}`,`tip_{num}`,`glcanvas_{num}`,`btnChange_{num}`的`{num}`,可以任意添加canvas,同时记得修改css样式
+在`JSManager.js`中调整`minNum`和`maxNum`的大小即可
 
-其余使用,见[官方SDK分析](https://niabie.github.io/2019/04/06/l2dwebGL%E7%AC%94%E8%AE%B0/),[SDK功能扩展](https://niabie.github.io/2019/04/15/l2dwebGL%E6%89%A9%E5%B1%95/)
+- 修改样式
+
+`live2d.css`和`tips.css`以及`LAppDefine.js`中的大小参数
+
+- 修改模型(源代码不含模型资源)
+
+`LAppDefine.js`中自行修改

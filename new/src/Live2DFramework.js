@@ -978,7 +978,7 @@ function L2DPhysics()
 L2DPhysics.load            = function(buf /*byte[]*/ )
 {
     var ret = new L2DPhysics(); //L2DPhysics L2DPhysics
-    var pm = Live2DFramework.getPlatformManager(minTips); // _2_ 不知道有什么用
+    var pm = Live2DFramework.getPlatformManager(minNum); // _2_ 不知道有什么用
     var json = pm.jsonParseFromBytes(buf);
     var params = json.physics_hair;
     var paramNum = params.length;
@@ -1076,7 +1076,7 @@ function L2DPose()
 L2DPose.load            = function(buf/*byte[]*/)
 {    
     var ret = new L2DPose(); //L2DPose
-    var pm = Live2DFramework.getPlatformManager(minTips); // _3_
+    var pm = Live2DFramework.getPlatformManager(minNum); // _3_
     var json = pm.jsonParseFromBytes(buf);
     var poseListInfo = json.parts_visible; //Value
     var poseNum = poseListInfo.length;

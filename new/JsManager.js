@@ -9,15 +9,15 @@ document.write("<script src=\"" + "new/src/" + "/LAppModel.js\"></script>");
 document.write("<script src=\"" + "new/src/" + "/LAppLive2DManager.js\"></script>");
 document.write("<script src=\"" + "new/src/" + "/SampleApp.js\"></script>");
 
-var minTips = 2;
-var maxTips = 4;
+var minNum = 2;
+var maxNum = 4;
 var thisMy = new Array();
 var loadInterval = 300;
 
 function sampleManager()
 {
     var i = 0;
-    for (i = minTips; i <= maxTips; i++)
+    for (i = minNum; i <= maxNum; i++)
     {
         var tempDrag = document.createElement("div");
         tempDrag.id = "drag_" + i;
@@ -42,9 +42,9 @@ function sampleManager()
         tempButton.className = "active btnChange";
         tempDrag.appendChild(tempButton);
         document.body.appendChild(tempDrag);
-        setTimeout("new sampleApp(" + i + ")", (i - minTips) * loadInterval);
+        setTimeout("new sampleApp(" + i + ")", (i - minNum) * loadInterval);
     }
-    setTimeout("myDrag()", (maxTips - minTips + 1) * loadInterval);
+    setTimeout("myDrag()", (maxNum - minNum + 1) * loadInterval);
 }
 
 function myDrag()

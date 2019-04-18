@@ -4785,7 +4785,7 @@ function live2Dmain (num) {
 (function(){
     window.Live2D = new Array();
     window.Live2DModelWebGL = new Array();
-    for (var num = minTips; num <= maxTips; num ++)
+    for (var num = minNum; num <= maxNum; num ++)
     {
         live2Dmain(num);
     }

@@ -112,14 +112,14 @@ function showHitokoto() {
     var randf = Math.random() * 1000;
     var randi = Math.floor(randf * 1000);
     var shit_len = result.fuck[0].shit.length;
-    showMessage(result.fuck[0].shit[randi % shit_len], 5000, randi % (maxTips + 1) + minTips); // 没有仔细算
+    showMessage(result.fuck[0].shit[randi % shit_len], 5000, randi % (maxNum + 1) + minNum); // 没有仔细算
   });
 }
 
 function showMessage(text, timeout, num) {
   if (Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1) - 1];
   if (num == -1) {
-    for (num = minTips; num <= maxTips; num++) {
+    for (num = minNum; num <= maxNum; num++) {
       $("#tip_" + num).stop();
       $("#tip_" + num).html(text).fadeTo(200, 1);
       if (timeout === null) timeout = 5000;
