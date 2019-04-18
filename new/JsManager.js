@@ -19,11 +19,17 @@ function sampleManager()
     var i = 0;
     for (i = minNum; i <= maxNum; i++)
     {
-        // 主元素
+        // 主(拖拽)元素
         var tempDrag = document.createElement("div");
         tempDrag.id = "drag_" + i;
         tempDrag.className = "drag";
         
+        // 主(拖拽)元素的css
+        var tempCss = document.createElement("style");
+        tempCss.innerHTML = 
+        "#drag_" + i + " { width: " + LAppDefine[i].width + "px; " + "height: " + LAppDefine[i].height + "px; }";
+        document.body.appendChild(tempCss);
+
         // tip元素
         var tempTip = document.createElement("div");
         tempTip.id = "tip_" + i;
@@ -31,10 +37,10 @@ function sampleManager()
         tempTip.setAttribute("style",
         "width: " + (LAppDefine[i].width + 50) + "px;" + 
         "left: " + (-25) + "px;" + 
-        "margin: 0px 0px " + (-LAppDefine[i].height / 10) + "px 0px;"
+        "margin: 0px 0px " + (-LAppDefine[i].height / (10 * (LAppDefine[i].width / LAppDefine[i].height))) + "px 0px;"
         );// 自动计算大小
         tempDrag.appendChild(tempTip);
-
+        
         // live2d画布
         var tempCanvas = document.createElement("canvas");
         tempCanvas.id = "glcanvas_" + i;
@@ -45,7 +51,7 @@ function sampleManager()
         
         // 对齐用,临时变量
         var tempButton = document.createElement("div");
-
+        
         // 切换按钮
         var tempChange = document.createElement("button");
         tempChange.id = "btnChange_" + i;
@@ -64,6 +70,7 @@ function sampleManager()
         
         tempDrag.appendChild(tempButton);
         document.body.appendChild(tempDrag);
+        document.getElementById("drag_" + i).width = LAppDefine[i].width;
         setTimeout("new sampleApp(" + i + ")", (i - minNum) * loadInterval);
     }
     setTimeout("myDrag()", (maxNum - minNum + 1) * loadInterval);
@@ -72,13 +79,13 @@ function sampleManager()
 function myDrag()
 {
     $(".drag").draggable(
-    {
-        containment: document.body
-    });
-}
-
-function deleteFather (num){
-    var tempNode = document.getElementById("drag_" + num);
-    // tempNode.parentNode.removeChild(tempNode);
+        {
+            containment: document.body
+        });
+    }
+    
+    function deleteFather (num){
+        var tempNode = document.getElementById("drag_" + num);
+        // tempNode.parentNode.removeChild(tempNode);
     tempNode.setAttribute("style", "display: none;");
 }

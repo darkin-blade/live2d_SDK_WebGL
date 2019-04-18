@@ -1,13 +1,10 @@
 html,
 body {
-    oveflow: hidden;
     height: 100%;
 }
 
 .drag {
     position: fixed;
-    width: 200px;
-    height: 300px;
     top: 200px;
 }
 
@@ -36,11 +33,6 @@ body {
 }
 
 .glcanvas {
-    background-size: 150%;
-    background-position: 50% 50%;
-    /*
-        background-image: url(assets/image/back_class_normal.png);
-        */
     z-index: 0;
     bottom: 0px;
     right: 0px;
@@ -53,6 +45,8 @@ body {
     --green: rgba(115, 210, 22, 1);
     --deepskyblue: rgba(0, 191, 255,1);
     --deeppink: rgba(255, 20, 147 1);
+    --cyan: rgba(0, 255, 255, 1);
+    --mediumspringgreen: rgba(0, 251, 127, 1);
 }
 
 button {
@@ -65,7 +59,7 @@ button {
     border-radius: 3px;
     border-style: solid;
     padding: 0px;
-    margin: 0px;
+    margin: -3px 0px 0px 0px;
 
     z-index: 2;
     position: absolute;
@@ -78,10 +72,22 @@ button {
     background-color: var(--green);
 }
 
+.btnChange:hover {
+    transition-duration: 1s;
+    border-color: var(--mediumspringgreen);
+    background-color: var(--mediumspringgreen);
+}
+
 .btnClose {
     right: 0px;
     border-color: var(--deepskyblue);
     background-color: var(--deepskyblue);
+}
+
+.btnClose:hover {
+    transition-duration: 1s;
+    border-color: var(--cyan);
+    background-color: var(--cyan);
 }
 
 .btnLock {
