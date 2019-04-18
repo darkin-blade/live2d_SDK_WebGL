@@ -10,10 +10,8 @@ document.write("<script src=\"" + "new/src/" + "/LAppLive2DManager.js\"></script
 document.write("<script src=\"" + "new/src/" + "/SampleApp.js\"></script>");
 
 var minTips = 0;
-var maxTips = 5;
+var maxTips = 2;
 var thisMy = new Array();
-var canvas_width = new Array(200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200, 200);
-var canvas_height = new Array(300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300);
 var loadInterval = 300;
 
 function sampleManager()
@@ -26,13 +24,18 @@ function sampleManager()
         tempDrag.className = "drag";
         var tempTip = document.createElement("div");
         tempTip.id = "tip_" + i;
-        tempTip.className = "tips";tempDrag.widt
+        tempTip.className = "tips";
+        tempTip.setAttribute("style",
+        "width: " + (LAppDefine[i].width + 50) + "px;" + 
+        "left: " + (-25) + "px;" + 
+        "margin: 0px 0px " + (-LAppDefine[i].height / 10) + "px 0px;"
+        );
         tempDrag.appendChild(tempTip);
         var tempCanvas = document.createElement("canvas");
         tempCanvas.id = "glcanvas_" + i;
         tempCanvas.className = "glcanvas";
-        tempCanvas.width = canvas_width[i];
-        tempCanvas.height = canvas_height[i];
+        tempCanvas.width = LAppDefine[i].width;
+        tempCanvas.height = LAppDefine[i].height;
         tempDrag.appendChild(tempCanvas);
         var tempButton = document.createElement("button");
         tempButton.id = "btnChange_" + i;

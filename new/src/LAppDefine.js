@@ -16,21 +16,23 @@ LAppDefine[13] =
 LAppDefine[14] =
 LAppDefine[15] =
 {
-    /*
     DEBUG_LOG : true,
+    /*
     DEBUG_MOUSE_LOG : false, 
     DEBUG_DRAW_HIT_AREA : false, 
     DEBUG_DRAW_ALPHA_MODEL : false, 
     */
+    width: 200,
+    height: 300,
 
-    VIEW_MAX_SCALE : 2,
-    VIEW_MIN_SCALE : 0.3,
+    VIEW_MAX_SCALE: 2,
+    VIEW_MIN_SCALE: 0.3,
 
-    VIEW_LOGICAL_LEFT : -1,
-    VIEW_LOGICAL_RIGHT : 1,
+    VIEW_LOGICAL_LEFT: -1,
+    VIEW_LOGICAL_RIGHT: 1,
 
-    VIEW_LOGICAL_MAX_LEFT : -2,
-    VIEW_LOGICAL_MAX_RIGHT : 2,
+    VIEW_LOGICAL_MAX_LEFT: -2,
+    VIEW_LOGICAL_MAX_RIGHT: 2,
     VIEW_LOGICAL_MAX_BOTTOM : -2,
     VIEW_LOGICAL_MAX_TOP : 2,
     
