@@ -1,17 +1,14 @@
 .tips {
   position: relative;
   opacity: 0;
-  width: 250px;
   height: 70px;
-  margin: 0px 0px -10px 0px;
-  /* padding: 0px 0px 0px 100px; */
-  border-radius: 12px;
   box-shadow: 0 3px 15px 2px rgba(191, 158, 118, 0.2);
+  border-radius: 12px;
   font-size: 14px;
   text-align: center;
   text-overflow: ellipsis;
   overflow: hidden;
-  
+
   animation-delay: 5s;
   animation-duration: 50s;
   animation-iteration-count: infinite;
@@ -19,19 +16,28 @@
   animation-timing-function: ease-in-out;
 }
 
+:root {
+  --purple-box: rgba(172, 133, 253, 0.5);
+  --purple-border: 1px solid rgb(172, 133, 253, 0.62);
+  --orange-box: rgba(236, 217, 188, 0.5);
+  --orange-border: 1px solid rgba(224, 186, 140, 0.62);
+  --green-box: rgba(115, 210, 22, 0.5);
+  --green-border: 1px solid rgba(115, 210, 22, 0.62);
+}
+
 #tip_2, #tip_3, #tip_4 {
-  border: 1px solid rgba(172, 133, 253, 0.5);
-  background-color: rgb(172, 133, 253, 0.62);
+  border: var(--purple-border);
+  background-color: var(--purple-box);
 }
 
 #tip_5, #tip_6, #tip_7 {
-  border: 1px solid rgba(224, 186, 140, 0.62);
-  background-color: rgba(236, 217, 188, 0.5);
+  border: var(--orange-border);
+  background-color: var(--orange-box);
 }
 
-#tip_8 {
-  border: 1px solid rgba(115, 210, 22, 0.62);
-  background-color: rgba(115, 210, 22, 0.5);
+#tip_0, #tip_1, #tip_8 {
+  border: var(--green-border);
+  background-color: var(--green-box);
 }
 
 @keyframes shake {

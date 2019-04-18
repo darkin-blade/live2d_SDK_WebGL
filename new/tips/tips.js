@@ -112,7 +112,7 @@ function showHitokoto() {
     var randf = Math.random() * 1000;
     var randi = Math.floor(randf * 1000);
     var shit_len = result.fuck[0].shit.length;
-    showMessage(result.fuck[0].shit[randi % shit_len], 5000, randi % maxTips + minTips);
+    showMessage(result.fuck[0].shit[randi % shit_len], 5000, randi % (maxTips + 1) + minTips); // 没有仔细算
   });
 }
 
