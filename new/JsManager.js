@@ -19,12 +19,12 @@ function sampleManager()
     var i = 0;
     for (i = minNum; i <= maxNum; i++)
     {
-        // 主(拖拽)元素
+        // 拖拽元素
         var tempDrag = document.createElement("div");
         tempDrag.id = "drag_" + i;
         tempDrag.className = "drag";
         
-        // 主(拖拽)元素的css
+        // 拖拽元素的css
         var tempCss = document.createElement("style");
         tempCss.innerHTML = 
         "#drag_" + i + " { width: " + LAppDefine[i].width + "px; " + "height: " + LAppDefine[i].height + "px; }";
