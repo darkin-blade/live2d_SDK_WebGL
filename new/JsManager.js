@@ -9,8 +9,8 @@ document.write("<script src=\"" + "new/src/" + "/LAppModel.js\"></script>");
 document.write("<script src=\"" + "new/src/" + "/LAppLive2DManager.js\"></script>");
 document.write("<script src=\"" + "new/src/" + "/SampleApp.js\"></script>");
 
-var minNum = 2;
-var maxNum = 4;
+var minNum = 0;
+var maxNum = 0;
 var thisMy = new Array();
 var loadInterval = 300;
 
@@ -68,9 +68,12 @@ function sampleManager()
         tempClose.textContent = "Close";
         tempButton.appendChild(tempClose);
         
+        // 添加至body
         tempDrag.appendChild(tempButton);
         document.body.appendChild(tempDrag);
         document.getElementById("drag_" + i).width = LAppDefine[i].width;
+
+        // 主体函数
         setTimeout("new sampleApp(" + i + ")", (i - minNum) * loadInterval);
     }
     setTimeout("myDrag()", (maxNum - minNum + 1) * loadInterval);

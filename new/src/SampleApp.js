@@ -136,6 +136,23 @@ sampleApp.prototype.init = function()
   thisMy[this.num].startDraw();
 }
 
+
+sampleApp.prototype.changeModel = function ()
+{
+  // thisMy[this.num].gl = thisMy[this.num].getWebGLContext(this.num); // 感觉加了这句没什么用
+
+  var btnChange = document.getElementById("btnChange_" + this.num);
+  btnChange.setAttribute("disabled", "disabled");
+  btnChange.setAttribute("class", "btnChanging"); // 切换class
+  btnChange.textContent = "loading";
+  thisMy[this.num].isModelShown = false;
+  
+  thisMy[this.num].live2DMgr.reloadFlg = true;
+  thisMy[this.num].live2DMgr.count++;
+
+  thisMy[this.num].live2DMgr.changeModel(thisMy[this.num].gl);
+}
+
 sampleApp.prototype.getWebGLContext = function ()
 {
   var NAMES = [ "webgl" , "experimental-webgl" , "webkit-3d" , "moz-webgl"];
@@ -212,20 +229,6 @@ sampleApp.prototype.draw = function ()
   MatrixStack.pop();
 }
 
-
-sampleApp.prototype.changeModel = function ()
-{
-  var btnChange = document.getElementById("btnChange_" + this.num);
-  btnChange.setAttribute("disabled", "disabled");
-  btnChange.setAttribute("class", "btnChanging"); // 切换class
-  btnChange.textContent = "loading";
-  thisMy[this.num].isModelShown = false;
-  
-  thisMy[this.num].live2DMgr.reloadFlg = true;
-  thisMy[this.num].live2DMgr.count++;
-
-  thisMy[this.num].live2DMgr.changeModel(thisMy[this.num].gl);
-}
 
 
 sampleApp.prototype.modelScaling = function (scale)

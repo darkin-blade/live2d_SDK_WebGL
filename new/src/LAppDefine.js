@@ -50,15 +50,16 @@ LAppDefine[15] =
         [
             "assets/haru/haru_01.model.json",
             "assets/haru/haru_02.model.json"
-        ],
-        "assets/shizuku/shizuku.model.json",
-        "assets/wanko/wanko.model.json",
-        "assets/Epsilon2.1/Epsilon2.1.model.json",
-        [
-            // "assets/live2d-hiyori/hiyori.model.json",
-            "assets/live2d-hiyori/hiyori_1.model.json",
-            "assets/live2d-hiyori/hiyori_2.model.json"
         ]
+        ,
+        // "assets/Epsilon2.1/Epsilon2.1.model.json",
+        // "assets/shizuku/shizuku.model.json",
+        // "assets/wanko/wanko.model.json",
+        // [
+        //     "assets/live2d-hiyori/hiyori.model.json",
+        //     "assets/live2d-hiyori/hiyori_1.model.json",
+        //     "assets/live2d-hiyori/hiyori_2.model.json"
+        // ]
     ],
 
     
