@@ -48,6 +48,9 @@ body {
     --cyan: rgba(0, 255, 255, 1);
     --mediumspringgreen: rgba(0, 251, 127, 1);
     --violet: rgba(238, 130, 238, 1);
+    --darkviolet: rgba(148, 0, 211, 1);
+    --yellow: rgba(255, 255, 0, 1);
+    --orange: rgba(255, 165, 0, 1);
 }
 
 button {
@@ -69,19 +72,8 @@ button {
 }
 
 .btnChange {
-    left: 0px;
     border-color: var(--green);
     background-color: var(--green);
-}
-
-.btnChanging {
-    border-color: var(--hotpink);
-    background-color: var(--hotpink);
-}
-
-.btnChanging:hover {
-    border-color: var(--violet);
-    background-color: var(--violet);
 }
 
 .btnChange:hover {
@@ -90,8 +82,12 @@ button {
     background-color: var(--mediumspringgreen);
 }
 
+.btnChanging {
+    border-color: var(--hotpink);
+    background-color: var(--hotpink);
+}
+
 .btnClose {
-    right: 0px;
     border-color: var(--deepskyblue);
     background-color: var(--deepskyblue);
 }
@@ -102,11 +98,24 @@ button {
     background-color: var(--cyan);
 }
 
-.btnLock {
-    z-index: 2;
-    position: relative;
-    border-color: var(--deeppink);
-    background-color: var(--deeppink);
+.btnHide {
+    border-color: var(--darkviolet);
+    background-color: var(--darkviolet);
+}
+
+.btnHide:hover {
+    border-color: var(--violet);
+    background-color: var(--violet);
+}
+
+.btnShow {
+    border-color: var(--orange);
+    background-color: var(--orange);
+}
+
+.btnShow:hover {
+    border-color: var(--yellow);
+    background-color: var(--yellow);
 }
 
 /* button {

@@ -117,6 +117,8 @@ function showHitokoto() {
 }
 
 function showMessage(text, timeout, num) {
+  var tempTip = document.getElementById("tip_" + num);
+  if (tempTip != null && tempTip.mystop == 1) return;
   if (Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1) - 1];
   if (num == -1) {
     for (num = minNum; num <= maxNum; num++) {

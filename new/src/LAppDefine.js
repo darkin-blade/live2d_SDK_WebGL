@@ -28,7 +28,6 @@ var myDefine =
     PRIORITY_FORCE : 3,
 
     // BACK_IMAGE_NAME : "assets/image/back_class_normal.png",
-    MODELS : null,
     
     MOTION_GROUP_IDLE : "idle", // 无操作
     MOTION_GROUP_TAP_BODY : "tap_body", // 点击身体
