@@ -9,8 +9,8 @@ var myDefine =
     width: 200,
     height: 300,
 
-    VIEW_MAX_SCALE: 1.2, // 不想用这个功能
-    VIEW_MIN_SCALE: 1,
+    VIEW_MAX_SCALE: 1.1, // 不想用这个功能
+    VIEW_MIN_SCALE: 0.5,
 
     VIEW_LOGICAL_LEFT: -1,
     VIEW_LOGICAL_RIGHT: 1,
@@ -30,11 +30,11 @@ var myDefine =
     // BACK_IMAGE_NAME : "assets/image/back_class_normal.png",
     MODELS : null,
     
-    MOTION_GROUP_IDLE : "idle", 
-    MOTION_GROUP_TAP_BODY : "tap_body", 
+    MOTION_GROUP_IDLE : "idle", // 无操作
+    MOTION_GROUP_TAP_BODY : "tap_body", // 点击身体
     MOTION_GROUP_FLICK_HEAD : "flick_head", 
-    MOTION_GROUP_PINCH_IN : "pinch_in", 
-    MOTION_GROUP_PINCH_OUT : "pinch_out", 
+    MOTION_GROUP_PINCH_IN : "pinch_in", // 放大至1.5
+    MOTION_GROUP_PINCH_OUT : "pinch_out",  // 缩小至0.5
     MOTION_GROUP_SHAKE : "shake", 
 
     
