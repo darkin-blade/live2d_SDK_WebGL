@@ -187,7 +187,7 @@ L2DBaseModel.prototype.loadModelData   = function(path/*String*/, callback)
         thisRef.modelMatrix = new L2DModelMatrix(
             thisRef.live2DModel.getCanvasWidth(),
             thisRef.live2DModel.getCanvasHeight()); //L2DModelMatrix
-        thisRef.modelMatrix.setWidth(2);
+        thisRef.modelMatrix.setWidth(2); // 不知道干嘛的
         thisRef.modelMatrix.setCenterPosition(0, 0);
 
         callback(thisRef.live2DModel);

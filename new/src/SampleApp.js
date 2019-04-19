@@ -14,7 +14,7 @@ window.onerror = function(msg, url, line, col, error)
 sampleApp.prototype.mystart = function ()
 {
   // console.log("---> sampleApp")
-  thisMy[this.num].platform = window.navigator.platform.toLowerCase();
+  thisMy[this.num].platform = window.navigator.platform.toLowerCase(); // 系统型号
   
   thisMy[this.num].live2DMgr = new LAppLive2DManager(this.num);
 
@@ -36,7 +36,7 @@ sampleApp.prototype.mystart = function ()
   
   thisMy[this.num].isModelShown = false;
   
-  thisMy[this.num].initL2dCanvas();
+  thisMy[this.num].initL2dCanvas(); // 添加监听事件
   
   
   thisMy[this.num].init();
@@ -45,7 +45,6 @@ sampleApp.prototype.mystart = function ()
 
 sampleApp.prototype.initL2dCanvas = function ()
 {
-  
   thisMy[this.num].canvas = document.getElementById("glcanvas_" + this.num);
   var tempNum = this.num;
   var tempMy = thisMy[tempNum];
@@ -56,7 +55,7 @@ sampleApp.prototype.initL2dCanvas = function ()
       thisMy[this.num].canvas.addEventListener("click", function () { tempMy.mouseEvent() }, false);
       
       thisMy[this.num].canvas.addEventListener("mousedown", function () { tempMy.mouseEvent() }, false);
-      document.body.addEventListener("mousemove", function () { tempMy.mouseEvent() }, false);
+      document.body.addEventListener("mousemove", function () { tempMy.mouseEvent() }, false); // 全局跟踪
       
       thisMy[this.num].canvas.addEventListener("mouseup", function () { tempMy.mouseEvent() }, false);
       thisMy[this.num].canvas.addEventListener("mouseout", function () { tempMy.mouseEvent() }, false);
@@ -71,75 +70,69 @@ sampleApp.prototype.initL2dCanvas = function ()
   var btnChangeModel = document.getElementById("btnChange_" + this.num);
   var tempMy = thisMy[this.num];
   btnChangeModel.addEventListener("click", function(e) {
-      tempMy.changeModel();
+      tempMy.changeModel(); // 切换模型
   });
 }
 
 
 sampleApp.prototype.init = function()
-{    
-  console.log("sampleApp.init_" + this.num + "()")
-  
-  var width = thisMy[this.num].canvas.width;
-  var height = thisMy[this.num].canvas.height;
-  thisMy[this.num].lastw = 0;
-  thisMy[this.num].lasth = 0;
-  thisMy[this.num].lastr = 1;
-  
-  thisMy[this.num].dragMgr = new L2DTargetPoint(this.num);
-  
-  
-  var ratio = height / width;
-  var left = LAppDefine[this.num].VIEW_LOGICAL_LEFT;
-  var right = LAppDefine[this.num].VIEW_LOGICAL_RIGHT;
-  var bottom = -ratio;
-  var top = ratio;
-  
-  thisMy[this.num].viewMatrix = new L2DViewMatrix(this.num);
-  
-  
-  thisMy[this.num].viewMatrix.setScreenRect(left, right, bottom, top);
-  
-  
-  thisMy[this.num].viewMatrix.setMaxScreenRect(LAppDefine[this.num].VIEW_LOGICAL_MAX_LEFT,
-      LAppDefine[this.num].VIEW_LOGICAL_MAX_RIGHT,
-                                   LAppDefine[this.num].VIEW_LOGICAL_MAX_BOTTOM,
-                                   LAppDefine[this.num].VIEW_LOGICAL_MAX_TOP); 
-                                   
-                                   thisMy[this.num].viewMatrix.setMaxScale(LAppDefine[this.num].VIEW_MAX_SCALE);
-  thisMy[this.num].viewMatrix.setMinScale(LAppDefine[this.num].VIEW_MIN_SCALE);
-  
-  thisMy[this.num].projMatrix = new L2DMatrix44();
-  thisMy[this.num].projMatrix.scale(1, (width / height));
-  
-  
-  thisMy[this.num].deviceToScreen = new L2DMatrix44();
-  thisMy[this.num].deviceToScreen.multTranslate(-width / 2.0, -height / 2.0);
-  thisMy[this.num].deviceToScreen.multScale(2 / width, -2 / width);
-  
-  
-  
-  thisMy[this.num].gl = thisMy[this.num].getWebGLContext(this.num); // 不是属性,需要增加num
-  if (!thisMy[this.num].gl) {
-      thisMy[this.num].l2dError("Failed to create WebGL context.");
-      return;
-  }
-  
-  
-  Live2D[this.num].setGL(thisMy[this.num].gl);
+{
+    console.log("sampleApp.init_" + this.num + "()")
 
-  
-  thisMy[this.num].gl.clearColor(0.0, 0.0, 0.0, 0.0);
+    var width = thisMy[this.num].canvas.width;
+    var height = thisMy[this.num].canvas.height;
 
-  thisMy[this.num].changeModel();
-  
-  thisMy[this.num].startDraw();
+    thisMy[this.num].dragMgr = new L2DTargetPoint(this.num);
+
+    var ratio = height / width;
+    var left = LAppDefine[this.num].VIEW_LOGICAL_LEFT; // 不知道干嘛的
+    var right = LAppDefine[this.num].VIEW_LOGICAL_RIGHT; // 不知道干嘛的
+    var bottom = -ratio; // 不知道干嘛的
+    var top = ratio; // 不知道干嘛的
+
+    thisMy[this.num].viewMatrix = new L2DViewMatrix(this.num);
+
+    thisMy[this.num].viewMatrix.setScreenRect(left, right, bottom, top); // 感觉没用
+
+    thisMy[this.num].viewMatrix.setMaxScreenRect(LAppDefine[this.num].VIEW_LOGICAL_MAX_LEFT,
+        LAppDefine[this.num].VIEW_LOGICAL_MAX_RIGHT,
+        LAppDefine[this.num].VIEW_LOGICAL_MAX_BOTTOM,
+        LAppDefine[this.num].VIEW_LOGICAL_MAX_TOP);
+
+    thisMy[this.num].viewMatrix.setMaxScale(LAppDefine[this.num].VIEW_MAX_SCALE);
+    thisMy[this.num].viewMatrix.setMinScale(LAppDefine[this.num].VIEW_MIN_SCALE);
+    /* 以上感觉没用 */
+
+    thisMy[this.num].projMatrix = new L2DMatrix44();
+    thisMy[this.num].projMatrix.scale(1, (width / height)); // 放缩
+
+    thisMy[this.num].deviceToScreen = new L2DMatrix44(); // 跟踪鼠标
+    thisMy[this.num].deviceToScreen.multTranslate(-width / 2.0, -height / 2.0);
+    thisMy[this.num].deviceToScreen.multScale(2 / width, -2 / width);
+
+    thisMy[this.num].gl = thisMy[this.num].getWebGLContext(this.num); // 不是属性,需要增加num
+    if (!thisMy[this.num].gl)
+    {
+        thisMy[this.num].l2dError("Failed to create WebGL context.");
+        return;
+    }
+
+    Live2D[this.num].setGL(thisMy[this.num].gl);
+    thisMy[this.num].gl.clearColor(0.0, 0.0, 0.0, 0.0);
+    thisMy[this.num].changeModel();
+    thisMy[this.num].startDraw();
 }
 
+sampleApp.prototype.reinit = function () 
+{
+  thisMy[this.num].gl = null;
+  thisMy[this.num].gl = thisMy[this.num].getWebGLContext(this.num);
+}
 
 sampleApp.prototype.changeModel = function ()
 {
-  // thisMy[this.num].gl = thisMy[this.num].getWebGLContext(this.num); // 感觉加了这句没什么用
+  thisMy[this.num].reinit();
+  // 放缩测试
 
   var btnChange = document.getElementById("btnChange_" + this.num);
   btnChange.setAttribute("disabled", "disabled");

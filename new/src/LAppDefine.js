@@ -25,7 +25,7 @@ LAppDefine[15] =
     width: 200,
     height: 300,
 
-    VIEW_MAX_SCALE: 1, // 不想用这个功能
+    VIEW_MAX_SCALE: 2, // 不想用这个功能
     VIEW_MIN_SCALE: 1,
 
     VIEW_LOGICAL_LEFT: -1,
@@ -50,9 +50,8 @@ LAppDefine[15] =
         [
             "assets/haru/haru_01.model.json",
             "assets/haru/haru_02.model.json"
-        ]
-        ,
-        // "assets/Epsilon2.1/Epsilon2.1.model.json",
+        ],        
+        "assets/Epsilon2.1/Epsilon2.1.model.json",
         // "assets/shizuku/shizuku.model.json",
         // "assets/wanko/wanko.model.json",
         // [
