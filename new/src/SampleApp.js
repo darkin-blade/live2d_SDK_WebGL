@@ -1,15 +1,15 @@
-function sampleApp(num)
-{
-    this.num = num;
-    thisMy[this.num] = this;
-    this.mystart();
-}
-
 window.onerror = function(msg, url, line, col, error)
 {
     var errmsg = "file:" + url + "<br>line:" + line + " " + msg;
     thisMy[this.num].l2dError(errmsg);
 }
+
+function sampleApp(num)
+{
+    this.num = num;
+    thisMy[this.num] = this;
+    this.mystart();
+}    
 
 sampleApp.prototype.mystart = function ()
 {
@@ -125,13 +125,11 @@ sampleApp.prototype.init = function()
 
 sampleApp.prototype.reinit = function () 
 {
-  thisMy[this.num].gl = null;
   thisMy[this.num].gl = thisMy[this.num].getWebGLContext(this.num);
 }
 
 sampleApp.prototype.changeModel = function ()
 {
-  thisMy[this.num].reinit();
   // 放缩测试
 
   var btnChange = document.getElementById("btnChange_" + this.num);
@@ -174,7 +172,6 @@ sampleApp.prototype.startDraw = function () {
         window.webkitRequestAnimationFrame ||
         window.msRequestAnimationFrame;
 
-
       requestAnimationFrame(tick, tempMy.canvas);
     })();
   }
@@ -202,14 +199,15 @@ sampleApp.prototype.draw = function ()
   {
       var model = thisMy[this.num].live2DMgr.getModel(i);
 
-      if(model == null) return;
-      
+      if (model == null) return;
+
       if (model.initialized && !model.updating)
       {
           model.update();
           model.draw(thisMy[this.num].gl);
-          
-          if (!thisMy[this.num].isModelShown && i == thisMy[this.num].live2DMgr.numModels()-1) {
+
+          if (!thisMy[this.num].isModelShown && i == thisMy[this.num].live2DMgr.numModels() - 1)
+          {
               thisMy[this.num].isModelShown = !thisMy[this.num].isModelShown;
               var btnChange = document.getElementById("btnChange_" + this.num);
               btnChange.textContent = "change";
@@ -389,8 +387,6 @@ sampleApp.prototype.touchEvent = function ()
 }
 
 
-
-
 sampleApp.prototype.transformViewX = function (deviceX)
 {
   var screenX = thisMy[this.num].deviceToScreen.transformX(deviceX); 
@@ -417,9 +413,6 @@ sampleApp.prototype.transformScreenY = function (deviceY)
 }
 
 
-
-
-
 sampleApp.prototype.l2dLog = function (msg) {
   if(!LAppDefine[this.num].DEBUG_LOG) return;
   
@@ -428,8 +421,6 @@ sampleApp.prototype.l2dLog = function (msg) {
   
   console.log(msg);
 }
-
-
 
 sampleApp.prototype.l2dError = function (msg)
 {

@@ -199,7 +199,7 @@ LAppModel.prototype.update = function()
 {
     // console.log("--> LAppModel.update()");
 
-    if(this.live2DModel == null) 
+    if (this.live2DModel == null) 
     {
         if (LAppDefine[this.num].DEBUG_LOG) console.error("Failed to update.");
         
