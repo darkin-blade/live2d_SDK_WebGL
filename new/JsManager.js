@@ -10,7 +10,7 @@ document.write("<script src=\"" + "new/src/" + "/LAppLive2DManager.js\"></script
 document.write("<script src=\"" + "new/src/" + "/SampleApp.js\"></script>");
 
 var minNum = 0;
-var maxNum = 0;
+var maxNum = 2;
 var thisMy = new Array();
 var loadInterval = 300;
 

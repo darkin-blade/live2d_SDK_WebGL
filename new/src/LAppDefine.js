@@ -1,20 +1,4 @@
-var LAppDefine = new Array();
-LAppDefine[0] =
-LAppDefine[1] =
-LAppDefine[2] =
-LAppDefine[3] =
-LAppDefine[4] =
-LAppDefine[5] =
-LAppDefine[6] =
-LAppDefine[7] =
-LAppDefine[8] =
-LAppDefine[9] =
-LAppDefine[10] =
-LAppDefine[11] =
-LAppDefine[12] =
-LAppDefine[13] =
-LAppDefine[14] =
-LAppDefine[15] =
+var myDefine = 
 {
     DEBUG_LOG : false,
     /*
@@ -25,7 +9,7 @@ LAppDefine[15] =
     width: 200,
     height: 300,
 
-    VIEW_MAX_SCALE: 2, // 不想用这个功能
+    VIEW_MAX_SCALE: 1.2, // 不想用这个功能
     VIEW_MIN_SCALE: 1,
 
     VIEW_LOGICAL_LEFT: -1,
@@ -36,31 +20,15 @@ LAppDefine[15] =
     VIEW_LOGICAL_MAX_BOTTOM : -2,
     VIEW_LOGICAL_MAX_TOP : 2,
     
+    MODELS : null,
     
     PRIORITY_NONE : 0,
     PRIORITY_IDLE : 1,
     PRIORITY_NORMAL : 2,
     PRIORITY_FORCE : 3,
 
-    
-    BACK_IMAGE_NAME : "assets/image/back_class_normal.png",
-
-    MODELS: [ // 注意数组声明方式
-        "assets/haru/haru.model.json",
-        [
-            "assets/haru/haru_01.model.json",
-            "assets/haru/haru_02.model.json"
-        ],        
-        "assets/Epsilon2.1/Epsilon2.1.model.json",
-        // "assets/shizuku/shizuku.model.json",
-        // "assets/wanko/wanko.model.json",
-        // [
-        //     "assets/live2d-hiyori/hiyori.model.json",
-        //     "assets/live2d-hiyori/hiyori_1.model.json",
-        //     "assets/live2d-hiyori/hiyori_2.model.json"
-        // ]
-    ],
-
+    // BACK_IMAGE_NAME : "assets/image/back_class_normal.png",
+    MODELS : null,
     
     MOTION_GROUP_IDLE : "idle", 
     MOTION_GROUP_TAP_BODY : "tap_body", 
@@ -74,3 +42,33 @@ LAppDefine[15] =
     HIT_AREA_BODY : "body"
 };
 
+var LAppDefine = new Array();
+
+(function (){
+    for (var i = minNum; i <= maxNum; i ++)
+    {
+        LAppDefine[i] = Object.create(myDefine);
+    }
+
+    LAppDefine[1].MODELS = [
+        "assets/haru/haru_01.model.json",
+        "assets/haru/haru_02.model.json",
+    ];
+    
+    LAppDefine[0].MODELS = [ // 注意数组声明方式
+        "assets/Epsilon/Epsilon.model.json",
+        "assets/Epsilon2.1/Epsilon2.1.model.json",
+    ];
+    
+    LAppDefine[2].MODELS = [
+        "assets/haru/haru.model.json",
+    ];
+    
+    // "assets/shizuku/shizuku.model.json",
+    // "assets/wanko/wanko.model.json",
+    // [
+    //     "assets/live2d-hiyori/hiyori.model.json",
+    //     "assets/live2d-hiyori/hiyori_1.model.json",
+    //     "assets/live2d-hiyori/hiyori_2.model.json"
+    // ]
+}());

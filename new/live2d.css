@@ -8,15 +8,15 @@ body {
     top: 200px;
 }
 
-#drag_2 {
+#drag_0 {
     left: 100px;
 }
 
-#drag_3 {
+#drag_1 {
     left: 300px;
 }
 
-#drag_4 {
+#drag_2 {
     left: 500px;
 }
 
@@ -52,6 +52,7 @@ body {
 
 button {
     color: white;
+    opacity: 0.9;
     text-align: center;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
     font-weight: 990;
