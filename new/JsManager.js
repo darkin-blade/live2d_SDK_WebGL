@@ -87,7 +87,8 @@ function sampleManager()
         document.getElementById("drag_" + i).width = LAppDefine[i].width;
 
         // 主体函数
-        setTimeout("new sampleApp(" + i + ")", (i - minNum) * loadInterval);
+        thisMy[i] = new sampleApp(i);
+        setTimeout("thisMy[" + i + "].mystart()", (i - minNum) * loadInterval);
     }
     setTimeout("myDrag()", (maxNum - minNum + 1) * loadInterval);
 }

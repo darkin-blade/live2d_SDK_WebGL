@@ -31,7 +31,7 @@ var myDefine =
     
     MOTION_GROUP_IDLE : "idle", // 无操作
     MOTION_GROUP_TAP_BODY : "tap_body", // 点击身体
-    MOTION_GROUP_FLICK_HEAD : "flick_head", 
+    MOTION_GROUP_FLICK_HEAD : "flick_head", // 切换表情?
     MOTION_GROUP_PINCH_IN : "pinch_in", // 放大至1.5
     MOTION_GROUP_PINCH_OUT : "pinch_out",  // 缩小至0.5
     MOTION_GROUP_SHAKE : "shake", 
