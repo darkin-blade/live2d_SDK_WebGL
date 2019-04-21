@@ -50,17 +50,17 @@ var LAppDefine = new Array();
     }
 
     LAppDefine[1].MODELS = [
-        "assets/haru/haru_01.model.json",
-        "assets/haru/haru_02.model.json",
+        apiAdress + "assets/haru/haru_01.model.json",
+        apiAdress + "assets/haru/haru_02.model.json",
     ];
     
     LAppDefine[0].MODELS = [ // 注意数组声明方式
-        "assets/Epsilon/Epsilon.model.json",
-        "assets/Epsilon2.1/Epsilon2.1.model.json",
+        apiAdress + "assets/Epsilon/Epsilon.model.json",
+        apiAdress + "assets/Epsilon2.1/Epsilon2.1.model.json",
     ];
     
     LAppDefine[2].MODELS = [
-        "assets/haru/haru.model.json",
+        apiAdress + "assets/haru/haru.model.json",
     ];
     
     // "assets/shizuku/shizuku.model.json",

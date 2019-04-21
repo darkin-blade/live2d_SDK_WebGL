@@ -1,13 +1,20 @@
 // API main
-document.write("<script src=\"" + "new/src/" + "/live2d.js\"></script>");
-document.write("<script src=\"" + "new/src/" + "/LAppDefine.js\"></script>");
-document.write("<script src=\"" + "new/src/" + "/Live2DFramework.js\"></script>");
-document.write("<script src=\"" + "new/src/" + "/MatrixStack.js\"></script>");
-document.write("<script src=\"" + "new/src/" + "/ModelSettingJson.js\"></script>");
-document.write("<script src=\"" + "new/src/" + "/PlatformManager.js\"></script>");
-document.write("<script src=\"" + "new/src/" + "/LAppModel.js\"></script>");
-document.write("<script src=\"" + "new/src/" + "/LAppLive2DManager.js\"></script>");
-document.write("<script src=\"" + "new/src/" + "/SampleApp.js\"></script>");
+// var apiAdress = "http://localhost:6060/"
+var apiAdress = "";
+
+document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + apiAdress + "new/live2d.css\">");
+document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + apiAdress + "new/tips.css\">");
+document.write("<script async src=\"" + apiAdress + "new/tips/tips.js\"></script>");
+
+document.write("<script src=\"" + apiAdress + "new/src/" + "/live2d.js\"></script>");
+document.write("<script src=\"" + apiAdress + "new/src/" + "/LAppDefine.js\"></script>");
+document.write("<script src=\"" + apiAdress + "new/src/" + "/Live2DFramework.js\"></script>");
+document.write("<script src=\"" + apiAdress + "new/src/" + "/MatrixStack.js\"></script>");
+document.write("<script src=\"" + apiAdress + "new/src/" + "/ModelSettingJson.js\"></script>");
+document.write("<script src=\"" + apiAdress + "new/src/" + "/PlatformManager.js\"></script>");
+document.write("<script src=\"" + apiAdress + "new/src/" + "/LAppModel.js\"></script>");
+document.write("<script src=\"" + apiAdress + "new/src/" + "/LAppLive2DManager.js\"></script>");
+document.write("<script src=\"" + apiAdress + "new/src/" + "/SampleApp.js\"></script>");
 
 var minNum = 0;
 var maxNum = 2;
