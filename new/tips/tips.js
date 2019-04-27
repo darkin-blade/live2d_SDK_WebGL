@@ -19,6 +19,7 @@ function render(template, context) {
     return currentObject;
   });
 }
+
 String.prototype.render = function (context) {
   return render(this, context);
 };
