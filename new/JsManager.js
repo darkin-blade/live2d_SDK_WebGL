@@ -2,9 +2,9 @@
 // var apiAdress = "http://localhost:6060/"
 var apiAdress = "";
 
-document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + apiAdress + "new/live2d.css\">");
-document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + apiAdress + "new/tips.css\">");
-document.write("<script async src=\"" + apiAdress + "new/tips/tips.js\"></script>");
+// document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + apiAdress + "new/live2d.css\">");
+// document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + apiAdress + "new/tips.css\">");
+// document.write("<script async src=\"" + apiAdress + "new/tips/tips.js\"></script>");
 
 // document.write("<script src=\"" + apiAdress + "new/src/" + "/live2d.js\"></script>");
 // document.write("<script src=\"" + apiAdress + "new/src/" + "/LAppDefine.js\"></script>");
@@ -22,17 +22,44 @@ var minNum = 0;
 var maxNum = 2;
 var thisMy = new Array();
 var loadInterval = 300;
+var myRequest = "";
 
 function sampleManager()
 {
+    $("<link>")
+        .attr(
+        {
+            rel: "stylesheet",
+            type: "text/css",
+            href: apiAdress + "new/live2d.css"
+        })
+        .appendTo("head");
+    $("<link>")
+        .attr(
+        {
+            rel: "stylesheet",
+            type: "text/css",
+            href: apiAdress + "new/tips.css"
+        })
+        .appendTo("head");
     $.ajax({
-        url: apiAdress + "new/" + "main.js",
-        dataType: "script",
-        async: false,
-        success: function () {
-            ;
+        url: "new/main.js",
+        dataType: "text",
+        success: function(result)
+        {
+            myRequest = result;
+            var tempScript = document.createElement("script");
+            tempScript.innerHTML = result;
+            document.body.appendChild(tempScript);
         }
     });
+    $.getScript("new/tips/tips.js");
+    setTimeout("sampleLoad()", 300);
+    
+}
+
+function sampleLoad()
+{
     var i = 0;
     for (i = minNum; i <= maxNum; i++)
     {
