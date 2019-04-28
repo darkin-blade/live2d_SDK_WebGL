@@ -22,7 +22,7 @@ var minNum = 0;
 var maxNum = 2;
 var thisMy = new Array();
 var loadInterval = 300;
-var myRequest = "";
+var myRequest = new Array();
 
 function sampleManager()
 {
@@ -42,19 +42,37 @@ function sampleManager()
             href: apiAdress + "new/tips.css"
         })
         .appendTo("head");
-    $.ajax({
-        url: "new/main.js",
-        dataType: "text",
-        success: function(result)
-        {
-            myRequest = result;
-            var tempScript = document.createElement("script");
-            tempScript.innerHTML = result;
-            document.body.appendChild(tempScript);
-        }
-    });
+    var jsList = [
+        // "new/main.js",
+        "/live2d.js",
+        "/LAppDefine.js",
+        "/Live2DFramework.js",
+        "/MatrixStack.js",
+        "/ModelSettingJson.js",
+        "/PlatformManager.js",
+        "/LAppModel.js",
+        "/LAppLive2DManager.js",
+        "/SampleApp.js"];
+    for (var i = 0; i < jsList.length; i ++)
+    {
+        $.ajax({
+            url: apiAdress + "new/src" + jsList[i],
+            dataType: "text",
+            async: false,
+            success: function(result)
+            {
+                myRequest += result;
+                if (i + 1 == jsList.length)
+                {
+                    var tempScript = document.createElement("script");
+                    tempScript.innerHTML = myRequest;
+                    document.body.appendChild(tempScript);
+                }
+            }
+        });
+    } 
     $.getScript("new/tips/tips.js");
-    setTimeout("sampleLoad()", 300);
+    setTimeout("sampleLoad()", 0);
     
 }
 
