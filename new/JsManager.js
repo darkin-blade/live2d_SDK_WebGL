@@ -6,15 +6,17 @@ document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + apiAdress 
 document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + apiAdress + "new/tips.css\">");
 document.write("<script async src=\"" + apiAdress + "new/tips/tips.js\"></script>");
 
-document.write("<script src=\"" + apiAdress + "new/src/" + "/live2d.js\"></script>");
-document.write("<script src=\"" + apiAdress + "new/src/" + "/LAppDefine.js\"></script>");
-document.write("<script src=\"" + apiAdress + "new/src/" + "/Live2DFramework.js\"></script>");
-document.write("<script src=\"" + apiAdress + "new/src/" + "/MatrixStack.js\"></script>");
-document.write("<script src=\"" + apiAdress + "new/src/" + "/ModelSettingJson.js\"></script>");
-document.write("<script src=\"" + apiAdress + "new/src/" + "/PlatformManager.js\"></script>");
-document.write("<script src=\"" + apiAdress + "new/src/" + "/LAppModel.js\"></script>");
-document.write("<script src=\"" + apiAdress + "new/src/" + "/LAppLive2DManager.js\"></script>");
-document.write("<script src=\"" + apiAdress + "new/src/" + "/SampleApp.js\"></script>");
+// document.write("<script src=\"" + apiAdress + "new/src/" + "/live2d.js\"></script>");
+// document.write("<script src=\"" + apiAdress + "new/src/" + "/LAppDefine.js\"></script>");
+// document.write("<script src=\"" + apiAdress + "new/src/" + "/Live2DFramework.js\"></script>");
+// document.write("<script src=\"" + apiAdress + "new/src/" + "/MatrixStack.js\"></script>");
+// document.write("<script src=\"" + apiAdress + "new/src/" + "/ModelSettingJson.js\"></script>");
+// document.write("<script src=\"" + apiAdress + "new/src/" + "/PlatformManager.js\"></script>");
+// document.write("<script src=\"" + apiAdress + "new/src/" + "/LAppModel.js\"></script>");
+// document.write("<script src=\"" + apiAdress + "new/src/" + "/LAppLive2DManager.js\"></script>");
+// document.write("<script src=\"" + apiAdress + "new/src/" + "/SampleApp.js\"></script>");
+
+// document.write("<script src=\"" + apiAdress + "new/" + "/main.js\"></script>");
 
 var minNum = 0;
 var maxNum = 2;
@@ -23,6 +25,14 @@ var loadInterval = 300;
 
 function sampleManager()
 {
+    $.ajax({
+        url: apiAdress + "new/" + "main.js",
+        dataType: "script",
+        async: false,
+        success: function () {
+            ;
+        }
+    });
     var i = 0;
     for (i = minNum; i <= maxNum; i++)
     {
