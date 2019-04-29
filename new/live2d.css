@@ -109,6 +109,7 @@ body {
 }
 
 .btnHide:hover {
+    transition-duration: 1s;
     border-color: var(--violet);
     background-color: var(--violet);
 }
@@ -119,6 +120,7 @@ body {
 }
 
 .btnShow:hover {
+    transition-duration: 1s;
     border-color: var(--yellow);
     background-color: var(--yellow);
 }
