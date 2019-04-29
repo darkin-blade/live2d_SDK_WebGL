@@ -132,7 +132,7 @@ sampleApp.prototype.changeModel = function ()
 
   var btnChange = document.getElementById("btnChange_" + this.num);
   btnChange.setAttribute("disabled", "disabled");
-  btnChange.setAttribute("class", "btnChanging"); // 切换class
+  btnChange.setAttribute("class", "btnChanging myBtn"); // 切换class
   btnChange.textContent = "loading";
   thisMy[this.num].isModelShown = false;
   
@@ -210,7 +210,7 @@ sampleApp.prototype.draw = function ()
               var btnChange = document.getElementById("btnChange_" + this.num);
               btnChange.textContent = "change";
               btnChange.removeAttribute("disabled");
-              btnChange.setAttribute("class", "btnChange"); // 切换class
+              btnChange.setAttribute("class", "btnChange myBtn"); // 切换class
           }
       }
   }
