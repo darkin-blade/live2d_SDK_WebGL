@@ -58,9 +58,14 @@ body {
     opacity: 0.9;
     text-align: center;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-    font-weight: 990;
+    font-size: 14px;
+    font-weight: 900;
     font-family: DejaVu Sans Mono for Powerline;
-    height: 30px;
+    line-height: 25px;
+    height: 25px;
+    user-select: none; /* 不能选定 */
+    
+    border: 3px;
     border-radius: 3px;
     border-style: solid;
     padding: 0px;

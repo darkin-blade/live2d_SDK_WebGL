@@ -21,8 +21,11 @@ document.write("<script src=\"" + apiAdress + "new/src/" + "/SampleApp.js\"></sc
 var minNum = 0;
 var maxNum = 2;
 var thisMy = new Array();
-var loadInterval = 300;
-var myRequest = new Array();
+var JsMgr = {
+    loadInterval: 300,
+    myRequest: "",
+    border: 3,
+}
 
 function sampleManager()
 {
@@ -70,28 +73,28 @@ function divCreate()
         var tempButton = document.createElement("div");
         
         // 切换按钮
-        var tempChange = document.createElement("button");
+        var tempChange = document.createElement("div");
         tempChange.id = "btnChange_" + i;
         tempChange.className = "btnChange myBtn";
-        tempChange.setAttribute("style", "width: " + (LAppDefine[i].width / 3) + "px;" + 
+        tempChange.setAttribute("style", "width: " + (LAppDefine[i].width / 3 - 2 * JsMgr.border) + "px;" + 
         "left: " + 0 + "px;");
         tempButton.appendChild(tempChange);
         
         // 删除按钮
-        var tempClose = document.createElement("button");
+        var tempClose = document.createElement("div");
         tempClose.id = "btnClose_" + i;
         tempClose.className = "btnClose myBtn";
-        tempClose.setAttribute("style", "width: " + (LAppDefine[i].width / 3) + "px;" + 
+        tempClose.setAttribute("style", "width: " + (LAppDefine[i].width / 3 - 2 * JsMgr.border) + "px;" + 
         "left: " + (LAppDefine[i].width / 3) + "px;");
         tempClose.setAttribute("onclick", "deleteFather(" + i + ")");
         tempClose.textContent = "close";
         tempButton.appendChild(tempClose);
 
         // 切换canvas大小按钮
-        var tempHide = document.createElement("button");
+        var tempHide = document.createElement("div");
         tempHide.id = "btnHide_" + i;
         tempHide.className = "btnHide myBtn";
-        tempHide.setAttribute("style", "width: " + (LAppDefine[i].width / 3) + "px;" + 
+        tempHide.setAttribute("style", "width: " + (LAppDefine[i].width / 3 - 2 * JsMgr.border) + "px;" + 
         "left: " + (LAppDefine[i].width * 2 / 3) + "px;");
         tempHide.setAttribute("onclick", "myHide(" + i + ")");
         tempHide.textContent = "hide";
@@ -104,9 +107,9 @@ function divCreate()
 
         // 主体函数
         thisMy[i] = new sampleApp(i);
-        setTimeout("thisMy[" + i + "].mystart()", (i - minNum) * loadInterval);
+        setTimeout("thisMy[" + i + "].mystart()", (i - minNum) * JsMgr.loadInterval);
     }
-    setTimeout("myDrag()", (maxNum - minNum + 1) * loadInterval);
+    setTimeout("myDrag()", (maxNum - minNum + 1) * JsMgr.loadInterval);
 }
 
 function myDrag()
@@ -182,11 +185,11 @@ function fileLoad()
             async: false,
             success: function(result)
             {
-                myRequest += result;
+                JsMgr.myRequest += result;
                 if (i + 1 == jsList.length)
                 {
                     var tempScript = document.createElement("script");
-                    tempScript.innerHTML = myRequest;
+                    tempScript.innerHTML = JsMgr.myRequest;
                     document.body.appendChild(tempScript);
                 }
             }
