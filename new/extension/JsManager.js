@@ -4,7 +4,7 @@ var minNum = 0;
 var maxNum = 8;
 var thisMy = new Array();
 var JsMgr = {
-  loadInterval: 1000,
+  loadInterval: 0,// 如果是同时加载,请把interval调大
   myRequest: "",
   border: 3,// 边宽
   deleted: null,
@@ -12,18 +12,17 @@ var JsMgr = {
 
 $(document).ready(function() {
   JsMgr.deleted = new Array();
-  console.log("del:" + JsMgr.deleted);
   for (var i = 0; i < minNum; i ++)
   {
     JsMgr.deleted.push(1);
   }
 
-  var tempBtn = document.createElement("button");
-  $(tempBtn).css("right", 0 + "px");
-  $(tempBtn).css("position", "fixed");
-  tempBtn.setAttribute("onclick", "addModel()");
-  tempBtn.innerText = "add";
-  document.body.appendChild(tempBtn);
+  // var tempBtn = document.createElement("button");
+  // $(tempBtn).css("right", 0 + "px");
+  // $(tempBtn).css("position", "fixed");
+  // tempBtn.setAttribute("onclick", "addModel()");
+  // tempBtn.innerText = "add";
+  // document.body.appendChild(tempBtn);
 });
 
 function addModel()
@@ -40,7 +39,6 @@ function addModel()
       
       JsMgr.deleted[i] = 1;
       hasDelete = 1;
-      console.log("recover" + i);
       return;
     }
   }
