@@ -34,7 +34,7 @@ function addModel()
     {
       $("#drag_" + i).css("display", "block");// 恢复
       // 位置调整
-      $("#drag_" + i).css("top", 100 + "px");
+      $("#drag_" + i).css("bottom", 50 + "px");
       $("#drag_" + i).css("left", (i * 200 + 60) + "px");
       
       JsMgr.deleted[i] = 1;
@@ -46,7 +46,7 @@ function addModel()
   {
     if (JsMgr.deleted.length == maxNum + 1)
     {
-      console.log("full models!");
+      alert("full models!");
       return;
     }
     divCreate(JsMgr.deleted.length, JsMgr.deleted.length);
@@ -128,7 +128,8 @@ function divCreate(start, end)
     $("#drag_" + i).css("height", LAppDefine[i].height + "px");
 
     // 位置调整
-    $("#drag_" + i).css("top", 100 + "px");
+    $("#drag_" + i).css("display", "block");
+    $("#drag_" + i).css("bottom", 75 + "px");
     $("#drag_" + i).css("left", (i * 200 + 60) + "px");
 
     // 主体函数
