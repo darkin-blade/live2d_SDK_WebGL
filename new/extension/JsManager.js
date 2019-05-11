@@ -1,7 +1,7 @@
 var apiAdress = "/";
 
 var minNum = 0;
-var maxNum = 0;
+var maxNum = 8;
 var thisMy = new Array();
 var JsMgr = {
   loadInterval: 1000,
@@ -20,6 +20,7 @@ $(document).ready(function() {
 
   var tempBtn = document.createElement("button");
   $(tempBtn).css("right", 0 + "px");
+  $(tempBtn).css("position", "fixed");
   tempBtn.setAttribute("onclick", "addModel()");
   tempBtn.innerText = "add";
   document.body.appendChild(tempBtn);
@@ -32,25 +33,32 @@ function addModel()
   {
     if (JsMgr.deleted[i] == 0)
     {
-      $("#drag_" + i).css("display", "block");
+      $("#drag_" + i).css("display", "block");// 恢复
+      // 位置调整
+      $("#drag_" + i).css("top", 100 + "px");
+      $("#drag_" + i).css("left", (i * 200 + 60) + "px");
+      
+      JsMgr.deleted[i] = 1;
       hasDelete = 1;
-      break;
+      console.log("recover" + i);
+      return;
     }
   }
   if (hasDelete == 0)
   {
     if (JsMgr.deleted.length == maxNum + 1)
     {
-      minNum = maxNum = maxNum + 1;
+      console.log("full models!");
+      return;
     }
-    divCreate();
+    divCreate(JsMgr.deleted.length, JsMgr.deleted.length);
   }
 }
 
-function divCreate()
+function divCreate(start, end)
 {
   var i = 0;
-  for (i = minNum; i <= maxNum; i++)
+  for (i = start; i <= end; i++)// 单个加载
   {
     // 删除元素的回收
     JsMgr.deleted.push(1);
@@ -127,9 +135,9 @@ function divCreate()
 
     // 主体函数
     thisMy[i] = new sampleApp(i);
-    setTimeout("thisMy[" + i + "].mystart()", (i - minNum) * JsMgr.loadInterval);
+    setTimeout("thisMy[" + i + "].mystart()", (i - start) * JsMgr.loadInterval);
   }
-  setTimeout("myDrag()", (maxNum - minNum + 1) * JsMgr.loadInterval);
+  setTimeout("myDrag()", (maxNum - start + 1) * JsMgr.loadInterval);
 }
 
 function myDrag()
