@@ -2,22 +2,23 @@
 
 ## [原官方说明](https://github.com/NiaBie/live2d_SDK_for_web/blob/master/info/Official.txt)
 
-## Demo
+## 修改
 
-![](info/demo1.gif)
+- 数量:在`JSManager.js`中调整`minNum`和`maxNum`的大小
+- 模型:在`LAppDefine.js`中修改`json`文件路径,模型资源自行下载
+- 样式:
+ - `live2d`canvas:修改`live2d.css`
+ - 提示框:修改`tips.js`
 
-## 使用(只介绍最新版的使用方式)
+## 加载
 
-> 需要`php`环境
+### hexo
 
-- 一键加载(sample.html)
+- [demo](https://github.com/hexo-simple-theme/hexo_live2d)
 
-在`JSManager.js`中调整`minNum`和`maxNum`的大小即可
+运行`new/combine.sh`(合并文件),将`main.js`,`main.css`,`tips/`合并至新文件夹`new/`,并放置至hexo的主题文件夹的`source/`下,在主题模板中引用`js`和`css`即可
 
-- 修改样式
+### 本地
 
-`live2d.css`和`tips.css`以及`LAppDefine.js`中的大小参数
+需要`php`环境.运行`new/combine.sh`,在html中引用`js`和`css`
 
-- 修改模型(源代码不含模型资源)
-
-`LAppDefine.js`中自行修改

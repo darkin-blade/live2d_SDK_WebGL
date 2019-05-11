@@ -1,7 +1,7 @@
 var apiAdress = "/";
 
 var minNum = 0;
-var maxNum = 2;
+var maxNum = 8;
 var thisMy = new Array();
 var JsMgr = {
   loadInterval: 1000,
@@ -84,6 +84,10 @@ function divCreate()
     tempDrag.appendChild(tempButton);
     document.body.appendChild(tempDrag);
     document.getElementById("drag_" + i).width = LAppDefine[i].width;
+
+    // 位置调整
+    $("#drag_" + i).css("top", 100 + "px");
+    $("#drag_" + i).css("left", (i * 200 + 60) + "px");
 
     // 主体函数
     thisMy[i] = new sampleApp(i);

@@ -47,10 +47,10 @@ var LAppDefine = new Array();
     for (var i = minNum; i <= maxNum; i ++)
     {
         LAppDefine[i] = Object.create(myDefine);
+        LAppDefine[i].MODELS = [ // 注意数组声明方式
+            apiAdress + "new/assets/Epsilon/Epsilon.model.json",
+            apiAdress + "new/assets/Epsilon2.1/Epsilon2.1.model.json",
+        ];
     }
     
-    LAppDefine[0].MODELS = LAppDefine[1].MODELS = LAppDefine[2].MODELS = [ // 注意数组声明方式
-        apiAdress + "new/assets/Epsilon/Epsilon.model.json",
-        apiAdress + "new/assets/Epsilon2.1/Epsilon2.1.model.json",
-    ];
 }());

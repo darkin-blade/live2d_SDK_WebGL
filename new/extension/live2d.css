@@ -1,126 +1,107 @@
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 .drag {
-    position: fixed;
-    top: 200px;
+  position: fixed;
 }
 
-#drag_0 {
-    left: 100px;
-}
-
-#drag_1 {
-    left: 300px;
-}
-
-#drag_2 {
-    left: 500px;
-}
-
-#drag_5 {
-    right: 100px;
-}
-
-#drag_6 {
-    right: 300px;
-}
-
-#drag_7 {
-    right: 500px;
-}
+/* #drag_0 {
+  left: 0px;
+  top: 0px;
+} */
 
 .glcanvas {
-    z-index: 0;
-    bottom: 0px;
-    right: 0px;
-    position: relative;
+  z-index: 0;
+  bottom: 0px;
+  right: 0px;
+  position: relative;
 }
 
 :root {
-    --purple: rgba(172, 133, 253, 1);
-    --orange: rgba(236, 217, 188, 1);
-    --green: rgba(115, 210, 22, 1);
-    --deepskyblue: rgba(0, 191, 255,1);
-    --hotpink: rgba(255, 105, 180, 1);
-    --cyan: rgba(0, 255, 255, 1);
-    --mediumspringgreen: rgba(0, 251, 127, 1);
-    --violet: rgba(238, 130, 238, 1);
-    --darkviolet: rgba(148, 0, 211, 1);
-    --yellow: rgba(255, 255, 0, 1);
-    --orange: rgba(255, 165, 0, 1);
+  --purple: rgba(172, 133, 253, 1);
+  --orange: rgba(236, 217, 188, 1);
+  --green: rgba(115, 210, 22, 1);
+  --deepskyblue: rgba(0, 191, 255, 1);
+  --hotpink: rgba(255, 105, 180, 1);
+  --cyan: rgba(0, 255, 255, 1);
+  --mediumspringgreen: rgba(0, 251, 127, 1);
+  --violet: rgba(238, 130, 238, 1);
+  --darkviolet: rgba(148, 0, 211, 1);
+  --yellow: rgba(255, 255, 0, 1);
+  --orange: rgba(255, 165, 0, 1);
 }
 
 .myBtn {
-    color: white;
-    opacity: 0.9;
-    text-align: center;
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-    font-size: 14px;
-    font-weight: 901;
-    font-family: DejaVu Sans Mono for Powerline;
-    line-height: 25px;
-    height: 25px;
-    user-select: none; /* 不能选定 */
-    
-    border: 3px;
-    border-radius: 3px;
-    border-style: solid;
-    padding: 0px;
-    margin: -3px 0px 0px 0px;
+  color: white;
+  opacity: 0.9;
+  text-align: center;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  font-size: 14px;
+  font-weight: 901;
+  font-family: DejaVu Sans Mono for Powerline;
+  line-height: 25px;
+  height: 25px;
+  user-select: none;
+  /* 不能选定 */
 
-    z-index: 2;
-    position: absolute;
-    bottom: auto;
+  border: 3px;
+  border-radius: 3px;
+  border-style: solid;
+  padding: 0px;
+  margin: -3px 0px 0px 0px;
+
+  z-index: 2;
+  position: absolute;
+  bottom: auto;
 }
 
 .btnChange {
-    border-color: var(--green);
-    background-color: var(--green);
+  border-color: var(--green);
+  background-color: var(--green);
 }
 
 .btnChange:hover {
-    transition-duration: 1s;
-    border-color: var(--mediumspringgreen);
-    background-color: var(--mediumspringgreen);
+  transition-duration: 1s;
+  border-color: var(--mediumspringgreen);
+  background-color: var(--mediumspringgreen);
 }
 
 .btnChanging {
-    border-color: var(--hotpink);
-    background-color: var(--hotpink);
+  border-color: var(--hotpink);
+  background-color: var(--hotpink);
 }
 
 .btnClose {
-    border-color: var(--deepskyblue);
-    background-color: var(--deepskyblue);
+  border-color: var(--deepskyblue);
+  background-color: var(--deepskyblue);
 }
 
 .btnClose:hover {
-    transition-duration: 1s;
-    border-color: var(--cyan);
-    background-color: var(--cyan);
+  transition-duration: 1s;
+  border-color: var(--cyan);
+  background-color: var(--cyan);
 }
 
 .btnHide {
-    border-color: var(--darkviolet);
-    background-color: var(--darkviolet);
+  border-color: var(--darkviolet);
+  background-color: var(--darkviolet);
 }
 
 .btnHide:hover {
-    transition-duration: 1s;
-    border-color: var(--violet);
-    background-color: var(--violet);
+  transition-duration: 1s;
+  border-color: var(--violet);
+  background-color: var(--violet);
 }
 
 .btnShow {
-    border-color: var(--orange);
-    background-color: var(--orange);
+  border-color: var(--orange);
+  background-color: var(--orange);
 }
 
 .btnShow:hover {
-    transition-duration: 1s;
-    border-color: var(--yellow);
-    background-color: var(--yellow);
+  transition-duration: 1s;
+  border-color: var(--yellow);
+  background-color: var(--yellow);
 }
