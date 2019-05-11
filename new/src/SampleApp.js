@@ -6,7 +6,7 @@ window.onerror = function(msg, url, line, col, error)
 
 function sampleApp(num)
 {
-    this.num = num;
+  this.num = num;
 }    
 
 sampleApp.prototype.mystart = function ()

@@ -1,33 +1,65 @@
 var apiAdress = "/";
 
 var minNum = 0;
-var maxNum = 8;
+var maxNum = 0;
 var thisMy = new Array();
 var JsMgr = {
   loadInterval: 1000,
   myRequest: "",
   border: 3,// 边宽
+  deleted: null,
 }
 
 $(document).ready(function() {
-  divCreate();
+  JsMgr.deleted = new Array();
+  console.log("del:" + JsMgr.deleted);
+  for (var i = 0; i < minNum; i ++)
+  {
+    JsMgr.deleted.push(1);
+  }
+
+  var tempBtn = document.createElement("button");
+  $(tempBtn).css("right", 0 + "px");
+  tempBtn.setAttribute("onclick", "addModel()");
+  tempBtn.innerText = "add";
+  document.body.appendChild(tempBtn);
 });
+
+function addModel()
+{
+  var hasDelete = 0;
+  for (var i = 0; i < JsMgr.deleted.length; i ++)
+  {
+    if (JsMgr.deleted[i] == 0)
+    {
+      $("#drag_" + i).css("display", "block");
+      hasDelete = 1;
+      break;
+    }
+  }
+  if (hasDelete == 0)
+  {
+    if (JsMgr.deleted.length == maxNum + 1)
+    {
+      minNum = maxNum = maxNum + 1;
+    }
+    divCreate();
+  }
+}
 
 function divCreate()
 {
   var i = 0;
   for (i = minNum; i <= maxNum; i++)
   {
+    // 删除元素的回收
+    JsMgr.deleted.push(1);
+
     // 拖拽元素
     var tempDrag = document.createElement("div");
     tempDrag.id = "drag_" + i;
     tempDrag.className = "drag";
 
-    // 拖拽元素的css
-    var tempCss = document.createElement("style");
-    tempCss.innerHTML =
-      "#drag_" + i + " { width: " + LAppDefine[i].width + "px; " + "height: " + LAppDefine[i].height + "px; }";
-    document.body.appendChild(tempCss);
 
     // tip元素
     var tempTip = document.createElement("div");
@@ -66,7 +98,7 @@ function divCreate()
     tempClose.className = "btnClose myBtn";
     tempClose.setAttribute("style", "width: " + (LAppDefine[i].width / 3 - 2 * JsMgr.border) + "px;" +
       "left: " + (LAppDefine[i].width / 3) + "px;");
-    tempClose.setAttribute("onclick", "deleteFather(" + i + ")");
+    tempClose.setAttribute("onclick", "myDelete(" + i + ")");
     tempClose.textContent = "close";
     tempButton.appendChild(tempClose);
 
@@ -84,6 +116,10 @@ function divCreate()
     tempDrag.appendChild(tempButton);
     document.body.appendChild(tempDrag);
     document.getElementById("drag_" + i).width = LAppDefine[i].width;
+
+    // 拖拽元素的css
+    $("#drag_" + i).css("width", LAppDefine[i].width + "px");
+    $("#drag_" + i).css("height", LAppDefine[i].height + "px");
 
     // 位置调整
     $("#drag_" + i).css("top", 100 + "px");
@@ -104,11 +140,11 @@ function myDrag()
   });
 }
 
-function deleteFather(num)
+function myDelete(num)
 {
   var tempNode = document.getElementById("drag_" + num);
-  // tempNode.parentNode.removeChild(tempNode);
-  tempNode.setAttribute("style", "display: none;");
+  tempNode.setAttribute("style", "display: none;");// 如果直接删除的话,框架代码会报错
+  JsMgr.deleted[num] = 0;
 }
 
 function myHide(num)
