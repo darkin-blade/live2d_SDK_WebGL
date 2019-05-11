@@ -48,26 +48,9 @@ var LAppDefine = new Array();
     {
         LAppDefine[i] = Object.create(myDefine);
     }
-
-    LAppDefine[1].MODELS = [
-        apiAdress + "assets/haru/haru_01.model.json",
-        apiAdress + "assets/haru/haru_02.model.json",
-    ];
     
-    LAppDefine[0].MODELS = [ // 注意数组声明方式
-        apiAdress + "assets/Epsilon/Epsilon.model.json",
-        apiAdress + "assets/Epsilon2.1/Epsilon2.1.model.json",
+    LAppDefine[0].MODELS = LAppDefine[1].MODELS = LAppDefine[2].MODELS = [ // 注意数组声明方式
+        apiAdress + "new/assets/Epsilon/Epsilon.model.json",
+        apiAdress + "new/assets/Epsilon2.1/Epsilon2.1.model.json",
     ];
-    
-    LAppDefine[2].MODELS = [
-        apiAdress + "assets/haru/haru.model.json",
-    ];
-    
-    // "assets/shizuku/shizuku.model.json",
-    // "assets/wanko/wanko.model.json",
-    // [
-    //     "assets/live2d-hiyori/hiyori.model.json",
-    //     "assets/live2d-hiyori/hiyori_1.model.json",
-    //     "assets/live2d-hiyori/hiyori_2.model.json"
-    // ]
 }());

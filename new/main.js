@@ -1,3 +1,133 @@
+var apiAdress = "/";
+
+var minNum = 0;
+var maxNum = 2;
+var thisMy = new Array();
+var JsMgr = {
+  loadInterval: 1000,
+  myRequest: "",
+  border: 3,// 边宽
+}
+
+$(document).ready(function() {
+  divCreate();
+});
+
+function divCreate()
+{
+  var i = 0;
+  for (i = minNum; i <= maxNum; i++)
+  {
+    // 拖拽元素
+    var tempDrag = document.createElement("div");
+    tempDrag.id = "drag_" + i;
+    tempDrag.className = "drag";
+
+    // 拖拽元素的css
+    var tempCss = document.createElement("style");
+    tempCss.innerHTML =
+      "#drag_" + i + " { width: " + LAppDefine[i].width + "px; " + "height: " + LAppDefine[i].height + "px; }";
+    document.body.appendChild(tempCss);
+
+    // tip元素
+    var tempTip = document.createElement("div");
+    tempTip.mystop = 0;
+    tempTip.id = "tip_" + i;
+    tempTip.className = "tips";
+    tempTip.setAttribute("style",
+      "width: " + (LAppDefine[i].width + 50) + "px;" +
+      "left: " + (-25) + "px;" +
+      "margin: 0px 0px " + (-LAppDefine[i].height / (10 * (LAppDefine[i].width / LAppDefine[i].height))) + "px 0px;"
+    ); // 自动计算大小
+    tempDrag.appendChild(tempTip);
+
+    // live2d画布
+    var tempCanvas = document.createElement("canvas");
+    tempCanvas.id = "glcanvas_" + i;
+    tempCanvas.className = "glcanvas";
+    tempCanvas.width = LAppDefine[i].width;
+    tempCanvas.height = LAppDefine[i].height;
+    tempDrag.appendChild(tempCanvas);
+
+    // 对齐用,临时变量
+    var tempButton = document.createElement("div");
+
+    // 切换按钮
+    var tempChange = document.createElement("div");
+    tempChange.id = "btnChange_" + i;
+    tempChange.className = "btnChange myBtn";
+    tempChange.setAttribute("style", "width: " + (LAppDefine[i].width / 3 - 2 * JsMgr.border) + "px;" +
+      "left: " + 0 + "px;");
+    tempButton.appendChild(tempChange);
+
+    // 删除按钮
+    var tempClose = document.createElement("div");
+    tempClose.id = "btnClose_" + i;
+    tempClose.className = "btnClose myBtn";
+    tempClose.setAttribute("style", "width: " + (LAppDefine[i].width / 3 - 2 * JsMgr.border) + "px;" +
+      "left: " + (LAppDefine[i].width / 3) + "px;");
+    tempClose.setAttribute("onclick", "deleteFather(" + i + ")");
+    tempClose.textContent = "close";
+    tempButton.appendChild(tempClose);
+
+    // 切换canvas大小按钮
+    var tempHide = document.createElement("div");
+    tempHide.id = "btnHide_" + i;
+    tempHide.className = "btnHide myBtn";
+    tempHide.setAttribute("style", "width: " + (LAppDefine[i].width / 3 - 2 * JsMgr.border) + "px;" +
+      "left: " + (LAppDefine[i].width * 2 / 3) + "px;");
+    tempHide.setAttribute("onclick", "myHide(" + i + ")");
+    tempHide.textContent = "hide";
+    tempButton.appendChild(tempHide);
+
+    // 添加至body
+    tempDrag.appendChild(tempButton);
+    document.body.appendChild(tempDrag);
+    document.getElementById("drag_" + i).width = LAppDefine[i].width;
+
+    // 主体函数
+    thisMy[i] = new sampleApp(i);
+    setTimeout("thisMy[" + i + "].mystart()", (i - minNum) * JsMgr.loadInterval);
+  }
+  setTimeout("myDrag()", (maxNum - minNum + 1) * JsMgr.loadInterval);
+}
+
+function myDrag()
+{
+  $(".drag").draggable(
+  {
+    containment: document.body
+  });
+}
+
+function deleteFather(num)
+{
+  var tempNode = document.getElementById("drag_" + num);
+  // tempNode.parentNode.removeChild(tempNode);
+  tempNode.setAttribute("style", "display: none;");
+}
+
+function myHide(num)
+{
+  var tempTip = document.getElementById("tip_" + num);
+  tempTip.mystop = 1;
+  tempTip.style.opacity = 0;
+  var tempBtn = document.getElementById("btnHide_" + num);
+  tempBtn.className = "btnShow myBtn";
+  tempBtn.textContent = "show";
+  tempBtn.setAttribute("onclick", "myShow(" + num + ")");
+}
+
+function myShow(num)
+{
+  var tempTip = document.getElementById("tip_" + num);
+  tempTip.mystop = 0;
+  var tempBtn = document.getElementById("btnHide_" + num);
+  tempBtn.className = "btnHide myBtn";
+  tempBtn.textContent = "hide";
+  tempBtn.setAttribute("onclick", "myHide(" + num + ")");
+}
+
 var myDefine = 
 {
     DEBUG_LOG : false,
@@ -48,28 +178,11 @@ var LAppDefine = new Array();
     {
         LAppDefine[i] = Object.create(myDefine);
     }
-
-    LAppDefine[1].MODELS = [
-        apiAdress + "assets/haru/haru_01.model.json",
-        apiAdress + "assets/haru/haru_02.model.json",
-    ];
     
-    LAppDefine[0].MODELS = [ // 注意数组声明方式
-        apiAdress + "assets/Epsilon/Epsilon.model.json",
-        apiAdress + "assets/Epsilon2.1/Epsilon2.1.model.json",
+    LAppDefine[0].MODELS = LAppDefine[1].MODELS = LAppDefine[2].MODELS = [ // 注意数组声明方式
+        apiAdress + "new/assets/Epsilon/Epsilon.model.json",
+        apiAdress + "new/assets/Epsilon2.1/Epsilon2.1.model.json",
     ];
-    
-    LAppDefine[2].MODELS = [
-        apiAdress + "assets/haru/haru.model.json",
-    ];
-    
-    // "assets/shizuku/shizuku.model.json",
-    // "assets/wanko/wanko.model.json",
-    // [
-    //     "assets/live2d-hiyori/hiyori.model.json",
-    //     "assets/live2d-hiyori/hiyori_1.model.json",
-    //     "assets/live2d-hiyori/hiyori_2.model.json"
-    // ]
 }());
 
 function live2Dmain (num) {
@@ -6638,154 +6751,6 @@ Live2DFramework.setPlatformManager = function( platformManager /*IPlatformManage
     Live2DFramework.platformManager[num] = platformManager;
 }
 
-/**
- *
- *  You can modify and use this source freely
- *  only for the development of application related Live2D.
- *
- *  (c) Live2D Inc. All rights reserved.
- */
-
-//============================================================
-//============================================================
-//  class PlatformManager     extend IPlatformManager
-//============================================================
-//============================================================
-function PlatformManager(num)
-{
-    this.num = num;
-}
-
-//============================================================
-//    PlatformManager # loadBytes()
-//============================================================
-PlatformManager.prototype.loadBytes       = function(path/*String*/, callback)
-{
-    var request = new XMLHttpRequest();
-    request.open("GET", path, true);
-    request.responseType = "arraybuffer";
-    request.onload = function(){
-        switch(request.status){
-        case 200:
-            callback(request.response);
-            break;
-        default:
-            console.error("Failed to load (" + request.status + ") : " + path);
-            break;
-        }
-    }
-    request.send(null);
-    //return request;
-}
-
-//============================================================
-//    PlatformManager # loadString()
-//============================================================
-PlatformManager.prototype.loadString      = function(path/*String*/)
-{
-    
-    this.loadBytes(path, function(buf) {        
-        return buf;
-    });
-    
-}
-
-//============================================================
-//    PlatformManager # loadLive2DModel()
-//============================================================
-PlatformManager.prototype.loadLive2DModel = function(path/*String*/, callback)
-{
-    var model = null;
-    var tempNum = this.num;
-    
-    // load moc
-    this.loadBytes(path, function(buf){
-        model = Live2DModelWebGL[tempNum].loadModel(buf);
-        callback(model);
-    });
-
-}
-
-//============================================================
-//    PlatformManager # loadTexture()
-//============================================================
-PlatformManager.prototype.loadTexture     = function(model/*ALive2DModel*/, no/*int*/, path/*String*/, callback)
-{ 
-    // load textures
-    var loadedImage = new Image();
-    loadedImage.src = path;
-        
-    var tempNum = this.num;
-    loadedImage.onload = function() {
-                
-        // create texture
-        var canvas = document.getElementById("glcanvas_" + this.num);
-        var gl = thisMy[tempNum].getWebGLContext(canvas, {premultipliedAlpha : true});
-        var texture = gl.createTexture();	 
-        if (!texture){ console.error("Failed to generate gl texture name."); return -1; }
-
-        if(model.isPremultipliedAlpha() == false){
-            // 乗算済アルファテクスチャ以外の場合
-            gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1);
-        }
-        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);	
-        gl.activeTexture(gl.TEXTURE0);
-        gl.bindTexture(gl.TEXTURE_2D, texture);
-        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, 
-                      gl.UNSIGNED_BYTE, loadedImage);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
-        gl.generateMipmap(gl.TEXTURE_2D);
-
-
-        
-        model.setTexture(no, texture);
-        
-        // テクスチャオブジェクトを解放
-        texture = null;
-        
-        if (typeof callback == "function") callback();
-    };
-    
-    loadedImage.onerror = function() { 
-        console.error("Failed to load image : " + path); 
-    }
-}
-
-
-//============================================================
-//    PlatformManager # parseFromBytes(buf)
-
-//============================================================
-PlatformManager.prototype.jsonParseFromBytes = function(buf){
-    
-    var jsonStr;
-    
-    
-    
-    var bomCode = new Uint8Array(buf, 0, 3);
-    if (bomCode[0] == 239 && bomCode[1] == 187 && bomCode[2] == 191) {
-        jsonStr = String.fromCharCode.apply(null, new Uint8Array(buf, 3));
-    } else {
-        jsonStr = String.fromCharCode.apply(null, new Uint8Array(buf));
-    }
-    
-    var jsonObj = JSON.parse(jsonStr);
-    
-    return jsonObj;
-};
-
-
-//============================================================
-//    PlatformManager # log()
-//============================================================
-PlatformManager.prototype.log             = function(txt/*String*/)
-{
-    console.log(txt);
-}
-
-
-
 //============================================================
 //============================================================
 //  class LAppModel     extends L2DBaseModel         
@@ -7238,6 +7203,118 @@ LAppModel.prototype.hitTest = function(id, testX, testY)
 }
 
 
+/**
+ *
+ *  You can modify and use this source freely
+ *  only for the development of application related Live2D.
+ *
+ *  (c) Live2D Inc. All rights reserved.
+ */
+
+function MatrixStack() {}
+
+
+MatrixStack.matrixStack = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+
+
+MatrixStack.depth = 0;
+
+
+MatrixStack.currentMatrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
+
+
+MatrixStack.tmp = new Array(16);
+
+
+
+MatrixStack.reset = function()
+{
+    this.depth = 0;
+}
+
+
+
+MatrixStack.loadIdentity = function()
+{
+    for (var i = 0; i < 16; i++)
+    {
+        this.currentMatrix[i] = (i % 5 == 0) ? 1 : 0;
+    }
+}
+
+
+
+MatrixStack.push = function()
+{    
+    var offset = this.depth * 16;
+    var nextOffset = (this.depth + 1) * 16;
+    
+    if (this.matrixStack.length < nextOffset + 16)
+    {
+        this.matrixStack.length = nextOffset + 16;
+    }
+
+    for (var i = 0; i < 16; i++)
+    {
+        this.matrixStack[nextOffset + i] = this.currentMatrix[i];
+    }
+
+    this.depth++;
+}
+
+
+
+MatrixStack.pop = function()
+{
+    this.depth--;
+    if (this.depth < 0)
+    {
+        myError("Invalid matrix stack.");
+        this.depth = 0;
+    }
+
+    var offset = this.depth * 16;
+    for (var i = 0; i < 16; i++)
+    {
+        this.currentMatrix[i] = this.matrixStack[offset + i];
+    }
+}
+
+
+
+MatrixStack.getMatrix = function()
+{
+    return this.currentMatrix;
+}
+
+
+
+MatrixStack.multMatrix = function(matNew)
+{
+    var i, j, k;
+
+    for (i = 0; i < 16; i++)
+    {
+        this.tmp[i] = 0;
+    }
+
+    for (i = 0; i < 4; i++)
+    {
+        for (j = 0; j < 4; j++)
+        {
+            for (k = 0; k < 4; k++)
+            {
+                this.tmp[i + j * 4] += this.currentMatrix[i + k * 4] * matNew[k + j * 4];
+            }
+        }
+    }
+    for (i = 0; i < 16; i++)
+    {
+        this.currentMatrix[i] = this.tmp[i];
+    }
+}
+
+
 function ModelSettingJson(num)
 {    
     this.num = num;
@@ -7480,108 +7557,144 @@ ModelSettingJson.prototype.getInitPartsVisibleValue = function(n)
  *  (c) Live2D Inc. All rights reserved.
  */
 
-function MatrixStack() {}
-
-
-MatrixStack.matrixStack = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
-
-
-MatrixStack.depth = 0;
-
-
-MatrixStack.currentMatrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
-
-
-MatrixStack.tmp = new Array(16);
-
-
-
-MatrixStack.reset = function()
+//============================================================
+//============================================================
+//  class PlatformManager     extend IPlatformManager
+//============================================================
+//============================================================
+function PlatformManager(num)
 {
-    this.depth = 0;
+    this.num = num;
 }
 
-
-
-MatrixStack.loadIdentity = function()
+//============================================================
+//    PlatformManager # loadBytes()
+//============================================================
+PlatformManager.prototype.loadBytes       = function(path/*String*/, callback)
 {
-    for (var i = 0; i < 16; i++)
-    {
-        this.currentMatrix[i] = (i % 5 == 0) ? 1 : 0;
-    }
-}
-
-
-
-MatrixStack.push = function()
-{    
-    var offset = this.depth * 16;
-    var nextOffset = (this.depth + 1) * 16;
-    
-    if (this.matrixStack.length < nextOffset + 16)
-    {
-        this.matrixStack.length = nextOffset + 16;
-    }
-
-    for (var i = 0; i < 16; i++)
-    {
-        this.matrixStack[nextOffset + i] = this.currentMatrix[i];
-    }
-
-    this.depth++;
-}
-
-
-
-MatrixStack.pop = function()
-{
-    this.depth--;
-    if (this.depth < 0)
-    {
-        myError("Invalid matrix stack.");
-        this.depth = 0;
-    }
-
-    var offset = this.depth * 16;
-    for (var i = 0; i < 16; i++)
-    {
-        this.currentMatrix[i] = this.matrixStack[offset + i];
-    }
-}
-
-
-
-MatrixStack.getMatrix = function()
-{
-    return this.currentMatrix;
-}
-
-
-
-MatrixStack.multMatrix = function(matNew)
-{
-    var i, j, k;
-
-    for (i = 0; i < 16; i++)
-    {
-        this.tmp[i] = 0;
-    }
-
-    for (i = 0; i < 4; i++)
-    {
-        for (j = 0; j < 4; j++)
-        {
-            for (k = 0; k < 4; k++)
-            {
-                this.tmp[i + j * 4] += this.currentMatrix[i + k * 4] * matNew[k + j * 4];
-            }
+    var request = new XMLHttpRequest();
+    request.open("GET", path, true);
+    request.responseType = "arraybuffer";
+    request.onload = function(){
+        switch(request.status){
+        case 200:
+            callback(request.response);
+            break;
+        default:
+            console.error("Failed to load (" + request.status + ") : " + path);
+            break;
         }
     }
-    for (i = 0; i < 16; i++)
-    {
-        this.currentMatrix[i] = this.tmp[i];
+    request.send(null);
+    //return request;
+}
+
+//============================================================
+//    PlatformManager # loadString()
+//============================================================
+PlatformManager.prototype.loadString      = function(path/*String*/)
+{
+    
+    this.loadBytes(path, function(buf) {        
+        return buf;
+    });
+    
+}
+
+//============================================================
+//    PlatformManager # loadLive2DModel()
+//============================================================
+PlatformManager.prototype.loadLive2DModel = function(path/*String*/, callback)
+{
+    var model = null;
+    var tempNum = this.num;
+    
+    // load moc
+    this.loadBytes(path, function(buf){
+        model = Live2DModelWebGL[tempNum].loadModel(buf);
+        callback(model);
+    });
+
+}
+
+//============================================================
+//    PlatformManager # loadTexture()
+//============================================================
+PlatformManager.prototype.loadTexture     = function(model/*ALive2DModel*/, no/*int*/, path/*String*/, callback)
+{ 
+    // load textures
+    var loadedImage = new Image();
+    loadedImage.src = path;
+        
+    var tempNum = this.num;
+    loadedImage.onload = function() {
+                
+        // create texture
+        var canvas = document.getElementById("glcanvas_" + this.num);
+        var gl = thisMy[tempNum].getWebGLContext(canvas, {premultipliedAlpha : true});
+        var texture = gl.createTexture();	 
+        if (!texture){ console.error("Failed to generate gl texture name."); return -1; }
+
+        if(model.isPremultipliedAlpha() == false){
+            // 乗算済アルファテクスチャ以外の場合
+            gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, 1);
+        }
+        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);	
+        gl.activeTexture(gl.TEXTURE0);
+        gl.bindTexture(gl.TEXTURE_2D, texture);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, 
+                      gl.UNSIGNED_BYTE, loadedImage);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_NEAREST);
+        gl.generateMipmap(gl.TEXTURE_2D);
+
+
+        
+        model.setTexture(no, texture);
+        
+        // テクスチャオブジェクトを解放
+        texture = null;
+        
+        if (typeof callback == "function") callback();
+    };
+    
+    loadedImage.onerror = function() { 
+        console.error("Failed to load image : " + path); 
     }
 }
+
+
+//============================================================
+//    PlatformManager # parseFromBytes(buf)
+
+//============================================================
+PlatformManager.prototype.jsonParseFromBytes = function(buf){
+    
+    var jsonStr;
+    
+    
+    
+    var bomCode = new Uint8Array(buf, 0, 3);
+    if (bomCode[0] == 239 && bomCode[1] == 187 && bomCode[2] == 191) {
+        jsonStr = String.fromCharCode.apply(null, new Uint8Array(buf, 3));
+    } else {
+        jsonStr = String.fromCharCode.apply(null, new Uint8Array(buf));
+    }
+    
+    var jsonObj = JSON.parse(jsonStr);
+    
+    return jsonObj;
+};
+
+
+//============================================================
+//    PlatformManager # log()
+//============================================================
+PlatformManager.prototype.log             = function(txt/*String*/)
+{
+    console.log(txt);
+}
+
 
 
 window.onerror = function(msg, url, line, col, error)
@@ -8014,3 +8127,148 @@ sampleApp.prototype.l2dError = function (msg)
   
   console.error(msg);
 };
+
+function render(template, context) {
+
+  var tokenReg = /(\\)?\{([^\{\}\\]+)(\\)?\}/g;
+
+  return template.replace(tokenReg, function (word, slash1, token, slash2) {
+    if (slash1 || slash2) {
+      return word.replace('\\', '');
+    }
+
+    var variables = token.replace(/\s/g, '').split('.');
+    var currentObject = context;
+    var i, length, variable;
+
+    for (i = 0, length = variables.length; i < length; ++i) {
+      variable = variables[i];
+      currentObject = currentObject[variable];
+      if (currentObject === undefined || currentObject === null) return '';
+    }
+    return currentObject;
+  });
+}
+
+String.prototype.render = function (context) {
+  return render(this, context);
+};
+
+var re = /x/;
+console.log(re);
+re.toString = function () {
+  showMessage(text, 6000, -1);
+  return '';
+};
+
+$(document).on('copy', function () {
+  showMessage(text, 6000, -1);
+});
+
+(function () {
+  $.getJSON(apiAdress + "new/tips/tips.json", function (result) {
+    $.each(result.mouseover, function (index, tips) {
+      $(document).on("mouseover", tips.selector, function () {
+        var temp_num = Number(tips.selector[tips.selector.length - 1]);
+        var text = tips.text;
+        if (Array.isArray(tips.text)) text = tips.text[Math.floor(Math.random() * tips.text.length + 1) - 1];
+        text = text.render({
+          text: $(this).text()
+        });
+        showMessage(text, 3000, temp_num);
+      });
+    });
+    $.each(result.click, function (index, tips) {
+      $(document).on("click", tips.selector, function () {
+        var temp_num = Number(tips.selector[tips.selector.length - 1]);
+        var text = tips.text;
+        if (Array.isArray(tips.text)) text = tips.text[Math.floor(Math.random() * tips.text.length + 1) - 1];
+        text = text.render({
+          text: $(this).text()
+        });
+        showMessage(text, 3000, temp_num);
+      });
+    });
+  });
+})();
+
+(function () {
+  var text;
+  if (document.referrer !== '') {
+    var referrer = document.createElement('a');
+    referrer.href = document.referrer;
+    text = 'Hello! 来自 <span style="color:#0099cc;">' + referrer.hostname + '</span> 的朋友';
+    var domain = referrer.hostname.split('.')[1];
+    if (domain == 'baidu') {
+      text = 'Hello! 来自 百度搜索 的朋友<br>你是搜索 <span style="color:#0099cc;">' + referrer.search.split('&wd=')[1].split('&')[0] + '</span> 找到的我吗？';
+    } else if (domain == 'so') {
+      text = 'Hello! 来自 360搜索 的朋友<br>你是搜索 <span style="color:#0099cc;">' + referrer.search.split('&q=')[1].split('&')[0] + '</span> 找到的我吗？';
+    } else if (domain == 'google') {
+      text = 'Hello! 来自 谷歌搜索 的朋友<br>欢迎阅读<span style="color:#0099cc;">『' + document.title.split(' - ')[0] + '』</span>';
+    }
+  } else {
+    if (window.location.href == 'https://imjad.cn/') { //如果是主页
+      var now = (new Date()).getHours();
+      if (now > 23 || now <= 5) {
+        text = '你是夜猫子呀？这么晚还不睡觉，明天起的来嘛';
+      } else if (now > 5 && now <= 7) {
+        text = '早上好！一日之计在于晨，美好的一天就要开始了';
+      } else if (now > 7 && now <= 11) {
+        text = '上午好！工作顺利嘛，不要久坐，多起来走动走动哦！';
+      } else if (now > 11 && now <= 14) {
+        text = '中午了，工作了一个上午，现在是午餐时间！';
+      } else if (now > 14 && now <= 17) {
+        text = '午后很容易犯困呢，今天的运动目标完成了吗？';
+      } else if (now > 17 && now <= 19) {
+        text = '傍晚了！窗外夕阳的景色很美丽呢，最美不过夕阳红~';
+      } else if (now > 19 && now <= 21) {
+        text = '晚上好，今天过得怎么样？';
+      } else if (now > 21 && now <= 23) {
+        text = '已经这么晚了呀，早点休息吧，晚安~';
+      } else {
+        text = '嗨~ 快来逗我玩吧！';
+      }
+    } else {
+      text = '欢迎阅读<span style="color:#0099cc;">『' + document.title.split(' - ')[0] + '』</span>';
+    }
+  }
+  showMessage(text, 3000, -1);
+})();
+
+window.setInterval(showHitokoto, 500);
+
+function showHitokoto() {
+  // $.getJSON('https://api.imjad.cn/hitokoto/?cat=&charset=utf-8&length=28&encode=json'
+  $.getJSON(apiAdress + "new/tips/fuck.json", function (result) {
+    var randf = Math.random() * 1000;
+    var randi = Math.floor(randf * 1000);
+    var shit_len = result.fuck[0].wrong.length;
+    showMessage(result.fuck[0].wrong[randi % shit_len], 5000, randi % (maxNum + 1) + minNum); // 没有仔细算
+  });
+}
+
+function showMessage(text, timeout, num) {
+  var tempTip = document.getElementById("tip_" + num);
+  if (tempTip != null && tempTip.mystop == 1) return;
+  if (Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1) - 1];
+  if (num == -1) {
+    for (num = minNum; num <= maxNum; num++) {
+      $("#tip_" + num).stop();
+      $("#tip_" + num).html(text).fadeTo(200, 1);
+      if (timeout === null) timeout = 5000;
+      hideMessage(timeout, num);
+    }
+  } else {
+    $("#tip_" + num).stop();
+    $("#tip_" + num).html(text).fadeTo(200, 1);
+    if (timeout === null) timeout = 5000;
+    hideMessage(timeout, num);
+  }
+}
+
+function hideMessage(timeout, num) {
+  $("#tip_" + num).stop().css('opacity', 1);
+  if (timeout === null) timeout = 5000;
+  $("#tip_" + num).delay(timeout).fadeTo(200, 0);
+}
+

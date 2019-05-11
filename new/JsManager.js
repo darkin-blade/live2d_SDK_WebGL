@@ -1,37 +1,17 @@
-// API main
-// var apiAdress = "http://localhost:6060/"
-var apiAdress = "";
-
-document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + apiAdress + "new/live2d.css\">");
-document.write("<link rel=\"stylesheet\" type=\"text/css\" href=\"" + apiAdress + "new/tips.css\">");
-document.write("<script async src=\"" + apiAdress + "new/tips/tips.js\"></script>");
-
-// document.write("<script src=\"" + apiAdress + "new/src/" + "/live2d.js\"></script>");
-// document.write("<script src=\"" + apiAdress + "new/src/" + "/LAppDefine.js\"></script>");
-// document.write("<script src=\"" + apiAdress + "new/src/" + "/Live2DFramework.js\"></script>");
-// document.write("<script src=\"" + apiAdress + "new/src/" + "/MatrixStack.js\"></script>");
-// document.write("<script src=\"" + apiAdress + "new/src/" + "/ModelSettingJson.js\"></script>");
-// document.write("<script src=\"" + apiAdress + "new/src/" + "/PlatformManager.js\"></script>");
-// document.write("<script src=\"" + apiAdress + "new/src/" + "/LAppModel.js\"></script>");
-// document.write("<script src=\"" + apiAdress + "new/src/" + "/LAppLive2DManager.js\"></script>");
-// document.write("<script src=\"" + apiAdress + "new/src/" + "/SampleApp.js\"></script>");
-
-document.write("<script src=\"" + apiAdress + "new/" + "/main.js\"></script>");
+var apiAdress = "/";
 
 var minNum = 0;
 var maxNum = 2;
 var thisMy = new Array();
 var JsMgr = {
-  loadInterval: 300,
+  loadInterval: 1000,
   myRequest: "",
-  border: 3,
+  border: 3,// 边宽
 }
 
-function sampleManager()
-{
-  // fileLoad();
+$(document).ready(function() {
   divCreate();
-}
+});
 
 function divCreate()
 {
@@ -146,56 +126,4 @@ function myShow(num)
   tempBtn.className = "btnHide myBtn";
   tempBtn.textContent = "hide";
   tempBtn.setAttribute("onclick", "myHide(" + num + ")");
-}
-
-function fileLoad()
-{
-  $("<link>")
-    .attr(
-    {
-      rel: "stylesheet",
-      type: "text/css",
-      href: apiAdress + "new/live2d.css"
-    })
-    .appendTo("head");
-  $("<link>")
-    .attr(
-    {
-      rel: "stylesheet",
-      type: "text/css",
-      href: apiAdress + "new/tips.css"
-    })
-    .appendTo("head");
-  var jsList = [
-    // "new/main.js",
-    "/live2d.js",
-    "/LAppDefine.js",
-    "/Live2DFramework.js",
-    "/MatrixStack.js",
-    "/ModelSettingJson.js",
-    "/PlatformManager.js",
-    "/LAppModel.js",
-    "/LAppLive2DManager.js",
-    "/SampleApp.js"
-  ];
-  for (var i = 0; i < jsList.length; i++)
-  {
-    $.ajax(
-    {
-      url: apiAdress + "new/src" + jsList[i],
-      dataType: "text",
-      async: false,
-      success: function(result)
-      {
-        JsMgr.myRequest += result;
-        if (i + 1 == jsList.length)
-        {
-          var tempScript = document.createElement("script");
-          tempScript.innerHTML = JsMgr.myRequest;
-          document.body.appendChild(tempScript);
-        }
-      }
-    });
-  }
-  $.getScript("new/tips/tips.js");
 }
