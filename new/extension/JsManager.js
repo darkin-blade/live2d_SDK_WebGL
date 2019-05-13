@@ -1,4 +1,4 @@
-var apiAdress = "/";
+var apiAddress = "/";
 
 var minNum = 0;
 var maxNum = 8;

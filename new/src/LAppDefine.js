@@ -48,8 +48,8 @@ var LAppDefine = new Array();
     {
         LAppDefine[i] = Object.create(myDefine);
         LAppDefine[i].MODELS = [ // 注意数组声明方式
-            apiAdress + "new/assets/Epsilon/Epsilon.model.json",
-            apiAdress + "new/assets/Epsilon2.1/Epsilon2.1.model.json",
+            apiAddress + "new/assets/Epsilon/Epsilon.model.json",
+            apiAddress + "new/assets/Epsilon2.1/Epsilon2.1.model.json",
         ];
     }
     
