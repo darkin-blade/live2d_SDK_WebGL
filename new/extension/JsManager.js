@@ -17,12 +17,12 @@ $(document).ready(function() {
     JsMgr.deleted.push(1);
   }
 
-  // var tempBtn = document.createElement("button");
-  // $(tempBtn).css("right", 0 + "px");
-  // $(tempBtn).css("position", "fixed");
-  // tempBtn.setAttribute("onclick", "addModel()");
-  // tempBtn.innerText = "add";
-  // document.body.appendChild(tempBtn);
+  var tempBtn = document.createElement("button");
+  $(tempBtn).css("right", 0 + "px");
+  $(tempBtn).css("position", "fixed");
+  tempBtn.setAttribute("onclick", "addModel()");
+  tempBtn.innerText = "add";
+  document.body.appendChild(tempBtn);
 });
 
 function addModel()
