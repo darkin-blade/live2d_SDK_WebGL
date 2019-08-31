@@ -17,6 +17,7 @@ $(document).ready(function() {
     JsMgr.deleted.push(1);
   }
 
+  // 在本地测试时添加模型的按钮
   var tempBtn = document.createElement("button");
   $(tempBtn).css("right", 0 + "px");
   $(tempBtn).css("position", "fixed");
