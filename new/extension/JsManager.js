@@ -69,31 +69,3 @@ function myDrag()
     containment: document.body
   });
 }
-
-function myDelete(num)
-{
-  var tempNode = document.getElementById("drag_" + num);
-  tempNode.setAttribute("style", "display: none;");// 如果直接删除的话,框架代码会报错
-  JsMgr.deleted[num] = 0;
-}
-
-function myHide(num)
-{
-  var tempTip = document.getElementById("tip_" + num);
-  tempTip.mystop = 1;
-  tempTip.style.opacity = 0;
-  var tempBtn = document.getElementById("btnHide_" + num);
-  tempBtn.className = "btnShow myBtn";
-  tempBtn.textContent = "show";
-  tempBtn.setAttribute("onclick", "myShow(" + num + ")");
-}
-
-function myShow(num)
-{
-  var tempTip = document.getElementById("tip_" + num);
-  tempTip.mystop = 0;
-  var tempBtn = document.getElementById("btnHide_" + num);
-  tempBtn.className = "btnHide myBtn";
-  tempBtn.textContent = "hide";
-  tempBtn.setAttribute("onclick", "myHide(" + num + ")");
-}
