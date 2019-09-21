@@ -65,11 +65,11 @@ sampleApp.prototype.initL2dCanvas = function ()
       thisMy[this.num].canvas.addEventListener("touchmove", function () { tempMy.touchEvent() }, false);
   }
   
-  var btnChangeModel = document.getElementById("btnChange_" + this.num);
-  var tempMy = thisMy[this.num];
-  btnChangeModel.addEventListener("click", function(e) {
-      tempMy.changeModel(); // 切换模型
-  });
+  // var btnChangeModel = document.getElementById("btnChange_" + this.num);
+  // var tempMy = thisMy[this.num];
+  // btnChangeModel.addEventListener("click", function(e) {
+  //     tempMy.changeModel(); // 切换模型
+  // });
 }
 
 
@@ -130,10 +130,10 @@ sampleApp.prototype.changeModel = function ()
 {
   // 放缩测试
 
-  var btnChange = document.getElementById("btnChange_" + this.num);
-  btnChange.setAttribute("disabled", "disabled");
-  btnChange.setAttribute("class", "btnChanging myBtn"); // 切换class
-  btnChange.textContent = "loading";
+  // var btnChange = document.getElementById("btnChange_" + this.num);
+  // btnChange.setAttribute("disabled", "disabled");
+  // btnChange.setAttribute("class", "btnChanging myBtn"); // 切换class
+  // btnChange.textContent = "loading";
   thisMy[this.num].isModelShown = false;
   
   thisMy[this.num].live2DMgr.reloadFlg = true;
@@ -207,10 +207,10 @@ sampleApp.prototype.draw = function ()
           if (!thisMy[this.num].isModelShown && i == thisMy[this.num].live2DMgr.numModels() - 1)
           {
               thisMy[this.num].isModelShown = !thisMy[this.num].isModelShown;
-              var btnChange = document.getElementById("btnChange_" + this.num);
-              btnChange.textContent = "change";
-              btnChange.removeAttribute("disabled");
-              btnChange.setAttribute("class", "btnChange myBtn"); // 切换class
+              // var btnChange = document.getElementById("btnChange_" + this.num);
+              // btnChange.textContent = "change";
+              // btnChange.removeAttribute("disabled");
+              // btnChange.setAttribute("class", "btnChange myBtn"); // 切换class
           }
       }
   }
