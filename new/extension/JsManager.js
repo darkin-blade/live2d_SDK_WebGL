@@ -1,72 +1,29 @@
 var apiAddress = "/";
 
 var minNum = 0;
-var maxNum = 8;
+var maxNum = 2;
 var thisMy = new Array();
 var JsMgr = {
   loadInterval: 0,// 如果是同时加载,请把interval调大
   myRequest: "",
   border: 3,// 边宽
-  deleted: null,
 }
 
 $(document).ready(function() {
-  JsMgr.deleted = new Array();
-  for (var i = 0; i < minNum; i ++)
-  {
-    JsMgr.deleted.push(1);
+  for (var i = minNum; i <= maxNum; i ++) {
+    setTimeout("divCreate(" + i + ", " + i + ");", i * 1500);
   }
-
-  // 在本地测试时添加模型的按钮
-  var tempBtn = document.createElement("button");
-  $(tempBtn).css("right", 0 + "px");
-  $(tempBtn).css("position", "fixed");
-  tempBtn.setAttribute("onclick", "addModel()");
-  tempBtn.innerText = "add";
-  document.body.appendChild(tempBtn);
 });
-
-function addModel()
-{
-  var hasDelete = 0;
-  for (var i = 0; i < JsMgr.deleted.length; i ++)
-  {
-    if (JsMgr.deleted[i] == 0)
-    {
-      $("#drag_" + i).css("display", "block");// 恢复
-      // 位置调整
-      $("#drag_" + i).css("bottom", 50 + "px");
-      $("#drag_" + i).css("left", (i * 200 + 60) + "px");
-      
-      JsMgr.deleted[i] = 1;
-      hasDelete = 1;
-      return;
-    }
-  }
-  if (hasDelete == 0)
-  {
-    if (JsMgr.deleted.length == maxNum + 1)
-    {
-      alert("full models!");
-      return;
-    }
-    divCreate(JsMgr.deleted.length, JsMgr.deleted.length);
-  }
-}
 
 function divCreate(start, end)
 {
   var i = 0;
   for (i = start; i <= end; i++)// 单个加载
   {
-    // 删除元素的回收
-    JsMgr.deleted.push(1);
-
     // 拖拽元素
     var tempDrag = document.createElement("div");
     tempDrag.id = "drag_" + i;
     tempDrag.className = "drag";
-
 
     // tip元素
     var tempTip = document.createElement("div");

@@ -1,13 +1,15 @@
-if [ $1"x" = x ]
+if [ "$1"x = x ]
 then
-  echo "need message"
+  echo "\033[1;31mneed message\033[0m"
 else
-  git add .
+  echo "\033[1;32mAdding...\033[0m"
+  git add -A
   git commit -m $1
-  if [ $2"x" = x ]
+  echo "\033[1;33mPushing...\033[0m"
+  if [ "$2"x != x ]
   then
-    echo "no pushing"
-  else
     git push origin master
+  else
+    echo "\033[1;35mAbort\033[0m"
   fi
 fi
