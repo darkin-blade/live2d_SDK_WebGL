@@ -18,10 +18,10 @@ cat src/PlatformManager.js >> main.js
 echo "\n" >> main.js
 cat src/SampleApp.js >> main.js
 echo "\n" >> main.js
-cat extension/tips.js >> main.js
-echo "\n" >> main.js
+# cat extension/tips.js >> main.js
+# echo "\n" >> main.js
 
 cat extension/live2d.css > main.css
 echo "\n" >> main.css
-cat extension/tips.css >> main.css
-echo "\n" >> main.css
+# cat extension/tips.css >> main.css
+# echo "\n" >> main.css
