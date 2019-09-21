@@ -6,6 +6,8 @@ var myDefine =
     DEBUG_DRAW_HIT_AREA : false, 
     DEBUG_DRAW_ALPHA_MODEL : false, 
     */
+
+    // 大小控制
     width: 200,
     height: 300,
 
@@ -36,7 +38,7 @@ var myDefine =
     MOTION_GROUP_PINCH_OUT : "pinch_out",  // 缩小至0.5
     MOTION_GROUP_SHAKE : "shake", 
 
-    
+    // 点击区域
     HIT_AREA_HEAD : "head",
     HIT_AREA_BODY : "body"
 };

@@ -1,12 +1,10 @@
-var apiAddress = "/";
+var apiAddress = "/";// 模型加载路径
 
 var minNum = 0;
 var maxNum = 2;
 var thisMy = new Array();
 var JsMgr = {
-  loadInterval: 0,// 如果是同时加载,请把interval调大
-  myRequest: "",
-  border: 3,// 边宽
+  loadInterval: 0,// 模型加载间隙.如果是同时加载,请把interval调大
 }
 
 $(document).ready(function() {
@@ -45,39 +43,6 @@ function divCreate(start, end)
     tempCanvas.height = LAppDefine[i].height;
     tempDrag.appendChild(tempCanvas);
 
-    // // 对齐用,临时变量
-    // var tempButton = document.createElement("div");
-
-    // // 切换按钮
-    // var tempChange = document.createElement("div");
-    // tempChange.id = "btnChange_" + i;
-    // tempChange.className = "btnChange myBtn";
-    // tempChange.setAttribute("style", "width: " + (LAppDefine[i].width / 3 - 2 * JsMgr.border) + "px;" +
-    //   "left: " + 0 + "px;");
-    // tempButton.appendChild(tempChange);
-
-    // // 删除按钮
-    // var tempClose = document.createElement("div");
-    // tempClose.id = "btnClose_" + i;
-    // tempClose.className = "btnClose myBtn";
-    // tempClose.setAttribute("style", "width: " + (LAppDefine[i].width / 3 - 2 * JsMgr.border) + "px;" +
-    //   "left: " + (LAppDefine[i].width / 3) + "px;");
-    // tempClose.setAttribute("onclick", "myDelete(" + i + ")");
-    // tempClose.textContent = "close";
-    // tempButton.appendChild(tempClose);
-
-    // // 切换canvas大小按钮
-    // var tempHide = document.createElement("div");
-    // tempHide.id = "btnHide_" + i;
-    // tempHide.className = "btnHide myBtn";
-    // tempHide.setAttribute("style", "width: " + (LAppDefine[i].width / 3 - 2 * JsMgr.border) + "px;" +
-    //   "left: " + (LAppDefine[i].width * 2 / 3) + "px;");
-    // tempHide.setAttribute("onclick", "myHide(" + i + ")");
-    // tempHide.textContent = "hide";
-    // tempButton.appendChild(tempHide);
-
-    // // 添加至body
-    // tempDrag.appendChild(tempButton);
     document.body.appendChild(tempDrag);
     document.getElementById("drag_" + i).width = LAppDefine[i].width;
 
