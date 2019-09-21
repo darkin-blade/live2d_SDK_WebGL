@@ -43,7 +43,7 @@ var myDefine =
 
 var LAppDefine = new Array();
 
-(function (){
+(function () {
     for (var i = minNum; i <= maxNum; i ++)
     {
         LAppDefine[i] = Object.create(myDefine);
