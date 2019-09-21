@@ -4,7 +4,7 @@ var minNum = 0;
 var maxNum = 2;
 var thisMy = new Array();
 var JsMgr = {
-  loadInterval: 500,// 模型加载间隙.如果是同时加载,请把interval调大
+  loadInterval: 500,// 模型加载间隙:如果是同时加载,请把interval调大
 }
 
 $(document).ready(function() {
@@ -14,7 +14,7 @@ $(document).ready(function() {
 function divCreate(start, end)
 {
   var i = 0;
-  for (i = start; i <= end; i++)// 单个加载
+  for (i = start; i < end; i++)// 单个加载
   {
     // 拖拽元素
     var tempDrag = document.createElement("div");
@@ -50,8 +50,8 @@ function divCreate(start, end)
 
     // 位置调整
     $("#drag_" + i).css("display", "block");
-    $("#drag_" + i).css("bottom", 75 + "px");
-    $("#drag_" + i).css("left", (i * 200 + 60) + "px");
+    $("#drag_" + i).css("bottom", LAppDefine[i].bottom + "px");
+    $("#drag_" + i).css("left", LAppDefine[i].left + "px");
 
     // 主体函数
     thisMy[i] = new sampleApp(i);
