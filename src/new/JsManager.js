@@ -1,4 +1,4 @@
-var apiAddress = "/";// 模型加载路径
+var apiAddress = "../";// 模型加载路径
 
 var minNum = 0;
 var maxNum = 2;
