@@ -1,4 +1,5 @@
 function render(template, context) {
+  return;
 
   var tokenReg = /(\\)?\{([^\{\}\\]+)(\\)?\}/g;
 
@@ -36,6 +37,7 @@ $(document).on('copy', function () {
 });
 
 (function () {
+  return;
   $.getJSON(apiAddress + "new/tips/tips.json", function (result) {
     $.each(result.mouseover, function (index, tips) {
       $(document).on("mouseover", tips.selector, function () {
@@ -66,6 +68,7 @@ $(document).on('copy', function () {
 window.setInterval(showHitokoto, 500);
 
 function showHitokoto() {
+  return;
   // $.getJSON('https://api.imjad.cn/hitokoto/?cat=&charset=utf-8&length=28&encode=json'
   $.getJSON(apiAddress + "new/tips/fuck.json", function (result) {
     var randf = Math.random() * 1000;
@@ -96,6 +99,7 @@ function showMessage(text, timeout, num) {
 }
 
 function hideMessage(timeout, num) {
+  return;
   $("#tip_" + num).stop().css('opacity', 1);
   if (timeout === null) timeout = 5000;
   $("#tip_" + num).delay(timeout).fadeTo(200, 0);
