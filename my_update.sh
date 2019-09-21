@@ -8,7 +8,7 @@ else
   echo "\033[1;33mPushing...\033[0m"
   if [ "$2"x != x ]
   then
-    git push origin master
+    git push origin single
   else
     echo "\033[1;35mAbort\033[0m"
   fi
