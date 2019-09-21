@@ -1,4 +1,2 @@
-assets/
-new/assets/
-*main.js
-*main.css
+*assets/
+output/
