@@ -4,13 +4,11 @@ var minNum = 0;
 var maxNum = 2;
 var thisMy = new Array();
 var JsMgr = {
-  loadInterval: 0,// 模型加载间隙.如果是同时加载,请把interval调大
+  loadInterval: 500,// 模型加载间隙.如果是同时加载,请把interval调大
 }
 
 $(document).ready(function() {
-  for (var i = minNum; i <= maxNum; i ++) {
-    setTimeout("divCreate(" + i + ", " + i + ");", i * 1500);
-  }
+  divCreate(minNum, maxNum);
 });
 
 function divCreate(start, end)
