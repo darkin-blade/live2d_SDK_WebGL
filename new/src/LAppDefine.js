@@ -51,6 +51,9 @@ var LAppDefine = new Array();
             apiAddress + "new/assets/Epsilon/Epsilon.model.json",
             apiAddress + "new/assets/Epsilon2.1/Epsilon2.1.model.json",
         ];
+
+        LAppDefine[i].bottom = 75;
+        LAppDefine[i].left = i * 300;
     }
     
 }());
