@@ -8,13 +8,17 @@
 
 ## 使用
 
+### 静态加载
+
+适合所有服务器/本地加载,但不便于调试
+
 1. 在`new`下
 
 ```bash
 ./combine.sh
 ```
 
-2. 在`webGL/{filename}.html`中
+2. 在`webGL/{filename}.html`中添加
 
 ```html
 <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
@@ -24,3 +28,7 @@
 ```
 
 3. 用浏览器打开`{filename}.html`即可
+
+### 动态加载
+
+只适合部分服务器,便于调试
