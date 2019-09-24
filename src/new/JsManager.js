@@ -123,8 +123,8 @@ function myDrag()
 function myDelete(num)
 {// TODO 解除模型的所有监听
   var tempDrag = document.getElementById("drag_" + num);
-  console.log(tempDrag.parentElement);
-  tempDrag.parentElement.remove(tempDrag);
+  // console.log(tempDrag.parentElement);
+  tempDrag.remove(tempDrag);
 }
 
 function myHide(num)

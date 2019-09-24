@@ -4786,7 +4786,7 @@ function live2Dmain (num) {
     window.Live2D = new Array();
     window.Live2DModelWebGL = new Array();
     for (var num = minNum; num <= maxNum; num ++)
-    {// TODO
+    {// TODO 需要简化
         live2Dmain(num);
     }
 }());
