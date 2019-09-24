@@ -1,4 +1,6 @@
-var apiAddress = "/";
+var apiAddress = "/";// 核心文件的根目录位置
+var tipAddress = apiAddress + "src/tips/";// 提示框内容文件夹位置
+var modelAddress = apiAddress + "assets/";// 模型文件的根目录
 
 var minNum = 0;
 var maxNum = 8;
