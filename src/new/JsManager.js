@@ -103,7 +103,8 @@ function divCreate(start, end)
     // 位置调整
     $("#drag_" + i).css("display", "block");
     $("#drag_" + i).css("bottom", 75 + "px");
-    $("#drag_" + i).css("left", (i * 200 + 60) + "px");
+    $("#drag_" + i).css("left", 200 + "px");
+    // $("#drag_" + i).css("left", (i * 200 + 60) + "px");
 
     // 主体函数
     thisMy[i] = new sampleApp(i);
