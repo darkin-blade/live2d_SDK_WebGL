@@ -8,9 +8,7 @@
 
 ## 使用
 
-### 静态加载
-
-适合所有服务器/本地加载,但不便于调试
+### ~~合并加载~~
 
 1. 在`new`下
 
@@ -29,6 +27,26 @@
 
 3. 用浏览器打开`{filename}.html`即可
 
-### 动态加载
+### 分开加载
 
-只适合部分服务器,便于调试
+1. 在`webGL/{filename}.html`中添加
+
+```html
+<script src="src/new/JsManager.js"></script>
+<script src="src/origin/live2d.js"></script>
+<script src="src/origin/Live2DFramework.js"></script>
+
+<script src="src/origin/LAppDefine.js"></script>
+<script src="src/origin/LAppLive2DManager.js"></script>
+<script src="src/origin/MatrixStack.js"></script>
+<script src="src/origin/LAppModel.js"></script>
+<script src="src/origin/ModelSettingJson.js"></script>
+<script src="src/origin/PlatformManager.js"></script>
+<script src="src/origin/SampleApp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="src/new/live2d.css">
+```
+
+其中`JsManager.js`,`live2d.js`,`Live2DFramework.js`必须排在1,2,3的位置
+
+2. 使用`host`加载`webGL`目录,用浏览器打开对应ip地址
