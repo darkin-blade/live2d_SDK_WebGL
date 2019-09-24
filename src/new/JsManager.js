@@ -8,7 +8,7 @@ var totalNum = 0;// 总模型数
 var thisMy = new Array();
 var JsMgr = {
   loadInterval: 0,// 如果是同时加载,请把interval调大
-  border: 3,// 边宽
+  border: 3,// 按键的边宽,防止按钮重叠
 }
 
 $(document).ready(function() {
@@ -21,7 +21,7 @@ $(document).ready(function() {
   document.body.appendChild(tempBtn);
 });
 
-function addModel()
+function addModel()// 单个添加模型的api,如果网站需要一次性生成多模型,不建议使用此函数
 {
   console.log(live2Dmain == null);
 
@@ -35,7 +35,7 @@ function addModel()
   }
 }
 
-function divCreate(start, end)
+function divCreate(start, end)// TODO 用于集体加载模型的api,但是对于时间间隙的控制有待优化
 {// 创建从start到end编号的模型
   var i = 0;
   for (i = start; i < end; i++)// 单个加载
@@ -44,7 +44,6 @@ function divCreate(start, end)
     var tempDrag = document.createElement("div");
     tempDrag.id = "drag_" + i;
     tempDrag.className = "drag";
-
 
     // tip元素
     var tempTip = document.createElement("div");
