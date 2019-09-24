@@ -185,6 +185,7 @@ sampleApp.prototype.draw = function ()
   if (thisMy[this.num] == null) {// 被删除
     return;
   }
+  console.log("draw");
 
   MatrixStack.reset();
   MatrixStack.loadIdentity();
