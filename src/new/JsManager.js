@@ -57,9 +57,9 @@ function addModel()
 }
 
 function divCreate(start, end)
-{
+{// 创建从start到end编号的模型
   var i = 0;
-  for (i = start; i <= end; i++)// 单个加载
+  for (i = start; i < end; i++)// 单个加载
   {
     // 删除元素的回收
     JsMgr.deleted.push(1);
