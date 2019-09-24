@@ -4785,8 +4785,5 @@ function live2Dmain (num) {
 (function(){
     window.Live2D = new Array();
     window.Live2DModelWebGL = new Array();
-    for (var num = minNum; num <= maxNum; num ++)
-    {// TODO 需要简化
-        live2Dmain(num);
-    }
+    live2Dmain(minNum);// 只加载第一个模型, 防止报错
 }());

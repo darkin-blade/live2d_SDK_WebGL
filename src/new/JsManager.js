@@ -3,7 +3,7 @@ var tipAddress = apiAddress + "src/tips/";// 提示框内容文件夹位置
 var modelAddress = apiAddress + "assets/";// 模型文件的根目录
 
 var minNum = 0;// 模型的最小编号
-var maxNum = 8;// 模型的最大编号
+var maxNum = 80;// 模型的最大编号
 var totalNum = 0;// 总模型数
 var thisMy = new Array();
 var JsMgr = {
@@ -23,6 +23,12 @@ $(document).ready(function() {
 
 function addModel()
 {
+  console.log(live2Dmain == null);
+
+  if (totalNum > 0) {// live2d.js的初始化函数,在一开始只会初始化第一个模型
+    live2Dmain(totalNum + minNum);// 之后的模型需要重新初始化
+  }
+
   if (totalNum < maxNum) {
     divCreate(totalNum + minNum, totalNum + minNum + 1);
     totalNum ++;
