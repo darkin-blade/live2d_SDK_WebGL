@@ -29,6 +29,13 @@ function addModel()// 单个添加模型的api,如果网站需要一次性生成
     live2Dmain(totalNum + minNum);// 之后的模型需要重新初始化
   }
 
+  for (var i = 0; i < totalNum; i ++) {// 检查哪些序号的模型被删除
+    if (thisMy[i] == null) {// 被删除了
+      divCreate(i + minNum, i + minNum + 1);// 恢复被删除的模型
+      return;      
+    }
+  }
+
   if (totalNum < maxNum) {
     divCreate(totalNum + minNum, totalNum + minNum + 1);
     totalNum ++;
