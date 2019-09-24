@@ -26,19 +26,9 @@
   --green-border: 1px solid rgba(115, 210, 22, 0.62);
 }
 
-#tip_2, #tip_3, #tip_4 {
+.tips {
   border: var(--purple-border);
   background-color: var(--purple-box);
-}
-
-#tip_5, #tip_6, #tip_7 {
-  border: var(--orange-border);
-  background-color: var(--orange-box);
-}
-
-#tip_0, #tip_1, #tip_8 {
-  border: var(--green-border);
-  background-color: var(--green-box);
 }
 
 @keyframes shake {

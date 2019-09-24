@@ -2,23 +2,16 @@ var apiAddress = "/";// 核心文件的根目录位置
 var tipAddress = apiAddress + "src/tips/";// 提示框内容文件夹位置
 var modelAddress = apiAddress + "assets/";// 模型文件的根目录
 
-var minNum = 0;
-var maxNum = 8;
+var minNum = 0;// 模型的最小编号
+var maxNum = 8;// 模型的最大编号
+var totalNum = 0;// 总模型数
 var thisMy = new Array();
 var JsMgr = {
   loadInterval: 0,// 如果是同时加载,请把interval调大
-  myRequest: "",
   border: 3,// 边宽
-  deleted: null,
 }
 
 $(document).ready(function() {
-  JsMgr.deleted = new Array();
-  for (var i = 0; i < minNum; i ++)
-  {
-    JsMgr.deleted.push(1);
-  }
-
   // 在本地测试时添加模型的按钮
   var tempBtn = document.createElement("button");
   $(tempBtn).css("right", 0 + "px");
@@ -30,29 +23,9 @@ $(document).ready(function() {
 
 function addModel()
 {
-  var hasDelete = 0;
-  for (var i = 0; i < JsMgr.deleted.length; i ++)
-  {
-    if (JsMgr.deleted[i] == 0)
-    {
-      $("#drag_" + i).css("display", "block");// 恢复
-      // 位置调整
-      $("#drag_" + i).css("bottom", 50 + "px");
-      $("#drag_" + i).css("left", (i * 200 + 60) + "px");
-      
-      JsMgr.deleted[i] = 1;
-      hasDelete = 1;
-      return;
-    }
-  }
-  if (hasDelete == 0)
-  {
-    if (JsMgr.deleted.length == maxNum + 1)
-    {
-      alert("full models!");
-      return;
-    }
-    divCreate(JsMgr.deleted.length, JsMgr.deleted.length);
+  if (totalNum < maxNum) {
+    divCreate(totalNum + minNum, totalNum + minNum + 1);
+    totalNum ++;
   }
 }
 
@@ -61,9 +34,6 @@ function divCreate(start, end)
   var i = 0;
   for (i = start; i < end; i++)// 单个加载
   {
-    // 删除元素的回收
-    JsMgr.deleted.push(1);
-
     // 拖拽元素
     var tempDrag = document.createElement("div");
     tempDrag.id = "drag_" + i;
@@ -143,7 +113,7 @@ function divCreate(start, end)
 }
 
 function myDrag()
-{
+{// 使模型能够拖拽
   $(".drag").draggable(
   {
     containment: document.body
