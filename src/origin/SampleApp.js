@@ -158,6 +158,10 @@ sampleApp.prototype.getWebGLContext = function ()
 
 
 sampleApp.prototype.startDraw = function () {
+  if (thisMy[this.num] == null) {// 被删除
+    return;
+  }
+
   if (!thisMy[this.num].isDrawStart) {
     thisMy[this.num].isDrawStart = true;
     var tempMy = thisMy[this.num];
@@ -178,7 +182,9 @@ sampleApp.prototype.startDraw = function () {
 
 sampleApp.prototype.draw = function ()
 {
-  // thisMy[this.num].l2dLog("--> draw()");
+  if (thisMy[this.num] == null) {// 被删除
+    return;
+  }
 
   MatrixStack.reset();
   MatrixStack.loadIdentity();
@@ -221,23 +227,25 @@ sampleApp.prototype.draw = function ()
 
 
 sampleApp.prototype.modelScaling = function (scale)
-{  
+{
+  if (thisMy[this.num] == null) {// 被删除
+    return;
+  }
+  
   var isMaxScale = thisMy[this.num].viewMatrix.isMaxScale();
   var isMinScale = thisMy[this.num].viewMatrix.isMinScale();
   
   thisMy[this.num].viewMatrix.adjustScale(0, 0, scale);
 
   
-  if (!isMaxScale)
-  {
+  if (!isMaxScale) {
       if (thisMy[this.num].viewMatrix.isMaxScale())
       {
           thisMy[this.num].live2DMgr.maxScaleEvent();
       }
   }
   
-  if (!isMinScale)
-  {
+  if (!isMinScale) {
       if (thisMy[this.num].viewMatrix.isMinScale())
       {
           thisMy[this.num].live2DMgr.minScaleEvent();
@@ -249,6 +257,10 @@ sampleApp.prototype.modelScaling = function (scale)
 
 sampleApp.prototype.modelTurnHead = function (event)
 {
+  if (thisMy[this.num] == null) {// 被删除
+    return;
+  }
+
   thisMy[this.num].drag = true;
   
   var rect = event.target.getBoundingClientRect();
@@ -275,10 +287,11 @@ sampleApp.prototype.modelTurnHead = function (event)
 sampleApp.prototype.followPointer = function (event)
 {    
   if (thisMy[this.num] == null)
-  {
+  {// 不知道之前怎么写的
     return;
   }
-  // var rect = event.target.getBoundingClientRect();
+
+  // var rect = event.target.getBoundingClientRect();// 看不懂以前写的代码了
   var the_div = document.getElementById("drag_" + this.num);
 
   var cx = event.clientX; 
@@ -293,7 +306,6 @@ sampleApp.prototype.followPointer = function (event)
   if (LAppDefine[this.num].DEBUG_MOUSE_LOG)
       thisMy[this.num].l2dLog("onMouseMove device( x:" + cx + " y:" + cy + " ) view( x:" + vx + " y:" + vy + ")");
 
-  // if (thisMy[this.num].drag)
   thisMy[this.num].lastMouseX = sx;
   thisMy[this.num].lastMouseY = sy;
 
@@ -304,8 +316,11 @@ sampleApp.prototype.followPointer = function (event)
 
 sampleApp.prototype.lookFront = function()
 {   
-  if (thisMy[this.num].drag)
-  {
+  if (thisMy[this.num] == null) {// 被删除
+    return;
+  }
+
+  if (thisMy[this.num].drag) {
       thisMy[this.num].drag = false;
   }
 
@@ -315,6 +330,10 @@ sampleApp.prototype.lookFront = function()
 
 sampleApp.prototype.mouseEvent = function ()
 {
+  if (thisMy[this.num] == null) {// 被删除
+    return;
+  }
+
   var e = window.event;
   e.preventDefault(); // 防止页面滚动
 
@@ -356,6 +375,10 @@ sampleApp.prototype.mouseEvent = function ()
 
 sampleApp.prototype.touchEvent = function ()
 {
+  if (thisMy[this.num] == null) {// 被删除
+    return;
+  }
+
   var e = window.event;
   e.preventDefault(); // 防止页面滚动
 
@@ -387,6 +410,10 @@ sampleApp.prototype.touchEvent = function ()
 
 sampleApp.prototype.transformViewX = function (deviceX)
 {
+  if (thisMy[this.num] == null) {// 被删除
+    return;
+  }
+
   var screenX = thisMy[this.num].deviceToScreen.transformX(deviceX); 
   return thisMy[this.num].viewMatrix.invertTransformX(screenX); 
 }
@@ -394,6 +421,10 @@ sampleApp.prototype.transformViewX = function (deviceX)
 
 sampleApp.prototype.transformViewY = function (deviceY)
 {
+  if (thisMy[this.num] == null) {// 被删除
+    return;
+  }
+
   var screenY = thisMy[this.num].deviceToScreen.transformY(deviceY); 
   return thisMy[this.num].viewMatrix.invertTransformY(screenY); 
 }
@@ -401,12 +432,20 @@ sampleApp.prototype.transformViewY = function (deviceY)
 
 sampleApp.prototype.transformScreenX = function (deviceX)
 {
+  if (thisMy[this.num] == null) {// 被删除
+    return;
+  }
+
   return thisMy[this.num].deviceToScreen.transformX(deviceX);
 }
 
 
 sampleApp.prototype.transformScreenY = function (deviceY)
 {
+  if (thisMy[this.num] == null) {// 被删除
+    return;
+  }
+
   return thisMy[this.num].deviceToScreen.transformY(deviceY);
 }
 
@@ -422,6 +461,10 @@ sampleApp.prototype.l2dLog = function (msg) {
 
 sampleApp.prototype.l2dError = function (msg)
 {
+  if (thisMy[this.num] == null) {// 被删除
+    return;
+  }
+
   if(!LAppDefine[this.num].DEBUG_LOG) return;
   
   thisMy[this.num].l2dLog( "<span style='color:red'>" + msg + "</span>");
