@@ -121,10 +121,10 @@ function myDrag()
 }
 
 function myDelete(num)
-{
-  var tempNode = document.getElementById("drag_" + num);
-  tempNode.setAttribute("style", "display: none;");// 如果直接删除的话,框架代码会报错
-  JsMgr.deleted[num] = 0;
+{// TODO 解除模型的所有监听
+  var tempDrag = document.getElementById("drag_" + num);
+  console.log(tempDrag.parentElement);
+  tempDrag.parentElement.remove(tempDrag);
 }
 
 function myHide(num)
