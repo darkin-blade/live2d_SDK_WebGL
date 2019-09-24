@@ -16,9 +16,10 @@
     1. (此步只是建议,没有强制要求)将模型文件夹(名称无限制)放在`assets`文件夹中
     2. 在`LAppDefine.js`中修改`json`文件路径(默认所有编号对应的模型相同),模型资源自行下载
 
-- 样式(`canvas`大小以及提示框等):
-    - `live2d`canvas:修改`live2d.css`
-    - 提示框:修改`tips.js`
+- 样式修改的位置:
+    - `live2d`canvas:`live2d.css`
+    - 提示框:`tips.css`
+    - 按钮:`JSManager.js`
 
 ## 使用
 
@@ -26,9 +27,39 @@
 
 ![](https://github.com/hexo-simple-theme/theme_demo/blob/master/live2d.png)
 
-### normal
+### 分开加载
 
+1. 在`webGL/{filename}.html`中添加
+
+```html
+<script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+<script src="src/new/JsManager.js"></script>
+<script src="src/new/tips.js"></script>
+
+<script src="src/origin/live2d.js"></script>
+<script src="src/origin/Live2DFramework.js"></script>
+
+<script src="src/origin/LAppDefine.js"></script>
+<script src="src/origin/LAppLive2DManager.js"></script>
+<script src="src/origin/MatrixStack.js"></script>
+<script src="src/origin/LAppModel.js"></script>
+<script src="src/origin/ModelSettingJson.js"></script>
+<script src="src/origin/PlatformManager.js"></script>
+<script src="src/origin/SampleApp.js"></script>
+
+<link rel="stylesheet" type="text/css" href="src/new/live2d.css">
+<link rel="stylesheet" type="text/css" href="src/new/tips.css">
+```
+
+    - 其中`JsManager.js`,`live2d.js`,`Live2DFramework.js`必须排在1,2,3的位置
+    - 如果不想使用tips功能,可不加载`tips.js`,`tips.css`
+
+2. 使用`host`加载`webGL`目录,用浏览器打开对应ip地址
 
 ### 其他
 
-> TODO
+#### TODO
+
+- 多模型无缝加载:现在如果模型加载过快,会导致部分模型加载不出来
