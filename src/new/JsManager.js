@@ -136,7 +136,7 @@ function myDrag()
 function myDelete(num)
 {// TODO 解除模型的所有监听
   
-  thisMy[num].rmPrototype();
+  thisMy[num].delete();
   for (var key in thisMy[num]) {
     console.log(key);
     delete thisMy[num][key];

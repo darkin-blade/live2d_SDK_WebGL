@@ -11,7 +11,7 @@ function sampleApp(num)
 
 sampleApp.prototype.mystart = function ()
 {// 修改过的初始化函数
-  thisMy[this.num].platform = window.navigator.platform.toLowerCase(); // 系统型号
+  thisMy[this.num].platform = window.navigator.platform.toLowerCase();// 系统型号
   
   thisMy[this.num].live2DMgr = new LAppLive2DManager(this.num);
 
@@ -33,7 +33,7 @@ sampleApp.prototype.mystart = function ()
   
   thisMy[this.num].isModelShown = false;
   
-  thisMy[this.num].initL2dCanvas(); // 添加监听事件
+  thisMy[this.num].initL2dCanvas();// 添加监听事件
   
   
   thisMy[this.num].init();
@@ -47,25 +47,35 @@ sampleApp.prototype.initL2dCanvas = function ()
   
   if (thisMy[this.num].canvas.addEventListener) 
   {
-      thisMy[this.num].canvas.addEventListener("mousewheel", function () { tempMy.mouseEvent() }, false);
-      thisMy[this.num].canvas.addEventListener("click", function () { tempMy.mouseEvent() }, false);
+      thisMy[this.num].canvas.addEventListener("mousewheel", tempMy.mousewheelListener = function () {
+        tempMy.mouseEvent() }, false);
+      thisMy[this.num].canvas.addEventListener("click", tempMy.clickLinstener = function () {
+        tempMy.mouseEvent() }, false);
       
-      thisMy[this.num].canvas.addEventListener("mousedown", function () { tempMy.mouseEvent() }, false);
-      document.body.addEventListener("mousemove", function () { tempMy.mouseEvent() }, false); // 全局跟踪
+      thisMy[this.num].canvas.addEventListener("mousedown", tempMy.mousedownListener = function () {
+        tempMy.mouseEvent() }, false);
+      document.body.addEventListener("mousemove", tempMy.mousemoveListener = function () {
+        tempMy.mouseEvent() }, false);// 全局跟踪
       
-      thisMy[this.num].canvas.addEventListener("mouseup", function () { tempMy.mouseEvent() }, false);
-      thisMy[this.num].canvas.addEventListener("mouseout", function () { tempMy.mouseEvent() }, false);
-      thisMy[this.num].canvas.addEventListener("contextmenu", function () { tempMy.mouseEvent() }, false);
+      thisMy[this.num].canvas.addEventListener("mouseup", tempMy.mouseupListener = function () {
+        tempMy.mouseEvent() }, false);
+      thisMy[this.num].canvas.addEventListener("mouseout", tempMy.mouseoutListener = function () {
+        tempMy.mouseEvent() }, false);
+      thisMy[this.num].canvas.addEventListener("contextmenu", tempMy.contenxtmenuListener = function () {
+        tempMy.mouseEvent() }, false);
       
-      thisMy[this.num].canvas.addEventListener("touchstart", function () { tempMy.touchEvent() }, false);
-      thisMy[this.num].canvas.addEventListener("touchend", function () { tempMy.touchEvent() }, false);
-      thisMy[this.num].canvas.addEventListener("touchmove", function () { tempMy.touchEvent() }, false);
+      thisMy[this.num].canvas.addEventListener("touchstart", tempMy.touchstartListener = function () {
+        tempMy.touchEvent() }, false);
+      thisMy[this.num].canvas.addEventListener("touchend", tempMy.touchedListener = function () {
+        tempMy.touchEvent() }, false);
+      thisMy[this.num].canvas.addEventListener("touchmove", tempMy.touchmoveListener = function () {
+        tempMy.touchEvent() }, false);
   }
   
   var btnChangeModel = document.getElementById("btnChange_" + this.num);// `切换`按钮
   var tempMy = thisMy[this.num];
   btnChangeModel.addEventListener("click", function(e) {
-      tempMy.changeModel(); // 切换模型
+      tempMy.changeModel();// 切换模型
   });
 }
 
@@ -79,14 +89,14 @@ sampleApp.prototype.init = function()
     thisMy[this.num].dragMgr = new L2DTargetPoint(this.num);
 
     var ratio = height / width;
-    var left = LAppDefine[this.num].VIEW_LOGICAL_LEFT; // 不知道干嘛的
-    var right = LAppDefine[this.num].VIEW_LOGICAL_RIGHT; // 不知道干嘛的
-    var bottom = -ratio; // 不知道干嘛的
-    var top = ratio; // 不知道干嘛的
+    var left = LAppDefine[this.num].VIEW_LOGICAL_LEFT;// 不知道干嘛的
+    var right = LAppDefine[this.num].VIEW_LOGICAL_RIGHT;// 不知道干嘛的
+    var bottom = -ratio;// 不知道干嘛的
+    var top = ratio;// 不知道干嘛的
 
     thisMy[this.num].viewMatrix = new L2DViewMatrix(this.num);
 
-    thisMy[this.num].viewMatrix.setScreenRect(left, right, bottom, top); // 感觉没用
+    thisMy[this.num].viewMatrix.setScreenRect(left, right, bottom, top);// 感觉没用
 
     thisMy[this.num].viewMatrix.setMaxScreenRect(LAppDefine[this.num].VIEW_LOGICAL_MAX_LEFT,
         LAppDefine[this.num].VIEW_LOGICAL_MAX_RIGHT,
@@ -98,13 +108,13 @@ sampleApp.prototype.init = function()
     /* 以上感觉没用 */
 
     thisMy[this.num].projMatrix = new L2DMatrix44();
-    thisMy[this.num].projMatrix.scale(1, (width / height)); // 放缩
+    thisMy[this.num].projMatrix.scale(1, (width / height));// 放缩
 
-    thisMy[this.num].deviceToScreen = new L2DMatrix44(); // 跟踪鼠标
+    thisMy[this.num].deviceToScreen = new L2DMatrix44();// 跟踪鼠标
     thisMy[this.num].deviceToScreen.multTranslate(-width / 2.0, -height / 2.0);
     thisMy[this.num].deviceToScreen.multScale(2 / width, -2 / width);
 
-    thisMy[this.num].gl = thisMy[this.num].getWebGLContext(this.num); // 不是属性,需要增加num
+    thisMy[this.num].gl = thisMy[this.num].getWebGLContext(this.num);// 不是属性,需要增加num
     if (!thisMy[this.num].gl)
     {
         thisMy[this.num].l2dError("Failed to create WebGL context.");
@@ -123,7 +133,7 @@ sampleApp.prototype.changeModel = function ()
 
   var btnChange = document.getElementById("btnChange_" + this.num);
   btnChange.setAttribute("disabled", "disabled");
-  btnChange.setAttribute("class", "btnChanging myBtn"); // 切换class
+  btnChange.setAttribute("class", "btnChanging myBtn");// 切换class
   btnChange.textContent = "loading";
   thisMy[this.num].isModelShown = false;
   
@@ -137,7 +147,7 @@ sampleApp.prototype.getWebGLContext = function ()
 {
   var NAMES = [ "webgl" , "experimental-webgl" , "webkit-3d" , "moz-webgl"];
 
-  for( var i = 0; i < NAMES.length; i++ ){
+  for (var i = 0; i < NAMES.length; i++ ){
       try{
           var ctx = thisMy[this.num].canvas.getContext(NAMES[i], {premultipliedAlpha : true});
           if(ctx) return ctx;
@@ -148,7 +158,7 @@ sampleApp.prototype.getWebGLContext = function ()
 };
 
 sampleApp.prototype.startDraw = function () {
-  console.log("startDraw " + this.num);
+  // console.log("startDraw " + this.num);
   if (thisMy[this.num] == null) {// 被删除
     return;
   }
@@ -167,16 +177,15 @@ sampleApp.prototype.startDraw = function () {
         window.mozRequestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         window.msRequestAnimationFrame;
-      console.log(requestAnimationFrame);
 
-      requestAnimationFrame(tick, tempMy.canvas);
+      requestAnimationFrame(tick, tempMy.canvas);// 定时重绘
     })();
   }
 }
 
 sampleApp.prototype.draw = function ()
 {
-  console.log("draw " + this.num);
+  // console.log("draw " + this.num);
   if (thisMy[this.num] == null) {// 被删除
     return;
   }
@@ -200,18 +209,16 @@ sampleApp.prototype.draw = function ()
 
       if (model == null) return;
 
-      if (model.initialized && !model.updating)
-      {
+      if (model.initialized && !model.updating) {
           model.update();
           model.draw(thisMy[this.num].gl);
 
-          if (!thisMy[this.num].isModelShown && i == thisMy[this.num].live2DMgr.numModels() - 1)
-          {
+          if (!thisMy[this.num].isModelShown && i == thisMy[this.num].live2DMgr.numModels() - 1) {
               thisMy[this.num].isModelShown = !thisMy[this.num].isModelShown;
               var btnChange = document.getElementById("btnChange_" + this.num);
               btnChange.textContent = "change";
               btnChange.removeAttribute("disabled");
-              btnChange.setAttribute("class", "btnChange myBtn"); // 切换class
+              btnChange.setAttribute("class", "btnChange myBtn");// 切换class
           }
       }
   }
@@ -232,15 +239,13 @@ sampleApp.prototype.modelScaling = function (scale)
 
   
   if (!isMaxScale) {
-      if (thisMy[this.num].viewMatrix.isMaxScale())
-      {
+      if (thisMy[this.num].viewMatrix.isMaxScale()) {
           thisMy[this.num].live2DMgr.maxScaleEvent();
       }
   }
   
   if (!isMinScale) {
-      if (thisMy[this.num].viewMatrix.isMinScale())
-      {
+      if (thisMy[this.num].viewMatrix.isMinScale()) {
           thisMy[this.num].live2DMgr.minScaleEvent();
       }
   }
@@ -316,12 +321,14 @@ sampleApp.prototype.lookFront = function()
 
 sampleApp.prototype.mouseEvent = function ()
 {
+  console.log("mouse Event " + this.num);
   if (thisMy[this.num] == null) {// 被删除
     return;
   }
 
   var e = window.event;
-  e.preventDefault(); // 防止页面滚动
+  console.log(e.type);
+  e.preventDefault();// 防止页面滚动
 
   if (e.type == "mousewheel") {
     if (e.clientX < 0 || e.clientY < 0) {
@@ -330,27 +337,17 @@ sampleApp.prototype.mouseEvent = function ()
 
     if (e.wheelDelta > 0) thisMy[this.num].modelScaling(1.1);
     else thisMy[this.num].modelScaling(0.9);
-
   } else if (e.type == "mousedown") {
-
     if ("button" in e && e.button != 0) return;
     thisMy[this.num].modelTurnHead(e);
-
   } else if (e.type == "mousemove") {
-
     thisMy[this.num].followPointer(e);
-
   } else if (e.type == "mouseup") {
-
     if ("button" in e && e.button != 0) return;
     thisMy[this.num].lookFront();
-
-  } else if (e.type == "mouseout") {
-
+  } else if (e.type == "mouseout") {// 启用全局跟踪后,这个事件没有用了
     thisMy[this.num].lookFront();
-
   } else if (e.type == "contextmenu") {
-
     thisMy[this.num].changeModel();
   }
 }
@@ -362,7 +359,7 @@ sampleApp.prototype.touchEvent = function ()
   }
 
   var e = window.event;
-  e.preventDefault(); // 防止页面滚动
+  e.preventDefault();// 防止页面滚动
 
   var touch = e.touches[0];
 
@@ -448,8 +445,9 @@ sampleApp.prototype.l2dError = function (msg)
 /**
  * 以下自己补充的函数
  */
-sampleApp.prototype.rmPrototype = function ()// 清除所有prototype
+sampleApp.prototype.delete = function ()
 {
+  // 清除所有prototype
   console.log("rm " + this.num);
   thisMy[this.num].mystart = null;
   thisMy[this.num].initL2dCanvas = null;
@@ -468,4 +466,19 @@ sampleApp.prototype.rmPrototype = function ()// 清除所有prototype
   thisMy[this.num].transformViewY = null;
   thisMy[this.num].transformScreenX = null;
   thisMy[this.num].transformScreenY = null;
+
+  var tempMy = thisMy[this.num];// TODO 取消全局跟踪
+  // thisMy[this.num].canvas.removeEventListener("mousewheel", tempMy.mousewheelListener);
+  // thisMy[this.num].canvas.removeEventListener("click", tempMy.clickLinstener);
+  
+  // thisMy[this.num].canvas.removeEventListener("mousedown", tempMy.mousedownListener);
+  document.body.removeEventListener("mousemove", tempMy.mousemoveListener);
+  
+  // thisMy[this.num].canvas.removeEventListener("mouseup", tempMy.mouseupListener);
+  // thisMy[this.num].canvas.removeEventListener("mouseout", tempMy.mouseoutListener);
+  // thisMy[this.num].canvas.removeEventListener("contextmenu", tempMy.contenxtmenuListener);
+  
+  // thisMy[this.num].canvas.removeEventListener("touchstart", tempMy.touchstartListener);
+  // thisMy[this.num].canvas.removeEventListener("touchend", tempMy.touchedListener);
+  // thisMy[this.num].canvas.removeEventListener("touchmove", tempMy.touchmoveListener);
 }
