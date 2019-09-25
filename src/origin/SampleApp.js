@@ -7,11 +7,10 @@ window.onerror = function(msg, url, line, col, error)
 function sampleApp(num)
 {
   this.num = num;
-}    
+}
 
 sampleApp.prototype.mystart = function ()
-{
-  // console.log("---> sampleApp")
+{// 修改过的初始化函数
   thisMy[this.num].platform = window.navigator.platform.toLowerCase(); // 系统型号
   
   thisMy[this.num].live2DMgr = new LAppLive2DManager(this.num);
@@ -40,7 +39,6 @@ sampleApp.prototype.mystart = function ()
   thisMy[this.num].init();
 }
 
-
 sampleApp.prototype.initL2dCanvas = function ()
 {
   thisMy[this.num].canvas = document.getElementById("glcanvas_" + this.num);
@@ -65,13 +63,12 @@ sampleApp.prototype.initL2dCanvas = function ()
       thisMy[this.num].canvas.addEventListener("touchmove", function () { tempMy.touchEvent() }, false);
   }
   
-  var btnChangeModel = document.getElementById("btnChange_" + this.num);
+  var btnChangeModel = document.getElementById("btnChange_" + this.num);// `切换`按钮
   var tempMy = thisMy[this.num];
   btnChangeModel.addEventListener("click", function(e) {
       tempMy.changeModel(); // 切换模型
   });
 }
-
 
 sampleApp.prototype.init = function()
 {
@@ -121,11 +118,6 @@ sampleApp.prototype.init = function()
     thisMy[this.num].startDraw();
 }
 
-sampleApp.prototype.reinit = function () 
-{
-  thisMy[this.num].gl = thisMy[this.num].getWebGLContext(this.num);
-}
-
 sampleApp.prototype.changeModel = function ()
 {
   // 放缩测试
@@ -156,7 +148,6 @@ sampleApp.prototype.getWebGLContext = function ()
   return null;
 };
 
-
 sampleApp.prototype.startDraw = function () {
   if (thisMy[this.num] == null) {// 被删除
     return;
@@ -179,13 +170,13 @@ sampleApp.prototype.startDraw = function () {
   }
 }
 
-
 sampleApp.prototype.draw = function ()
 {
+  console.log("draw " + this.num);
   if (thisMy[this.num] == null) {// 被删除
     return;
   }
-  console.log("draw");
+
 
   MatrixStack.reset();
   MatrixStack.loadIdentity();
@@ -225,8 +216,6 @@ sampleApp.prototype.draw = function ()
   MatrixStack.pop();
 }
 
-
-
 sampleApp.prototype.modelScaling = function (scale)
 {
   if (thisMy[this.num] == null) {// 被删除
@@ -254,8 +243,6 @@ sampleApp.prototype.modelScaling = function (scale)
   }
 }
 
-
-
 sampleApp.prototype.modelTurnHead = function (event)
 {
   if (thisMy[this.num] == null) {// 被删除
@@ -282,8 +269,6 @@ sampleApp.prototype.modelTurnHead = function (event)
   
   thisMy[this.num].live2DMgr.tapEvent(vx, vy);
 }
-
-
 
 sampleApp.prototype.followPointer = function (event)
 {    
@@ -313,8 +298,6 @@ sampleApp.prototype.followPointer = function (event)
   thisMy[this.num].dragMgr.setPoint(vx, vy); 
 }
 
-
-
 sampleApp.prototype.lookFront = function()
 {   
   if (thisMy[this.num] == null) {// 被删除
@@ -327,7 +310,6 @@ sampleApp.prototype.lookFront = function()
 
   thisMy[this.num].dragMgr.setPoint(0, 0);
 }
-
 
 sampleApp.prototype.mouseEvent = function ()
 {
@@ -349,7 +331,6 @@ sampleApp.prototype.mouseEvent = function ()
   } else if (e.type == "mousedown") {
 
     if ("button" in e && e.button != 0) return;
-
     thisMy[this.num].modelTurnHead(e);
 
   } else if (e.type == "mousemove") {
@@ -359,7 +340,6 @@ sampleApp.prototype.mouseEvent = function ()
   } else if (e.type == "mouseup") {
 
     if ("button" in e && e.button != 0) return;
-
     thisMy[this.num].lookFront();
 
   } else if (e.type == "mouseout") {
@@ -370,9 +350,7 @@ sampleApp.prototype.mouseEvent = function ()
 
     thisMy[this.num].changeModel();
   }
-
 }
-
 
 sampleApp.prototype.touchEvent = function ()
 {
@@ -408,7 +386,6 @@ sampleApp.prototype.touchEvent = function ()
   }
 }
 
-
 sampleApp.prototype.transformViewX = function (deviceX)
 {
   if (thisMy[this.num] == null) {// 被删除
@@ -418,7 +395,6 @@ sampleApp.prototype.transformViewX = function (deviceX)
   var screenX = thisMy[this.num].deviceToScreen.transformX(deviceX); 
   return thisMy[this.num].viewMatrix.invertTransformX(screenX); 
 }
-
 
 sampleApp.prototype.transformViewY = function (deviceY)
 {
@@ -430,7 +406,6 @@ sampleApp.prototype.transformViewY = function (deviceY)
   return thisMy[this.num].viewMatrix.invertTransformY(screenY); 
 }
 
-
 sampleApp.prototype.transformScreenX = function (deviceX)
 {
   if (thisMy[this.num] == null) {// 被删除
@@ -440,7 +415,6 @@ sampleApp.prototype.transformScreenX = function (deviceX)
   return thisMy[this.num].deviceToScreen.transformX(deviceX);
 }
 
-
 sampleApp.prototype.transformScreenY = function (deviceY)
 {
   if (thisMy[this.num] == null) {// 被删除
@@ -449,7 +423,6 @@ sampleApp.prototype.transformScreenY = function (deviceY)
 
   return thisMy[this.num].deviceToScreen.transformY(deviceY);
 }
-
 
 sampleApp.prototype.l2dLog = function (msg) {
   if(!LAppDefine[this.num].DEBUG_LOG) return;
@@ -472,3 +445,28 @@ sampleApp.prototype.l2dError = function (msg)
   
   console.error(msg);
 };
+
+/**
+ * 以下自己补充的函数
+ */
+sampleApp.prototype.rmPrototype = function ()// 清除所有prototype
+{
+  console.log("rm " + this.num);
+  thisMy[this.num].mystart = null;
+  thisMy[this.num].initL2dCanvas = null;
+  thisMy[this.num].init = null;
+  thisMy[this.num].changeModel = null;
+  thisMy[this.num].getWebGLContext = null;
+  thisMy[this.num].startDraw = null;
+  thisMy[this.num].draw = null;
+  thisMy[this.num].modelScaling = null;
+  thisMy[this.num].modelTurnHead = null;
+  thisMy[this.num].followPointer = null;
+  thisMy[this.num].lookFront = null;
+  thisMy[this.num].mouseEvent = null;
+  thisMy[this.num].touchEvent = null;
+  thisMy[this.num].transformViewX = null;
+  thisMy[this.num].transformViewY = null;
+  thisMy[this.num].transformScreenX = null;
+  thisMy[this.num].transformScreenY = null;
+}

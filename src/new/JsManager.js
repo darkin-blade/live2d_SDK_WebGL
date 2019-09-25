@@ -136,8 +136,14 @@ function myDrag()
 function myDelete(num)
 {// TODO 解除模型的所有监听
   var tempDrag = document.getElementById("drag_" + num);
-  delete thisMy[num];
-  // thisMy[num] = null;// TODO
+  
+  // thisMy[num].rmPrototype();
+  for (var key in thisMy[num]) {
+    console.log(key);
+    delete thisMy[num][key];
+  }
+  thisMy[num] = null;// TODO
+
   tempDrag.remove(tempDrag);
 }
 
