@@ -13,7 +13,7 @@ Tips.prototype.init = function ()
   this.getJson();
 
   var tempThis = this;
-  window.setInterval(function () {
+  window.tips[this.num] = setInterval(function () {
     tempThis.showHitokoto(tempThis.num) }, 2000);// 无限鸡汤
 }
 
@@ -94,6 +94,10 @@ Tips.prototype.hideMessage = function (timeout)
   $("#tip_" + this.num).delay(timeout).fadeTo(200, 0);
 }
 
+Tips.prototype.delete = function ()
+{
+  window.clearInterval(window.tips[this.num]);// 取消无限鸡汤
+}
 
 function render(template, context) {
   console.log("render");

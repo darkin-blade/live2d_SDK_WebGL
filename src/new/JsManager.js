@@ -5,6 +5,8 @@ var modelAddress = apiAddress + "assets/";// 模型文件的根目录
 var minNum = 0;// 模型的最小编号
 var maxNum = 1;// 模型的最大编号
 var totalNum = 0;// 总模型数
+
+window.tips = new Array();// 用于clearInterval(取消无限鸡汤)
 var thisMy = new Array();
 var JsMgr = {
   loadInterval: 0,// 如果是同时加载,请把interval调大
@@ -137,6 +139,7 @@ function myDrag()
 
 function myDelete(num)
 {// TODO 解除模型的所有监听
+  thisMy[num].tips.delete();// 取消Interval tips
   thisMy[num].delete();
   for (var key in thisMy[num]) {
     // console.log(key);
