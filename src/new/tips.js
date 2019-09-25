@@ -12,12 +12,13 @@ Tips.prototype.init = function ()
   this.welcome();
   this.getJson();
 
-  window.setInterval(this.showHitokoto(this.num), 1000);// 无限鸡汤
+  var tempThis = this;
+  window.setInterval(function () {
+    tempThis.showHitokoto(tempThis.num) }, 2000);// 无限鸡汤
 }
 
 Tips.prototype.welcome = function ()
 {// 第一句话
-  console.log("welcome");
   var text;
   if (document.referrer !== '') {// 通过搜索引擎访问
     var referrer = document.createElement('a');
@@ -63,7 +64,6 @@ Tips.prototype.getJson = function ()
   });
 }
 
-
 Tips.prototype.showHitokoto = function (num)
 {// 从文件/api获取随机tips
   // $.getJSON('https://api.imjad.cn/hitokoto/?cat=&charset=utf-8&length=28&encode=json'
@@ -78,7 +78,6 @@ Tips.prototype.showHitokoto = function (num)
 Tips.prototype.showMessage = function (text, timeout)
 {// TODO 显示的对应编号
   var tempTip = document.getElementById("tip_" + this.num);
-  console.log((tempTip == null) + ":" + this.num);
   if (tempTip != null && tempTip.mystop == 1) return;
   if (Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1) - 1]; // 如果有多条tips
 
