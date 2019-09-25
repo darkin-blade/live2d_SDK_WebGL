@@ -39,16 +39,17 @@ Tips.prototype.welcome = function ()
 Tips.prototype.getJson = function ()// 删除了原api的render函数,不知道有没有影响
 {// 对固定事件绑定tips
   var tempThis = this;
+  var tempDrag = document.getElementById("drag_" + this.num);
   $.getJSON(tipAddress + "tips.json", function (result) {
-    $.each(result.mouseover, function (index, tips) {
-      $(document).on("mouseover", tips.selector, function () {
+    $.each(result.mouseover, function (index, tips) {// 鼠标放置在模型之上
+      $(tempDrag).on("mouseover", tips.selector, function () {
         var text = tips.text;
         if (Array.isArray(tips.text)) text = tips.text[Math.floor(Math.random() * tips.text.length + 1) - 1];
         tempThis.showMessage(text, 3000, this.num);
       });
     });
     $.each(result.click, function (index, tips) {
-      $(document).on("click", tips.selector, function () {
+      $(tempDrag).on("click", tips.selector, function () {
         var text = tips.text;
         if (Array.isArray(tips.text)) text = tips.text[Math.floor(Math.random() * tips.text.length + 1) - 1];
         tempThis.showMessage(text, 3000, this.num);
