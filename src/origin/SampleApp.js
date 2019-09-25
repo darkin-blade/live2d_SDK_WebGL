@@ -48,22 +48,22 @@ sampleApp.prototype.initL2dCanvas = function ()
   if (thisMy[this.num].canvas.addEventListener) 
   {
       thisMy[this.num].canvas.addEventListener("mousewheel", tempMy.mousewheelListener = function () {
-        tempMy.mouseEvent() }, false);
+        tempMy.mouseEvent() }, false);// 放大或缩小
+      thisMy[this.num].canvas.addEventListener("contextmenu", tempMy.contenxtmenuListener = function () {
+        tempMy.mouseEvent() }, false);// 鼠标右键,切换模型
       thisMy[this.num].canvas.addEventListener("click", tempMy.clickLinstener = function () {
-        tempMy.mouseEvent() }, false);
-      
+        tempMy.mouseEvent() }, false);// 点击
       thisMy[this.num].canvas.addEventListener("mousedown", tempMy.mousedownListener = function () {
-        tempMy.mouseEvent() }, false);
+        tempMy.mouseEvent() }, false);// 鼠标点下
+      thisMy[this.num].canvas.addEventListener("mouseup", tempMy.mouseupListener = function () {
+        tempMy.mouseEvent() }, false);// 鼠标松开
+
+      document.body.addEventListener("mouseout", tempMy.mouseoutListener = function () {
+        tempMy.mouseEvent() }, false);// 鼠标移出后向前看
       document.body.addEventListener("mousemove", tempMy.mousemoveListener = function () {
         tempMy.mouseEvent() }, false);// 全局跟踪
       
-      thisMy[this.num].canvas.addEventListener("mouseup", tempMy.mouseupListener = function () {
-        tempMy.mouseEvent() }, false);
-      thisMy[this.num].canvas.addEventListener("mouseout", tempMy.mouseoutListener = function () {
-        tempMy.mouseEvent() }, false);
-      thisMy[this.num].canvas.addEventListener("contextmenu", tempMy.contenxtmenuListener = function () {
-        tempMy.mouseEvent() }, false);
-      
+      // 手指
       thisMy[this.num].canvas.addEventListener("touchstart", tempMy.touchstartListener = function () {
         tempMy.touchEvent() }, false);
       thisMy[this.num].canvas.addEventListener("touchend", tempMy.touchedListener = function () {
@@ -345,7 +345,7 @@ sampleApp.prototype.mouseEvent = function ()
   } else if (e.type == "mouseup") {
     if ("button" in e && e.button != 0) return;
     thisMy[this.num].lookFront();
-  } else if (e.type == "mouseout") {// 启用全局跟踪后,这个事件没有用了
+  } else if (e.type == "mouseout") {
     thisMy[this.num].lookFront();
   } else if (e.type == "contextmenu") {
     thisMy[this.num].changeModel();
@@ -353,7 +353,7 @@ sampleApp.prototype.mouseEvent = function ()
 }
 
 sampleApp.prototype.touchEvent = function ()
-{
+{// TODO 手机端
   if (thisMy[this.num] == null) {// 被删除
     return;
   }
@@ -468,17 +468,6 @@ sampleApp.prototype.delete = function ()
   thisMy[this.num].transformScreenY = null;
 
   var tempMy = thisMy[this.num];// TODO 取消全局跟踪
-  // thisMy[this.num].canvas.removeEventListener("mousewheel", tempMy.mousewheelListener);
-  // thisMy[this.num].canvas.removeEventListener("click", tempMy.clickLinstener);
-  
-  // thisMy[this.num].canvas.removeEventListener("mousedown", tempMy.mousedownListener);
-  document.body.removeEventListener("mousemove", tempMy.mousemoveListener);
-  
-  // thisMy[this.num].canvas.removeEventListener("mouseup", tempMy.mouseupListener);
-  // thisMy[this.num].canvas.removeEventListener("mouseout", tempMy.mouseoutListener);
-  // thisMy[this.num].canvas.removeEventListener("contextmenu", tempMy.contenxtmenuListener);
-  
-  // thisMy[this.num].canvas.removeEventListener("touchstart", tempMy.touchstartListener);
-  // thisMy[this.num].canvas.removeEventListener("touchend", tempMy.touchedListener);
-  // thisMy[this.num].canvas.removeEventListener("touchmove", tempMy.touchmoveListener);
+  document.body.removeEventListener("mouseout", tempMy.mouseoutListener);
+  document.body.removeEventListener("mousemove", tempMy.mousemoveListener);// 全局跟踪
 }
