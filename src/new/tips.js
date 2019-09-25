@@ -5,16 +5,16 @@ function Tips(num)
 
 Tips.prototype.init = function ()
 {
-  $(document).on('copy', function () {// 复制(ctrl+c)
-    showMessage("copy", 6000, this.num);
-  });
-
   this.welcome();
   this.getJson();
 
   var tempThis = this;
   window.tips[this.num] = setInterval(function () {
     tempThis.showHitokoto(tempThis.num) }, 2000);// 无限鸡汤
+
+  $(document).on('copy', function () {// 复制(ctrl+c)
+    tempThis.showMessage("copy", 6000, tempThis.num);
+  });
 }
 
 Tips.prototype.welcome = function ()
@@ -70,10 +70,10 @@ Tips.prototype.showHitokoto = function (num)
 
 Tips.prototype.showMessage = function (text, timeout)
 {// TODO 显示的对应编号
-  var tempTip = document.getElementById("tip_" + this.num);
-  if (tempTip != null && tempTip.mystop == 1) {
+  if (thisMy[this.num].tips.stop == 1) {
     return;
   }
+
   if (Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1) - 1]; // 如果有多条tips
 
   $("#tip_" + this.num).stop();

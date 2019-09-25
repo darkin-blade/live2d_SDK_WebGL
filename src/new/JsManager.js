@@ -132,6 +132,7 @@ function divCreate(start, end)// TODO 用于集体加载模型的api,但是对�
 
     if (need_tips) { // 绑定tips javascript
       thisMy[i].tips = new Tips(i);
+      thisMy[i].tips.stop = 0;
       thisMy[i].tips.init();// 启动tips
     }
   }
@@ -168,7 +169,7 @@ function myHide(num)
   // TODO 不能直接删除提示框,否则影响排版
   var tempTip = document.getElementById("tip_" + num);
   tempTip.style.opacity = 0;// 清除本次tip
-  thisMy[num].tips.mystop = 1;
+  thisMy[num].tips.stop = 1;
 
   var tempBtn = document.getElementById("btnHide_" + num);
   tempBtn.className = "btnShow myBtn";
@@ -179,7 +180,8 @@ function myHide(num)
 function myShow(num)
 {// 显示提示框
   var tempTip = document.getElementById("tip_" + num);
-  thisMy[num].tips.mystop = 0;
+  thisMy[num].tips.stop = 0;
+
   var tempBtn = document.getElementById("btnHide_" + num);
   tempBtn.className = "btnHide myBtn";
   tempBtn.textContent = "hide";
