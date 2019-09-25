@@ -57,7 +57,6 @@ sampleApp.prototype.initL2dCanvas = function ()
       thisMy[this.num].canvas.addEventListener("mouseout", function () { tempMy.mouseEvent() }, false);
       thisMy[this.num].canvas.addEventListener("contextmenu", function () { tempMy.mouseEvent() }, false);
       
-      
       thisMy[this.num].canvas.addEventListener("touchstart", function () { tempMy.touchEvent() }, false);
       thisMy[this.num].canvas.addEventListener("touchend", function () { tempMy.touchEvent() }, false);
       thisMy[this.num].canvas.addEventListener("touchmove", function () { tempMy.touchEvent() }, false);
@@ -149,6 +148,7 @@ sampleApp.prototype.getWebGLContext = function ()
 };
 
 sampleApp.prototype.startDraw = function () {
+  console.log("startDraw " + this.num);
   if (thisMy[this.num] == null) {// 被删除
     return;
   }
@@ -157,6 +157,9 @@ sampleApp.prototype.startDraw = function () {
     thisMy[this.num].isDrawStart = true;
     var tempMy = thisMy[this.num];
     (function tick() {
+      // TODO 取消定时重绘
+      if (tempMy.num == null) return;
+
       tempMy.draw();
 
       var requestAnimationFrame =
@@ -164,6 +167,7 @@ sampleApp.prototype.startDraw = function () {
         window.mozRequestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         window.msRequestAnimationFrame;
+      console.log(requestAnimationFrame);
 
       requestAnimationFrame(tick, tempMy.canvas);
     })();
@@ -176,7 +180,6 @@ sampleApp.prototype.draw = function ()
   if (thisMy[this.num] == null) {// 被删除
     return;
   }
-
 
   MatrixStack.reset();
   MatrixStack.loadIdentity();
@@ -271,9 +274,9 @@ sampleApp.prototype.modelTurnHead = function (event)
 }
 
 sampleApp.prototype.followPointer = function (event)
-{    
-  if (thisMy[this.num] == null)
-  {// 不知道之前怎么写的
+{
+  // 不知道之前怎么写的
+  if (thisMy[this.num] == null) {// 被删除
     return;
   }
 
@@ -435,10 +438,6 @@ sampleApp.prototype.l2dLog = function (msg) {
 
 sampleApp.prototype.l2dError = function (msg)
 {
-  if (thisMy[this.num] == null) {// 被删除
-    return;
-  }
-
   if(!LAppDefine[this.num].DEBUG_LOG) return;
   
   thisMy[this.num].l2dLog( "<span style='color:red'>" + msg + "</span>");

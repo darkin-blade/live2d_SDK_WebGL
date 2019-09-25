@@ -135,15 +135,15 @@ function myDrag()
 
 function myDelete(num)
 {// TODO 解除模型的所有监听
-  var tempDrag = document.getElementById("drag_" + num);
   
-  // thisMy[num].rmPrototype();
+  thisMy[num].rmPrototype();
   for (var key in thisMy[num]) {
     console.log(key);
     delete thisMy[num][key];
   }
   thisMy[num] = null;// TODO
-
+  
+  var tempDrag = document.getElementById("drag_" + num);
   tempDrag.remove(tempDrag);
 }
 
