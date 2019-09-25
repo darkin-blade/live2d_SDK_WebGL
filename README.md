@@ -7,19 +7,19 @@
 ## 说明
 
 - 模型数量控制
-    - `JSManager.js`中`minNum`和`maxNum`只限定模型的编号范围
+    - `JsManager.js`中`minNum`和`maxNum`只限定模型的编号范围
     - 模型可以使用提供的api(`addModel`或`divCreate`)来增加,其最大数量为`maxNum`-`minNum`
-    - 源代码中默认生成一个添加模型的按钮(在`JSManager.js`的`$(document).ready(function() {`中,可自行更改
-    - 原代码对每个模型,提供关闭该模型的按钮
+    - 源代码中默认生成一个添加模型的按钮(在`JsManager.js`的`$(document).ready(function() {`中,可自行更改
 
 - 增加模型:
     1. (此步只是建议,没有强制要求)将模型文件夹(名称无限制)放在`assets`文件夹中
     2. 在`LAppDefine.js`中修改`json`文件路径(默认所有编号对应的模型相同),模型资源自行下载
 
 - 样式修改的位置:
-    - `live2d`canvas:`live2d.css`
-    - 提示框:`tips.css`
-    - 按钮:`JSManager.js`
+    - `live2d`canvas:`live2d.css`(`LAppDefine.js`,`JsManager.js`)
+    - 提示框:`tips.css`(`JsManager.js`)
+    - 按钮:`live2d.css`(`JsManager.js`)
+    - 按钮以及提示框的开启:`JsManager.js`的`need_button`和`need_tips`
 
 ## 使用
 

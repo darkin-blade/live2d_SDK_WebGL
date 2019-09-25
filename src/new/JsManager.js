@@ -57,7 +57,6 @@ function divCreate(start, end)// TODO 用于集体加载模型的api,但是对�
     tempDrag.className = "drag";
 
     if (need_tips) { // tip元素(如果不需要可不使用,并将后面的对tip.js调用删除)
-
       var tempTip = document.createElement("div");
       tempTip.mystop = 0;
       tempTip.id = "tip_" + i;
