@@ -321,13 +321,11 @@ sampleApp.prototype.lookFront = function()
 
 sampleApp.prototype.mouseEvent = function ()
 {
-  console.log("mouse Event " + this.num);
   if (thisMy[this.num] == null) {// 被删除
     return;
   }
 
   var e = window.event;
-  console.log(e.type);
   e.preventDefault();// 防止页面滚动
 
   if (e.type == "mousewheel") {
@@ -448,7 +446,6 @@ sampleApp.prototype.l2dError = function (msg)
 sampleApp.prototype.delete = function ()
 {
   // 清除所有prototype
-  console.log("rm " + this.num);
   thisMy[this.num].mystart = null;
   thisMy[this.num].initL2dCanvas = null;
   thisMy[this.num].init = null;
