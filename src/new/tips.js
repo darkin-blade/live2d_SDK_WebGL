@@ -36,8 +36,7 @@ Tips.prototype.welcome = function ()
   this.showMessage(text, 3000, this.num);
 };
 
-
-Tips.prototype.getJson = function () 
+Tips.prototype.getJson = function ()// 删除了原api的render函数,不知道有没有影响
 {// 对固定事件绑定tips
   var tempThis = this;
   $.getJSON(tipAddress + "tips.json", function (result) {
@@ -45,9 +44,6 @@ Tips.prototype.getJson = function ()
       $(document).on("mouseover", tips.selector, function () {
         var text = tips.text;
         if (Array.isArray(tips.text)) text = tips.text[Math.floor(Math.random() * tips.text.length + 1) - 1];
-        text = text.render({
-          text: $(this).text()
-        });
         tempThis.showMessage(text, 3000, this.num);
       });
     });
@@ -55,9 +51,6 @@ Tips.prototype.getJson = function ()
       $(document).on("click", tips.selector, function () {
         var text = tips.text;
         if (Array.isArray(tips.text)) text = tips.text[Math.floor(Math.random() * tips.text.length + 1) - 1];
-        text = text.render({
-          text: $(this).text()
-        });
         tempThis.showMessage(text, 3000, this.num);
       });
     });
@@ -98,31 +91,3 @@ Tips.prototype.delete = function ()
 {
   window.clearInterval(window.tips[this.num]);// 取消无限鸡汤
 }
-
-function render(template, context) {
-  console.log("render");
-
-  var tokenReg = /(\\)?\{([^\{\}\\]+)(\\)?\}/g;
-
-  return template.replace(tokenReg, function (word, slash1, token, slash2) {
-    if (slash1 || slash2) {
-      return word.replace('\\', '');
-    }
-
-    var variables = token.replace(/\s/g, '').split('.');
-    var currentObject = context;
-    var i, length, variable;
-
-    for (i = 0, length = variables.length; i < length; ++i) {
-      variable = variables[i];
-      currentObject = currentObject[variable];
-      if (currentObject === undefined || currentObject === null) return '';
-    }
-    return currentObject;
-  });
-}
-
-String.prototype.render = function (context) {
-  console.log("string render");
-  return render(this, context);
-};

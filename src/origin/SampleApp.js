@@ -72,11 +72,13 @@ sampleApp.prototype.initL2dCanvas = function ()
         tempMy.touchEvent() }, false);
   }
   
-  var btnChangeModel = document.getElementById("btnChange_" + this.num);// `切换`按钮
-  var tempMy = thisMy[this.num];
-  btnChangeModel.addEventListener("click", function(e) {
+  if (need_button) {// 开启了显示button
+    var btnChangeModel = document.getElementById("btnChange_" + this.num);// `切换`按钮
+    var tempMy = thisMy[this.num];
+    btnChangeModel.addEventListener("click", function(e) {
       tempMy.changeModel();// 切换模型
-  });
+    });
+  }
 }
 
 sampleApp.prototype.init = function()
@@ -129,14 +131,15 @@ sampleApp.prototype.init = function()
 
 sampleApp.prototype.changeModel = function ()
 {
-  // 放缩测试
+  if (need_button) {
+    var btnChange = document.getElementById("btnChange_" + this.num);
+    btnChange.setAttribute("disabled", "disabled");
+    btnChange.setAttribute("class", "btnChanging myBtn");// 切换class
+    btnChange.textContent = "loading";
+  }
 
-  var btnChange = document.getElementById("btnChange_" + this.num);
-  btnChange.setAttribute("disabled", "disabled");
-  btnChange.setAttribute("class", "btnChanging myBtn");// 切换class
-  btnChange.textContent = "loading";
   thisMy[this.num].isModelShown = false;
-  
+
   thisMy[this.num].live2DMgr.reloadFlg = true;
   thisMy[this.num].live2DMgr.count++;
 
@@ -215,10 +218,12 @@ sampleApp.prototype.draw = function ()
 
           if (!thisMy[this.num].isModelShown && i == thisMy[this.num].live2DMgr.numModels() - 1) {
               thisMy[this.num].isModelShown = !thisMy[this.num].isModelShown;
-              var btnChange = document.getElementById("btnChange_" + this.num);
-              btnChange.textContent = "change";
-              btnChange.removeAttribute("disabled");
-              btnChange.setAttribute("class", "btnChange myBtn");// 切换class
+              if (need_button) {// 开启了button
+                var btnChange = document.getElementById("btnChange_" + this.num);
+                btnChange.textContent = "change";
+                btnChange.removeAttribute("disabled");
+                btnChange.setAttribute("class", "btnChange myBtn");// 切换class
+              }
           }
       }
   }
