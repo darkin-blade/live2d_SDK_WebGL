@@ -3,7 +3,7 @@ var tipAddress = apiAddress + "src/tips/";// 提示框内容文件夹位置
 var modelAddress = apiAddress + "assets/";// 模型文件的根目录
 
 var minNum = 0;// 模型的最小编号
-var maxNum = 80;// 模型的最大编号
+var maxNum = 1;// 模型的最大编号
 var totalNum = 0;// 总模型数
 var thisMy = new Array();
 var JsMgr = {
@@ -19,7 +19,6 @@ $(document).ready(function() {
   tempBtn.setAttribute("onclick", "addModel()");
   tempBtn.innerText = "add";
   document.body.appendChild(tempBtn);
-  tempBtn.onclick();
 });
 
 function addModel()// 单个添加模型的api,如果网站需要一次性生成多模型,不建议使用此函数
@@ -117,9 +116,13 @@ function divCreate(start, end)// TODO 用于集体加载模型的api,但是对�
     $("#drag_" + i).css("left", 200 + "px");
     // $("#drag_" + i).css("left", (i * 200 + 60) + "px");
 
-    // 主体函数
+    // 启动live2d javascript
     thisMy[i] = new sampleApp(i);
     setTimeout("thisMy[" + i + "].mystart()", (i - start) * JsMgr.loadInterval);
+
+    // 绑定tips的javascript
+    thisMy[i].tips = new Tips(i);
+    thisMy[i].tips.init();// 启动tips
   }
   setTimeout("myDrag()", (maxNum - start + 1) * JsMgr.loadInterval);
 }
@@ -136,7 +139,7 @@ function myDelete(num)
 {// TODO 解除模型的所有监听
   thisMy[num].delete();
   for (var key in thisMy[num]) {
-    console.log(key);
+    // console.log(key);
     delete thisMy[num][key];
   }
   thisMy[num] = null;// TODO
