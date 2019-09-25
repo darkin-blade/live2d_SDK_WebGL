@@ -20,7 +20,7 @@ Tips.prototype.init = function ()
 Tips.prototype.welcome = function ()
 {// 第一句话
   var text;
-  if (document.referrer !== '') {// 通过搜索引擎访问
+  if (document.referrer !== '' && false) {// 通过搜索引擎访问(不想使用此功能)
     var referrer = document.createElement('a');
     referrer.href = document.referrer;
     var domain = referrer.hostname.split('.')[1];// 获取搜索引擎
@@ -30,7 +30,7 @@ Tips.prototype.welcome = function ()
       var cur_time = (new Date()).getHours();// 获取时间
       text = 'it is ' + cur_time + " now";
     } else {
-      text = 'welcome to' + document.title + '';// 获取标题
+      text = 'welcome to ' + document.title + '';// 获取标题
     }
   }
   this.showMessage(text, 3000, this.num);
@@ -71,7 +71,9 @@ Tips.prototype.showHitokoto = function (num)
 Tips.prototype.showMessage = function (text, timeout)
 {// TODO 显示的对应编号
   var tempTip = document.getElementById("tip_" + this.num);
-  if (tempTip != null && tempTip.mystop == 1) return;
+  if (tempTip != null && tempTip.mystop == 1) {
+    return;
+  }
   if (Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1) - 1]; // 如果有多条tips
 
   $("#tip_" + this.num).stop();

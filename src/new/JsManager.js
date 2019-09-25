@@ -14,8 +14,8 @@ var JsMgr = {
 }
 
 // 对于tips以及button的控制
-var need_tips = 0;
-var need_button = 0;
+var need_tips = 1;
+var need_button = 1;
 
 $(document).ready(function() {
   // 在本地测试时添加模型的按钮
@@ -66,7 +66,7 @@ function divCreate(start, end)// TODO 用于集体加载模型的api,但是对�
         "left: " + (-25) + "px;" +
         "margin: 0px 0px " + (-LAppDefine[i].height / (10 * (LAppDefine[i].width / LAppDefine[i].height))) + "px 0px;"
       ); // 自动计算大小
-      tempDrag.appendChild(tempTip);
+      tempDrag.prepend(tempTip);
     }
     
     // live2d画布
@@ -165,9 +165,11 @@ function myDelete(num)
 
 function myHide(num)
 {// 隐藏提示框
+  // TODO 不能直接删除提示框,否则影响排版
   var tempTip = document.getElementById("tip_" + num);
-  tempTip.mystop = 1;
-  tempTip.style.opacity = 0;
+  tempTip.style.opacity = 0;// 清除本次tip
+  thisMy[num].tips.mystop = 1;
+
   var tempBtn = document.getElementById("btnHide_" + num);
   tempBtn.className = "btnShow myBtn";
   tempBtn.textContent = "show";
@@ -177,7 +179,7 @@ function myHide(num)
 function myShow(num)
 {// 显示提示框
   var tempTip = document.getElementById("tip_" + num);
-  tempTip.mystop = 0;
+  thisMy[num].tips.mystop = 0;
   var tempBtn = document.getElementById("btnHide_" + num);
   tempBtn.className = "btnHide myBtn";
   tempBtn.textContent = "hide";
