@@ -19,12 +19,11 @@ $(document).ready(function() {
   tempBtn.setAttribute("onclick", "addModel()");
   tempBtn.innerText = "add";
   document.body.appendChild(tempBtn);
+  tempBtn.onclick();
 });
 
 function addModel()// 单个添加模型的api,如果网站需要一次性生成多模型,不建议使用此函数
 {
-  console.log(live2Dmain == null);
-
   if (totalNum > 0) {// live2d.js的初始化函数,在一开始只会初始化第一个模型
     live2Dmain(totalNum + minNum);// 之后的模型需要重新初始化
   }
@@ -135,7 +134,6 @@ function myDrag()
 
 function myDelete(num)
 {// TODO 解除模型的所有监听
-  
   thisMy[num].delete();
   for (var key in thisMy[num]) {
     console.log(key);
@@ -148,7 +146,7 @@ function myDelete(num)
 }
 
 function myHide(num)
-{
+{// 隐藏提示框
   var tempTip = document.getElementById("tip_" + num);
   tempTip.mystop = 1;
   tempTip.style.opacity = 0;
@@ -159,7 +157,7 @@ function myHide(num)
 }
 
 function myShow(num)
-{
+{// 显示提示框
   var tempTip = document.getElementById("tip_" + num);
   tempTip.mystop = 0;
   var tempBtn = document.getElementById("btnHide_" + num);

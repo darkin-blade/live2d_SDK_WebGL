@@ -422,7 +422,8 @@ sampleApp.prototype.transformScreenY = function (deviceY)
   return thisMy[this.num].deviceToScreen.transformY(deviceY);
 }
 
-sampleApp.prototype.l2dLog = function (msg) {
+sampleApp.prototype.l2dLog = function (msg)
+{
   if(!LAppDefine[this.num].DEBUG_LOG) return;
   
   var myconsole = document.getElementById("myconsole");

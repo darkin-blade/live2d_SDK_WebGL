@@ -24,15 +24,8 @@ String.prototype.render = function (context) {
   return render(this, context);
 };
 
-var re = /x/;
-console.log(re);
-re.toString = function () {
-  showMessage(text, 6000, -1);
-  return '';
-};
-
-$(document).on('copy', function () {
-  showMessage(text, 6000, -1);
+$(document).on('copy', function () {// 复制(ctrl+c)
+  showMessage("copy", 6000, -1);
 });
 
 (function () {
@@ -99,9 +92,10 @@ $(document).on('copy', function () {
         text = '嗨~ 快来逗我玩吧！';
       }
     } else {
-      text = '欢迎阅读<span style="color:#0099cc;">『' + document.title.split(' - ')[0] + '』</span>';
+      text = 'welcome to' + document.title.split(' - ')[0] + '';
     }
   }
+  console.log(text);
   showMessage(text, 3000, -1);
 })();
 
@@ -117,7 +111,7 @@ function showHitokoto() {
   });
 }
 
-function showMessage(text, timeout, num) {
+function showMessage(text, timeout, num) {// TODO 显示的位置
   var tempTip = document.getElementById("tip_" + num);
   if (tempTip != null && tempTip.mystop == 1) return;
   if (Array.isArray(text)) text = text[Math.floor(Math.random() * text.length + 1) - 1];
